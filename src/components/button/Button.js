@@ -18,9 +18,8 @@ const Button = (props) => {
 
 Button.propTypes = {
   label: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/require-default-props
-  handleClick: PropTypes.func
+  className: PropTypes.string.isRequired
+  // handleClick: PropTypes.func
 };
 
 export default Button;

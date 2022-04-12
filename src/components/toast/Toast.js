@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import PropTypes from 'prop-types';
 import './Toast.css';
 
 const Toast = (props) => {
@@ -9,6 +9,12 @@ const Toast = (props) => {
   useEffect(() => {
     setList(toastList);
   }, [toastList, list]);
+
+  const deleteToast = (id) => {
+    const index = list.findIndex((e) => e.id === id);
+    list.splice(index, 1);
+    setList([...list]);
+  };
 
   return (
     <>
@@ -20,7 +26,7 @@ const Toast = (props) => {
                       className={`notification toast ${position}`}
                       style={{ backgroundColor: toast.backgroundColor }}
                     >
-                      <button type="button">
+                      <button type="button" onClick={() => deleteToast(toast.id)}>
                         X
                       </button>
                       <div className="notification-image">
@@ -38,5 +44,14 @@ const Toast = (props) => {
       </div>
     </>
   );
+};
+
+Toast.defaultProps = {
+  position: 'centered'
+};
+
+Toast.propTypes = {
+  toastList: PropTypes.arrayOf.isRequired,
+  position: PropTypes.string
 };
 export default Toast;
