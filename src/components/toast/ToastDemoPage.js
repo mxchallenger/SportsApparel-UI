@@ -40,6 +40,7 @@ const BUTTON_PROPS = [
  */
 const ToastDemoPage = () => {
   const [list, setList] = useState([]);
+  const [autoDeleteTime] = useState(8000);
   let toastProperties = null;
 
   const showToast = (type) => {
@@ -91,7 +92,7 @@ const ToastDemoPage = () => {
   return (
     <div className="app">
       <div className="app-header">
-        <p>React Toast Component</p>
+        <p>Toast Demo</p>
         <div className="toast-buttons">
           {
                         BUTTON_PROPS.map((e) => (
@@ -108,6 +109,7 @@ const ToastDemoPage = () => {
       <Toast
         toastList={list}
         position="centered"
+        autoDeleteTime={autoDeleteTime}
       />
     </div>
   );

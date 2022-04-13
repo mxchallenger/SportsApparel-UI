@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import './Toast.css';
 
 const Toast = (props) => {
-  const { toastList, position } = props;
+  const {
+    toastList, position, autoDelete, autoDeleteTime
+  } = props;
   const [list, setList] = useState(toastList);
 
   useEffect(() => {
@@ -11,10 +13,23 @@ const Toast = (props) => {
   }, [toastList, list]);
 
   const deleteToast = (id) => {
-    const index = list.findIndex((e) => e.id === id);
-    list.splice(index, 1);
+    const listItemIndex = list.findIndex((e) => e.id === id);
+    const toastListItem = toastList.findIndex((e) => e.id === id);
+    list.splice(listItemIndex, 1);
+    list.splice(toastListItem, 1);
     setList([...list]);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (autoDelete && toastList.length && list.length) {
+        deleteToast(toastList[0].id);
+      }
+    }, autoDeleteTime);
+    return () => {
+      clearInterval(interval);
+    };
+  });
 
   return (
     <>
@@ -47,11 +62,15 @@ const Toast = (props) => {
 };
 
 Toast.defaultProps = {
-  position: 'centered'
+  position: 'centered',
+  autoDelete: true,
+  autoDeleteTime: 8000
 };
 
 Toast.propTypes = {
   toastList: PropTypes.arrayOf.isRequired,
-  position: PropTypes.string
+  position: PropTypes.string,
+  autoDelete: PropTypes.bool,
+  autoDeleteTime: PropTypes.number
 };
 export default Toast;

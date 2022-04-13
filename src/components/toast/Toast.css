@@ -4,41 +4,14 @@
     position: fixed;
 }
 
-.top-right {
-    top: 12px;
-    right: 12px;
-    transition: transform .6s ease-in-out;
-    animation: toast-in-right .7s;
-}
-
-.bottom-right {
-    bottom: 12px;
-    right: 12px;
-    transition: transform .6s ease-in-out;
-    animation: toast-in-right .7s;
-}
-
-.top-left {
-    top: 12px;
-    left: 12px;
-    transition: transform .6s ease-in;
-    animation: toast-in-left .7s;
-}
-
-.bottom-left {
-    bottom: 12px;
-    left: 12px;
-    transition: transform .6s ease-in;
-    animation: toast-in-left .7s;
-}
-.centered {
+  .centered {
 	position: absolute;
-	top: 50%;
+	top: 15%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	transition: transform .6s ease-in;
-    animation: toast-in-down .7s;
-  }
+ }
+
+
 .notification {
 	background: #fff;
 	transition: .3s ease;
@@ -120,31 +93,5 @@
 	border: 0
 }
 
-@keyframes toast-in-right {
-	from {
-	  transform: translateX(100%);
-	  
-	}
-	to {
-	  transform: translateY(0);
-	}
-}
-@keyframes toast-in-left {
-	from {
-	  transform: translateX(100%);
-	  
-	}
-	to {
-	  transform: translateY(0);
-	}
-}
 
-@keyframes toast-in-down {
-	from {
-		transform: translateY(-100%);
-		
-	}
-	to {
-		transform: translateY(0);
-	}
-}
+
