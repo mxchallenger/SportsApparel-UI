@@ -5,7 +5,7 @@ import ProductPage from '../product-page/ProductPage';
 import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
 import Header from '../header/Header';
-import Maintenance from '../maintenance/ProductView';
+import Maintenance from '../maintenance/Maintenance';
 
 /**
  * @name App
