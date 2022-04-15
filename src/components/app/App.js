@@ -21,8 +21,11 @@ const App = () => (
       <Route exact path="/checkout" render={() => <CheckoutPage />} />
       <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
       <Route exact path="/toast" render={() => <Toast />} />
-      <ToastContainer />
     </Switch>
+    <ToastContainer
+      position="top-center"
+      autoClose={8000}
+    />
   </BrowserRouter>
 
 );

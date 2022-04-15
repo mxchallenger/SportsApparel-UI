@@ -1,22 +1,18 @@
 import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
 
-function toasty() {
-  const notify = () => toast('You have been notified.');
+const toasty = () => (
 
-  return (
-    <div>
-      <button type="button" onClick={notify}>Notify!</button>
-      <ToastContainer
-        position="top-center"
-        autoClose={8000}
-      />
-    </div>
-  );
-}
+  <div>
+    <button type="button" onClick={() => toast.info('You have been notified.')}>Notify</button>
+    <button type="button" onClick={() => toast.success('Sucess!')}>Success</button>
+    <button type="button" onClick={() => toast.error('Something went wrong.')}>Error</button>
+
+  </div>
+);
 
 export default toasty;
