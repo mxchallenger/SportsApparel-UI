@@ -22,3 +22,5 @@ export default async function fetchProducts(setProducts, setApiError) {
       setApiError(true);
     });
 }
+
+export const currencyFormatter = (params) => '$'.concat(params.value.ToString());
