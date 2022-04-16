@@ -19,21 +19,35 @@ const formatActive = (params) => (params.value === true ? 'true' : 'false');
  */
 const Maintenance = () => {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
-  const gridStyle = useMemo(() => ({ height: 675, width: '100%' }), []);
+  const gridStyle = useMemo(() => ({ height: 650, width: '100%' }), []);
 
   const [columnDefs] = useState([
-    { field: 'id', sortable: true },
-    { field: 'name', sortable: true },
-    { field: 'description', sortable: true },
-    { field: 'price', sortable: true, valueFormatter: formatCurrency },
-    { field: 'quantity', sortable: true },
-    { field: 'active', sortable: true, valueFormatter: formatActive },
-    { field: 'category', sortable: true },
-    { field: 'type', sortable: true },
-    { field: 'brand', sortable: true },
-    { field: 'material', sortable: true },
-    { field: 'sku', sortable: true },
-    { field: 'globalProductCode', sortable: true },
+    { field: 'id', sortable: true, width: 75 },
+    {
+      field: 'name',
+      sortable: true,
+      width: 275
+    },
+    { field: 'description', sortable: true, width: 275 },
+    {
+      field: 'price',
+      sortable: true,
+      width: 100,
+      valueFormatter: formatCurrency
+    },
+    { field: 'quantity', sortable: true, width: 100 },
+    {
+      field: 'active',
+      sortable: true,
+      width: 100,
+      valueFormatter: formatActive
+    },
+    { field: 'category', sortable: true, width: 150 },
+    { field: 'type', sortable: true, width: 125 },
+    { field: 'brand', sortable: true, width: 125 },
+    { field: 'material', sortable: true, width: 130 },
+    { field: 'sku', sortable: true, width: 130 },
+    { field: 'globalProductCode', sortable: true, width: 175 },
     { field: 'releaseDate', sortable: true },
     { field: 'imageSrc', sortable: true },
     { field: 'primaryColorCode', sortable: true },
