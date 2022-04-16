@@ -8,7 +8,9 @@ import Constants from '../../utils/constants';
 
 const formatNumber = (number) => number.toFixed(2).toString();
 
-const currencyFormatter = (params) => '$'.concat(formatNumber(params.value));
+const formatCurrency = (params) => '$'.concat(formatNumber(params.value));
+
+const formatActive = (params) => (params.value === true ? 'true' : 'false');
 
 /**
  * @name Maintenance
@@ -23,9 +25,9 @@ const Maintenance = () => {
     { field: 'id', sortable: true },
     { field: 'name', sortable: true },
     { field: 'description', sortable: true },
-    { field: 'price', sortable: true, valueFormatter: currencyFormatter },
+    { field: 'price', sortable: true, valueFormatter: formatCurrency },
     { field: 'quantity', sortable: true },
-    { field: 'active', sortable: true },
+    { field: 'active', sortable: true, valueFormatter: formatActive },
     { field: 'category', sortable: true },
     { field: 'type', sortable: true },
     { field: 'brand', sortable: true },
