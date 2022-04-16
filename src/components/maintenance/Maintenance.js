@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -6,17 +6,24 @@ import fetchProducts from './MaintenanceService';
 import styles from './Maintenance.module.css';
 import Constants from '../../utils/constants';
 
+const formatNumber = (number) => number.toFixed(2).toString();
+
+const currencyFormatter = (params) => '$'.concat(formatNumber(params.value));
+
 /**
  * @name Maintenance
  * @description fetches products from API and displays products in a table
  * @return component
  */
 const Maintenance = () => {
+  const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
+  const gridStyle = useMemo(() => ({ height: 675, width: '100%' }), []);
+
   const [columnDefs] = useState([
     { field: 'id', sortable: true },
     { field: 'name', sortable: true },
     { field: 'description', sortable: true },
-    { field: 'price', sortable: true },
+    { field: 'price', sortable: true, valueFormatter: currencyFormatter },
     { field: 'quantity', sortable: true },
     { field: 'active', sortable: true },
     { field: 'category', sortable: true },
@@ -40,9 +47,9 @@ const Maintenance = () => {
   }, []);
 
   return (
-    <div className="scroll">
+    <div style={containerStyle}>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <div className="ag-theme-alpine" style={{ height: 450, width: '100%', columnFill: 'balance-all' }}>
+      <div style={gridStyle} className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}
