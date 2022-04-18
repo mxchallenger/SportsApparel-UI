@@ -6,10 +6,27 @@ import fetchProducts from './MaintenanceService';
 import styles from './Maintenance.module.css';
 import Constants from '../../utils/constants';
 
+/**
+ * A value formatter that takes a number and converts to a string
+ * with 2 digits to the right of the decimal
+ * @param {*} number
+ * @returns formatted string
+ */
 const formatNumber = (number) => number.toFixed(2).toString();
 
+/**
+ * A value formatter that takes in params (props) and returs the
+ * string in a monetary format.
+ * @param {*} params
+ * @returns monetary string
+ */
 const formatCurrency = (params) => '$'.concat(formatNumber(params.value));
 
+/**
+ * A value formatter that returns true or false based on input value.
+ * @param {*} params truthy or falsey value.
+ * @returns either 'true' or 'false' as a string.
+ */
 const formatActive = (params) => (params.value === true ? 'true' : 'false');
 
 /**
@@ -30,9 +47,9 @@ const Maintenance = () => {
     {
       field: 'name',
       sortable: true,
-      width: 275
+      width: 250
     },
-    { field: 'description', width: 275 },
+    { field: 'description', width: 250 },
     {
       field: 'price',
       sortable: true,
@@ -50,21 +67,22 @@ const Maintenance = () => {
     { field: 'type', width: 125 },
     { field: 'brand', width: 125 },
     { field: 'material', width: 130 },
+    { field: 'demographic' },
+    { field: 'styleNumber', width: 130 },
     { field: 'sku', width: 130 },
     { field: 'globalProductCode', width: 175 },
     { field: 'releaseDate' },
     { field: 'imageSrc' },
-    {
-      field: 'primaryColorCode',
-      width: 100
-    },
+    { field: 'primaryColorCode' },
     { field: 'secondaryColorCode' },
-    { field: 'demographic' }
+    { field: 'dateCreated' },
+    { field: 'dateModified' }
   ], []);
 
   const defaultColDef = useMemo(() => ({
     resizable: true,
-    sortable: true
+    sortable: true,
+    width: 110
   }), []);
 
   const [rowData, setRowData] = useState([]);
