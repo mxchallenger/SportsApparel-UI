@@ -21,39 +21,51 @@ const Maintenance = () => {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
   const gridStyle = useMemo(() => ({ height: 650, width: '100%' }), []);
 
-  const [columnDefs] = useState([
-    { field: 'id', sortable: true, width: 75 },
+  const columnDefs = useMemo(() => [
+    {
+      field: 'id',
+      sortable: true,
+      width: 75
+    },
     {
       field: 'name',
       sortable: true,
       width: 275
     },
-    { field: 'description', sortable: true, width: 275 },
+    { field: 'description', width: 275 },
     {
       field: 'price',
       sortable: true,
       width: 100,
       valueFormatter: formatCurrency
     },
-    { field: 'quantity', sortable: true, width: 100 },
+    { field: 'quantity', width: 100 },
     {
       field: 'active',
       sortable: true,
       width: 100,
       valueFormatter: formatActive
     },
-    { field: 'category', sortable: true, width: 150 },
-    { field: 'type', sortable: true, width: 125 },
-    { field: 'brand', sortable: true, width: 125 },
-    { field: 'material', sortable: true, width: 130 },
-    { field: 'sku', sortable: true, width: 130 },
-    { field: 'globalProductCode', sortable: true, width: 175 },
-    { field: 'releaseDate', sortable: true },
-    { field: 'imageSrc', sortable: true },
-    { field: 'primaryColorCode', sortable: true },
-    { field: 'secondaryColorCode', sortable: true },
-    { field: 'demographic', sortable: true }
-  ]);
+    { field: 'category', width: 150 },
+    { field: 'type', width: 125 },
+    { field: 'brand', width: 125 },
+    { field: 'material', width: 130 },
+    { field: 'sku', width: 130 },
+    { field: 'globalProductCode', width: 175 },
+    { field: 'releaseDate' },
+    { field: 'imageSrc' },
+    {
+      field: 'primaryColorCode',
+      width: 100
+    },
+    { field: 'secondaryColorCode' },
+    { field: 'demographic' }
+  ], []);
+
+  const defaultColDef = useMemo(() => ({
+    resizable: true,
+    sortable: true
+  }), []);
 
   const [rowData, setRowData] = useState([]);
   const [apiError, setApiError] = useState(false);
@@ -69,6 +81,7 @@ const Maintenance = () => {
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}
+          defaultColDef={defaultColDef}
         />
       </div>
     </div>
