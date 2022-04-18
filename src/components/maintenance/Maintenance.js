@@ -38,7 +38,7 @@ const Maintenance = () => {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
   const gridStyle = useMemo(() => ({ height: 650, width: '100%' }), []);
 
-  const columnDefs = useMemo(() => [
+  const columnDefs = [
     {
       field: 'id',
       sortable: true,
@@ -68,22 +68,27 @@ const Maintenance = () => {
     { field: 'brand', width: 125 },
     { field: 'material', width: 130 },
     { field: 'demographic' },
+    { field: 'imageSrc' },
+    {
+      headerName: 'Image',
+      field: 'imageSrc',
+      cellRenderer: (params) => <img style={{ height: '50px', width: '50px' }} src={params.value} alt="" />
+    },
+    { field: 'primaryColorCode' },
+    { field: 'secondaryColorCode' },
     { field: 'styleNumber', width: 130 },
     { field: 'sku', width: 130 },
     { field: 'globalProductCode', width: 175 },
     { field: 'releaseDate' },
-    { field: 'imageSrc' },
-    { field: 'primaryColorCode' },
-    { field: 'secondaryColorCode' },
     { field: 'dateCreated' },
     { field: 'dateModified' }
-  ], []);
+  ];
 
-  const defaultColDef = useMemo(() => ({
+  const defaultColDef = {
     resizable: true,
     sortable: true,
     width: 110
-  }), []);
+  };
 
   const [rowData, setRowData] = useState([]);
   const [apiError, setApiError] = useState(false);
