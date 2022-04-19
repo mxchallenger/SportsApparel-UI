@@ -29,6 +29,14 @@ const formatCurrency = (params) => '$'.concat(formatNumber(params.value));
  */
 const formatActive = (params) => (params.value === true ? 'true' : 'false');
 
+const addColorBox = (params) => {
+  if (params.value !== '#ffffff') {
+    return <span style={{ color: params.value }}>{params.value}</span>;
+  }
+
+  return <span style={{ background: '#000000', color: '#ffffff' }}>{params.value}</span>;
+};
+
 /**
  * @name Maintenance
  * @description fetches products from API and displays products in a table
@@ -74,8 +82,14 @@ const Maintenance = () => {
       field: 'imageSrc',
       cellRenderer: (params) => <img style={{ height: '50px', width: '50px' }} src={params.value} alt="" />
     },
-    { field: 'primaryColorCode' },
-    { field: 'secondaryColorCode' },
+    {
+      field: 'primaryColorCode',
+      cellRenderer: addColorBox
+    },
+    {
+      field: 'secondaryColorCode',
+      cellRenderer: addColorBox
+    },
     { field: 'styleNumber', width: 130 },
     { field: 'sku', width: 130 },
     { field: 'globalProductCode', width: 175 },
