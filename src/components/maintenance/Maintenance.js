@@ -7,7 +7,7 @@ import styles from './Maintenance.module.css';
 import Constants from '../../utils/constants';
 
 /**
- * A value formatter that takes a number and converts to a string
+ * A JSX value formatter that takes a number and converts to a string
  * with 2 digits to the right of the decimal
  * @param {*} number
  * @returns formatted string
@@ -15,25 +15,35 @@ import Constants from '../../utils/constants';
 const formatNumber = (number) => number.toFixed(2).toString();
 
 /**
- * A value formatter that takes in params (props) and returs the
+ * A JSX value formatter that takes in params (props) and returs the
  * string in a monetary format.
- * @param {*} params
+ * @param {Object} params a number representing a price.
  * @returns monetary string
  */
 const formatCurrency = (params) => '$'.concat(formatNumber(params.value));
 
 /**
- * A value formatter that returns true or false based on input value.
- * @param {*} params truthy or falsey value.
+ * A JSX value formatter that returns true or false based on input value.
+ * @param {Object} params truthy or falsey value.
  * @returns either 'true' or 'false' as a string.
  */
 const formatActive = (params) => (params.value === true ? 'true' : 'false');
 
+/**
+ * A JSX cell renderer that returns a thumbnail image based on input value.
+ * @param {Object} params a link to an image.
+ * @returns JSX/HTML image tag.
+ */
 const addImage = (params) => <img style={{ height: '50px', width: '50px' }} src={params.value} alt="" />;
 
+/**
+ * A JSX cell renderer that returns a circle filled with color in input value.
+ * @param {Object} params a color code in hex format.
+ * @returns JSX/HTML svg tag containing definition for circle.
+ */
 const addColorBox = (params) => (
   <svg style={{ height: 25, width: 25 }}>
-    <circle cx={10} cy={17} r={7} stroke="black" strokeWidth={1} fill={params.value} />
+    <circle cx={9} cy={17} r={7} stroke="black" strokeWidth={1} fill={params.value} />
   </svg>
 );
 
@@ -44,7 +54,7 @@ const addColorBox = (params) => (
  */
 const Maintenance = () => {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
-  const gridStyle = useMemo(() => ({ height: 650, width: '100%' }), []);
+  const gridStyle = useMemo(() => ({ height: 500, width: '100%' }), []);
 
   const columnDefs = [
     {
@@ -90,7 +100,7 @@ const Maintenance = () => {
     {
       headerName: '',
       field: 'primaryColorCode',
-      widt: 25,
+      width: 30,
       editable: false,
       sortable: false,
       cellRenderer: addColorBox
@@ -101,7 +111,7 @@ const Maintenance = () => {
     {
       headerName: '',
       field: 'secondaryColorCode',
-      widt: 25,
+      width: 30,
       editable: false,
       sortable: false,
       cellRenderer: addColorBox
@@ -131,6 +141,7 @@ const Maintenance = () => {
   return (
     <div style={containerStyle}>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR.concat(' Is the database running?')}</p>}
+      <h1>Products Maintenance View</h1>
       <div style={gridStyle} className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}
