@@ -29,13 +29,13 @@ const formatCurrency = (params) => '$'.concat(formatNumber(params.value));
  */
 const formatActive = (params) => (params.value === true ? 'true' : 'false');
 
-const addColorBox = (params) => {
-  if (params.value !== '#ffffff') {
-    return <span style={{ color: params.value }}>{params.value}</span>;
-  }
+const addImage = (params) => <img style={{ height: '50px', width: '50px' }} src={params.value} alt="" />;
 
-  return <span style={{ background: '#000000', color: '#ffffff' }}>{params.value}</span>;
-};
+const addColorBox = (params) => (
+  <svg style={{ height: 25, width: 25 }}>
+    <circle cx={10} cy={17} r={7} stroke="black" strokeWidth={1} fill={params.value} />
+  </svg>
+);
 
 /**
  * @name Maintenance
@@ -50,7 +50,8 @@ const Maintenance = () => {
     {
       field: 'id',
       sortable: true,
-      width: 75
+      width: 75,
+      editable: false
     },
     {
       field: 'name',
@@ -80,27 +81,43 @@ const Maintenance = () => {
     {
       headerName: 'Image',
       field: 'imageSrc',
-      cellRenderer: (params) => <img style={{ height: '50px', width: '50px' }} src={params.value} alt="" />
+      editable: false,
+      cellRenderer: addImage
     },
     {
+      field: 'primaryColorCode'
+    },
+    {
+      headerName: '',
       field: 'primaryColorCode',
+      widt: 25,
+      editable: false,
+      sortable: false,
       cellRenderer: addColorBox
     },
     {
+      field: 'secondaryColorCode'
+    },
+    {
+      headerName: '',
       field: 'secondaryColorCode',
+      widt: 25,
+      editable: false,
+      sortable: false,
       cellRenderer: addColorBox
     },
     { field: 'styleNumber', width: 130 },
     { field: 'sku', width: 130 },
     { field: 'globalProductCode', width: 175 },
     { field: 'releaseDate' },
-    { field: 'dateCreated' },
-    { field: 'dateModified' }
+    { field: 'dateCreated', editable: false },
+    { field: 'dateModified', editable: false }
   ];
 
   const defaultColDef = {
     resizable: true,
     sortable: true,
+    editable: true,
     width: 110
   };
 
@@ -113,7 +130,7 @@ const Maintenance = () => {
 
   return (
     <div style={containerStyle}>
-      {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
+      {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR.concat(' Is the database running?')}</p>}
       <div style={gridStyle} className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}
