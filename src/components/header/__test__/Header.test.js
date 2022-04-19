@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-// import { createMemoryHistory } from 'history';
-// import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router-dom';
 import '@testing-library/jest-dom';
-// import { LocationDisplay } from './..app';
+// import { Header } from './..app';
 import Header from '../Header';
 
 it('renders without crashing', () => {
@@ -13,20 +13,21 @@ it('renders without crashing', () => {
   ReactDOM.render(Header, div);
 });
 
-it('renders link correctly', () => {
-  const { getByDivId } = render(<Header label='img src={logo} alt="logo"' />);
-  expect(getByDivId('home')).toHaveTextContent('img src={logo} alt="logo"');
-});
+/* it('renders link correctly', () => {
+  const { getByAltText } = render(<Header label='img src={logo} alt="logo"' />);
+  expect(getByAltText('img src={logo} alt="logo"')).toHaveTextContent('img src={logo} alt="logo"');
+}); */
 
-/* test('rendering a component that uses useLocation', () => {
+test('rendering a component that uses useLocation', () => {
   const history = createMemoryHistory();
-  const route = 'App';
+  const route = 'Header';
+  const logo = screen.getByAltText('logo');
   history.push(route);
   render(
     <Router history={history}>
-      <LocationDisplay />
+      <Header />
     </Router>
   );
 
-  expect(screen.getByDivId('App')).toHaveTextContent(route);
-}); */
+  expect(screen.getByAltText(logo)).toHaveTextContent(route);
+});

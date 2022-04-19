@@ -27,18 +27,18 @@ function CartProvider({ children }) {
     products: [
       {
         id: null,
-        title: 'Sport Shoes',
-        price: 49.99,
-        description: 'Sporty shoes for sporty people',
-        quantity: 2
-      },
-      {
+        title: null,
+        price: null,
+        description: null,
+        quantity: null
+      }
+      /* {
         id: null,
         title: 'Sport Shorts',
         price: 39.99,
         description: 'Sporty shorts for sporty people',
         quantity: 5
-      }
+      } */
     ],
     setProducts: () => { }
   };

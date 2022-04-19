@@ -26,7 +26,11 @@ img {
     max-width: 50px;
     overflow: hidden;
 }
-#google {
+#googleLogin {
+    float: right;
+    padding-right: 25px;
+}
+#googleLogout {
     float: right;
     padding-right: 25px;
 }

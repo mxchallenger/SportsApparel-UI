@@ -72,7 +72,7 @@ const Header = () => {
       {googleError && <span>{googleError}</span>}
       {apiError && <span>Api Error</span>}
       {!user ? (
-        <div id="google">
+        <div id="googleLogin">
           <GoogleLogin
             clientId={constants.GOOGLE_CLIENT_ID}
             buttonText="Login"
@@ -82,12 +82,14 @@ const Header = () => {
           />
         </div>
       ) : (
-        <GoogleLogout
-          clientId={constants.GOOGLE_CLIENT_ID}
-          buttonText="Logout"
-          onLogoutSuccess={handleGoogleLogoutSuccess}
-          onFailure={handleGoogleLogoutFailure}
-        />
+        <div id="googleLogout">
+          <GoogleLogout
+            clientId={constants.GOOGLE_CLIENT_ID}
+            buttonText="Logout"
+            onLogoutSuccess={handleGoogleLogoutSuccess}
+            onFailure={handleGoogleLogoutFailure}
+          />
+        </div>
       )}
     </div>
   );
