@@ -78,7 +78,6 @@ const Maintenance = () => {
     {
       headerName: 'Image',
       field: 'imageSrc',
-      editable: false,
       cellRenderer: addImage
     },
     {
@@ -88,7 +87,6 @@ const Maintenance = () => {
       headerName: 'Primary Color',
       field: 'primaryColorCode',
       width: 30,
-      editable: false,
       cellRenderer: addColorBox
     },
     {
@@ -98,7 +96,6 @@ const Maintenance = () => {
       headerName: 'Secondary Color',
       field: 'secondaryColorCode',
       width: 30,
-      editable: false,
       cellRenderer: addColorBox
     },
     {
