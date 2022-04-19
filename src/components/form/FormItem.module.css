@@ -10,3 +10,9 @@
   color: #666666;
   margin-bottom: .5em;
 }
+
+.errors{
+  font-size: 12px;
+  color: red;
+  margin-bottom: .05em;
+}
