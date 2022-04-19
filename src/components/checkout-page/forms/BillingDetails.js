@@ -2,8 +2,6 @@ import React from 'react';
 import FormItem from '../../form/FormItem';
 import FormItemDropdown from '../../form/FormItemDropdown';
 import styles from './DeliveryAddress.module.css';
-
-
 /**
  * @name BillingDetails
  * @description Allows entry of Billing Details
@@ -83,52 +81,49 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
       <FormItem
         placeholder="e.g. 1234567812345678"
         type="text"
-        required
         id="creditCard"
         label="Credit Card"
         onChange={onChange}
         value={billingData.creditCard}
-        data-attribute-name="Credit card number"
-        data-async
+        pattern="^[0-9]{14,19}$"
+        errorMessage="Card number must be between 14-16 digits"
+        required
       />
-      <span className="errorMsg">
-        {this.state.errors.creditCard}
-      </span>
+
       <FormItem
         placeholder="e.g. 555"
         type="text"
-        required
         id="cvv"
         label="CVV"
         onChange={onChange}
         value={billingData.cvv}
+        pattern="^[0-9]{3,4}$"
+        errorMessage="CVV must have 3 or 4 digits"
+        required
       />
-      <span className="text-danger">
-        {this.state.cardCvvError}
-      </span>
+
       <FormItem
         placeholder="e.g. 05/21"
         type="text"
-        required
         id="expiration"
         label="Expiration"
         onChange={onChange}
         value={billingData.expiration}
+        pattern="^(0[1-9]|1[0-2])([\/-]{1})[0-9]{2}$"
+        errorMessage="Expiration date should be MM/YY or MM-YY and after today's date"
+        required
       />
-      <span className="text-danger">
-        {this.state.cardExpiryError}
-      </span>
+
       <FormItem
         type="text"
-        required
         id="cardholder"
         label="Cardholder Name"
         onChange={onChange}
         value={billingData.cardholder}
+        pattern="^[A-Za-z]+$"
+        errorMessage="Cardholder name should be letters only"
+        required
       />
-      <span className="text-danger">
-        {this.state.cardNameError}
-      </span>
     </div>
 
   );
