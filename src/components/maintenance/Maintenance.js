@@ -3,49 +3,12 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import fetchProducts from './MaintenanceService';
+import { addColorBox } from './AddColorBox';
+import { addImage } from './AddImage';
+import { formatCurrency } from './FormatCurrency';
+import { formatActive } from './FormatActive';
 import styles from './Maintenance.module.css';
 import Constants from '../../utils/constants';
-
-/**
- * A JSX value formatter that takes a number and converts to a string
- * with 2 digits to the right of the decimal
- * @param {*} number
- * @returns formatted string
- */
-const formatNumber = (number) => number.toFixed(2).toString();
-
-/**
- * A JSX value formatter that takes in params (props) and returs the
- * string in a monetary format.
- * @param {Object} params a number representing a price.
- * @returns monetary string
- */
-const formatCurrency = (params) => '$'.concat(formatNumber(params.value));
-
-/**
- * A JSX value formatter that returns true or false based on input value.
- * @param {Object} params truthy or falsey value.
- * @returns either 'true' or 'false' as a string.
- */
-const formatActive = (params) => (params.value === true ? 'true' : 'false');
-
-/**
- * A JSX cell renderer that returns a thumbnail image based on input value.
- * @param {Object} params a link to an image.
- * @returns JSX/HTML image tag.
- */
-const addImage = (params) => <img style={{ height: '50px', width: '50px' }} src={params.value} alt="" />;
-
-/**
- * A JSX cell renderer that returns a circle filled with color in input value.
- * @param {Object} params a color code in hex format.
- * @returns JSX/HTML svg tag containing definition for circle.
- */
-const addColorBox = (params) => (
-  <svg style={{ height: 25, width: 25 }}>
-    <circle cx={9} cy={17} r={7} stroke="black" strokeWidth={1} fill={params.value} />
-  </svg>
-);
 
 /**
  * @name Maintenance
@@ -68,26 +31,50 @@ const Maintenance = () => {
       sortable: true,
       width: 250
     },
-    { field: 'description', width: 250 },
+    {
+      field: 'description',
+      width: 250
+    },
     {
       field: 'price',
       sortable: true,
+      type: 'rightAligned',
       width: 100,
       valueFormatter: formatCurrency
     },
-    { field: 'quantity', width: 100 },
+    {
+      field: 'quantity',
+      width: 100,
+      type: 'rightAligned'
+    },
     {
       field: 'active',
       sortable: true,
       width: 100,
       valueFormatter: formatActive
     },
-    { field: 'category', width: 150 },
-    { field: 'type', width: 125 },
-    { field: 'brand', width: 125 },
-    { field: 'material', width: 130 },
+    {
+      field: 'category',
+      width: 150
+    },
+    {
+      field: 'type',
+      width: 125
+    },
+    {
+      field: 'brand',
+      width: 125
+    },
+    {
+      field: 'material',
+      width: 130
+    },
     { field: 'demographic' },
-    { field: 'imageSrc' },
+    {
+      headerName: 'Image Source',
+      field: 'imageSrc',
+      width: 250
+    },
     {
       headerName: 'Image',
       field: 'imageSrc',
@@ -98,30 +85,43 @@ const Maintenance = () => {
       field: 'primaryColorCode'
     },
     {
-      headerName: '',
+      headerName: 'Primary Color',
       field: 'primaryColorCode',
       width: 30,
       editable: false,
-      sortable: false,
       cellRenderer: addColorBox
     },
     {
       field: 'secondaryColorCode'
     },
     {
-      headerName: '',
+      headerName: 'Secondary Color',
       field: 'secondaryColorCode',
       width: 30,
       editable: false,
-      sortable: false,
       cellRenderer: addColorBox
     },
-    { field: 'styleNumber', width: 130 },
-    { field: 'sku', width: 130 },
-    { field: 'globalProductCode', width: 175 },
+    {
+      field: 'styleNumber',
+      width: 130
+    },
+    {
+      field: 'sku',
+      width: 130
+    },
+    {
+      field: 'globalProductCode',
+      width: 175
+    },
     { field: 'releaseDate' },
-    { field: 'dateCreated', editable: false },
-    { field: 'dateModified', editable: false }
+    {
+      field: 'dateCreated',
+      editable: false
+    },
+    {
+      field: 'dateModified',
+      editable: false
+    }
   ];
 
   const defaultColDef = {
