@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render, screen } from '@testing-library/react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+// import { render /* screen */ } from '@testing-library/react';
 import '@testing-library/jest-dom';
-// import { Header } from './..app';
 import Header from '../Header';
 
 it('renders without crashing', () => {
@@ -18,16 +15,35 @@ it('renders without crashing', () => {
   expect(getByAltText('img src={logo} alt="logo"')).toHaveTextContent('img src={logo} alt="logo"');
 }); */
 
-test('rendering a component that uses useLocation', () => {
+/* test('rendering a component that uses useLocation', () => {
   const history = createMemoryHistory();
-  const route = 'Header';
-  const logo = screen.getByAltText('logo');
+  const route = './App';
+  const cart = screen.getByAltText('cart');
   history.push(route);
   render(
     <Router history={history}>
-      <Header />
+      <BrowserRouter />
     </Router>
   );
 
-  expect(screen.getByAltText(logo)).toHaveTextContent(route);
+  expect(screen.getByAltText(cart)).toHaveTextContent(route);
+}); */
+test('renders checkout page when cart icon is clicked', () => {
+  <Router>
+    render(
+    <NavLink to="/checkout" />
+    );
+    const linkElement = screen.getAllByAltText(cart);
+    expect(linkElement).toBeInTheDocument();
+  </Router>;
+});
+
+test('renders home page when logo is clicked', () => {
+  <Router>
+    render(
+    <NavLink to="/" />
+    );
+    const linkElement = screen.getAllByAltText(logo);
+    expect(linkElement).toBeInTheDocument();
+  </Router>;
 });

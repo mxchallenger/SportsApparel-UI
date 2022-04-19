@@ -7,9 +7,9 @@
   justify-self: end;
 }
 h1 {
+  background-color: black;
   color: red;
-  text-size-adjust: 500px;
-  text-align: left;
-  margin: auto;
-  display: block;
- }
+  font-size: 50px;
+  text-align: center;
+  width: 400px;
+}
