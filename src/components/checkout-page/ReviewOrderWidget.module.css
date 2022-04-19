@@ -6,3 +6,10 @@
 .price {
   justify-self: end;
 }
+h1 {
+  color: red;
+  text-size-adjust: 500px;
+  text-align: left;
+  margin: auto;
+  display: block;
+ }

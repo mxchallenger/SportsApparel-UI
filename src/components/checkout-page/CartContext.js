@@ -25,20 +25,6 @@ function cartReducer(state, action) {
 function CartProvider({ children }) {
   const initialProducts = {
     products: [
-      {
-        id: null,
-        title: null,
-        price: null,
-        description: null,
-        quantity: null
-      }
-      /* {
-        id: null,
-        title: 'Sport Shorts',
-        price: 39.99,
-        description: 'Sporty shorts for sporty people',
-        quantity: 5
-      } */
     ],
     setProducts: () => { }
   };
