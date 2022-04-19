@@ -3,6 +3,7 @@ import FormItem from '../../form/FormItem';
 import FormItemDropdown from '../../form/FormItemDropdown';
 import styles from './DeliveryAddress.module.css';
 
+
 /**
  * @name BillingDetails
  * @description Allows entry of Billing Details
@@ -82,37 +83,52 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
       <FormItem
         placeholder="e.g. 1234567812345678"
         type="text"
+        required
         id="creditCard"
         label="Credit Card"
         onChange={onChange}
         value={billingData.creditCard}
+        data-attribute-name="Credit card number"
+        data-async
       />
-
+      <span className="errorMsg">
+        {this.state.errors.creditCard}
+      </span>
       <FormItem
         placeholder="e.g. 555"
         type="text"
+        required
         id="cvv"
         label="CVV"
         onChange={onChange}
         value={billingData.cvv}
       />
-
+      <span className="text-danger">
+        {this.state.cardCvvError}
+      </span>
       <FormItem
         placeholder="e.g. 05/21"
         type="text"
+        required
         id="expiration"
         label="Expiration"
         onChange={onChange}
         value={billingData.expiration}
       />
-
+      <span className="text-danger">
+        {this.state.cardExpiryError}
+      </span>
       <FormItem
         type="text"
+        required
         id="cardholder"
         label="Cardholder Name"
         onChange={onChange}
         value={billingData.cardholder}
       />
+      <span className="text-danger">
+        {this.state.cardNameError}
+      </span>
     </div>
 
   );

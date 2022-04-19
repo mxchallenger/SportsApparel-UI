@@ -6,6 +6,7 @@ import ReviewOrderWidget from './ReviewOrderWidget';
 import DeliveryAddress from './forms/DeliveryAddress';
 import BillingDetails from './forms/BillingDetails';
 import makePurchase from './CheckoutService';
+import Validation from '../Validation';
 
 /**
  * @name CheckoutPage
@@ -70,9 +71,11 @@ const CheckoutPage = () => {
       expiration: billingData.expiration,
       cardholder: billingData.cardholder
     };
-    makePurchase(productData, deliveryAddress, billingAddress, creditCard).then(() => history.push('/confirmation'));
+    if 
+    // makePurchase(productData, deliveryAddress, billingAddress, creditCard).then(() => history.push('/confirmation'));
   };
-
+  
+  
   return (
     <div className={styles.checkoutContainer}>
       <div className={`${styles.step} ${styles.order}`}>
