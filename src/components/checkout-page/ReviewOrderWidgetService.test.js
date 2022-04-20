@@ -32,5 +32,3 @@ describe('getSubtotal', () => {
   });
 });
 
-// test('renders error if basket is empty' , () => {
-// render(<h1 label='Oops, your cart is empty!'></h1>))
