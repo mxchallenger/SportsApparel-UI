@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import loginUser from './HeaderService';
 import constants from '../../utils/constants';
+import maint from './wrench.png';
 
 /**
  * @name Header
@@ -58,6 +59,7 @@ const Header = () => {
   return (
     <div>
       <NavLink to="/home">Home</NavLink>
+      <NavLink to="/maintenance"><img src={maint} alt="Maintenance" /></NavLink>
       <NavLink to="/checkout">Cart</NavLink>
       {user && <span>{user.firstName}</span>}
       {user && <span>{user.lastName}</span>}
