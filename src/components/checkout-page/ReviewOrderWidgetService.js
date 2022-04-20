@@ -14,4 +14,3 @@ export const toPrice = (price) => `$${price.toFixed(2)}`;
 export const getSubtotal = (products) => toPrice(products.reduce(
   (acc, item) => acc + (item.quantity * item.price), 0
 ));
-  // return <h1> Oops, your cart is empty!</h1>;
