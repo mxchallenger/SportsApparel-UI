@@ -31,4 +31,3 @@ describe('getSubtotal', () => {
     expect(getSubtotal(products)).toEqual(expected);
   });
 });
-
