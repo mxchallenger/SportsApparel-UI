@@ -15,6 +15,8 @@ const ReviewOrderWidget = () => {
   } = useCart();
   return (
     <>
+      {products.length === 0
+        && <h1> Oops, your cart is empty!</h1>}
       {products.map(({
         price, title, description, quantity
       }) => (
