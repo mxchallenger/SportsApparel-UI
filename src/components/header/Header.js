@@ -4,9 +4,9 @@ import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import loginUser from './HeaderService';
 import constants from '../../utils/constants';
 import './Header.css';
-// eslint-disable-next-line import/no-unresolved
 import logo from './logo.png';
 import cart from './cart.png';
+import maint from './wrench.png';
 
 /**
  * @name Header
@@ -63,6 +63,9 @@ const Header = () => {
     <div className="header">
       <div id="home">
         <NavLink to="/"><img src={logo} alt="logo" /></NavLink>
+      </div>
+      <div id="maint">
+        <NavLink to="/maintenance"><img src={maint} alt="Maintenance" /></NavLink>
       </div>
       <div id="cart">
         <NavLink to="/checkout"><img src={cart} alt="cart" /></NavLink>
