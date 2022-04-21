@@ -6,14 +6,14 @@ import ReviewOrderWidget from './ReviewOrderWidget';
 import DeliveryAddress from './forms/DeliveryAddress';
 import BillingDetails from './forms/BillingDetails';
 import makePurchase from './CheckoutService';
-import Validation from '../Validation';
+import { validateCheckoutFields } from '../../utils/Validation';
 
 /**
  * @name CheckoutPage
  * @description A view that contains details needed to process a transaction for items
  * @return component
  */
-const CheckoutPage = () => {
+export const CheckoutPage = () => {
   const history = useHistory();
 
   const {
@@ -71,8 +71,17 @@ const CheckoutPage = () => {
       expiration: billingData.expiration,
       cardholder: billingData.cardholder
     };
-  
-  
+    const errors = validateCheckoutFields(
+      deliveryAddress,
+      billingAddress,
+      creditCard
+    );
+    if (errors !== undefined) {
+      return;
+    }
+
+    makePurchase(productData, deliveryAddress, billingAddress, creditCard).then(() => history.push('/confirmation'));
+  };
   return (
     <div className={styles.checkoutContainer}>
       <div className={`${styles.step} ${styles.order}`}>

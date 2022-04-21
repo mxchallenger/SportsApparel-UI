@@ -2,10 +2,9 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ProductPage from '../product-page/ProductPage';
-import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
 import Header from '../header/Header';
-
+import CheckoutPage from '../checkout-page/CheckoutPage';
 /**
  * @name App
  * @returns component
