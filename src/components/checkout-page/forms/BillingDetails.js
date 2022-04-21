@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import React from "react";
 import FormItem from "../../form/FormItem";
 import FormItemDropdown from "../../form/FormItemDropdown";
 import styles from "./DeliveryAddress.module.css";
 
 
+=======
+import React from 'react';
+import FormItem from '../../form/FormItem';
+import FormItemDropdown from '../../form/FormItemDropdown';
+import styles from './DeliveryAddress.module.css';
+>>>>>>> 455b6170b0b944fe105f9f7db7157bd61289bd5e
 /**
  * @name BillingDetails
  * @description Allows entry of Billing Details
@@ -187,8 +194,14 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
         label="Credit Card"
         onChange={onChange}
         value={billingData.creditCard}
+<<<<<<< HEAD
         errorMessage="must be between 14-16 digits"
         data-attribute-name="credit card number"
+=======
+        pattern="^[0-9]{14,19}$"
+        errorMessage="Card number must be between 14-16 digits"
+        required
+>>>>>>> 455b6170b0b944fe105f9f7db7157bd61289bd5e
       />
 
       <FormItem
@@ -198,8 +211,14 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
         label="CVV"
         onChange={onChange}
         value={billingData.cvv}
+<<<<<<< HEAD
         errorMessage="CVV must have 3 or 4 digits"
         data-attribute-name="CVV"
+=======
+        pattern="^[0-9]{3,4}$"
+        errorMessage="CVV must have 3 or 4 digits"
+        required
+>>>>>>> 455b6170b0b944fe105f9f7db7157bd61289bd5e
       />
 
       <FormItem
@@ -209,8 +228,14 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
         label="Expiration"
         onChange={onChange}
         value={billingData.expiration}
+<<<<<<< HEAD
         errorMessage="Expiration date should be MM/YY or MM-YY and after today's date"
         data-attribute-name="expiration date"
+=======
+        pattern="^(0[1-9]|1[0-2])([\/-]{1})[0-9]{2}$"
+        errorMessage="Expiration date should be MM/YY or MM-YY and after today's date"
+        required
+>>>>>>> 455b6170b0b944fe105f9f7db7157bd61289bd5e
       />
 
       <FormItem
@@ -219,8 +244,14 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
         label="Cardholder Name"
         onChange={onChange}
         value={billingData.cardholder}
+<<<<<<< HEAD
         errorMessage="Cardholder name should be letters only"
         data-attribute-name="cardholder name"
+=======
+        pattern="^[A-Za-z]+$"
+        errorMessage="Cardholder name should be letters only"
+        required
+>>>>>>> 455b6170b0b944fe105f9f7db7157bd61289bd5e
       />
     </div>
   );
