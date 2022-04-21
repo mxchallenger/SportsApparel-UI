@@ -71,9 +71,6 @@ const CheckoutPage = () => {
       expiration: billingData.expiration,
       cardholder: billingData.cardholder
     };
-    if 
-    // makePurchase(productData, deliveryAddress, billingAddress, creditCard).then(() => history.push('/confirmation'));
-  };
   
   
   return (
