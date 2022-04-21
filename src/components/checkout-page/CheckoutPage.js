@@ -20,6 +20,8 @@ export const CheckoutPage = () => {
     state: { products }
   } = useCart();
 
+  const [errorMsg, setErrors] = React.useState({});
+
   const [billingData, setBillingData] = React.useState({});
 
   const onBillingChange = (e) => {

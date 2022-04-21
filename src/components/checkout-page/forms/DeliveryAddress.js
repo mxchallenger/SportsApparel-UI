@@ -9,10 +9,6 @@ import styles from './DeliveryAddress.module.css';
  */
 
 const DeliveryAddress = ({ onChange, deliveryData, errorMsg }) => {
-  const [errorMsg, setErrors] = useState({});
-  const onErrorChange = (e) => {
-    setErrors({ ...errorMsg, [e.target.id]: e.target.value });
-  };
   useEffect(() => {
     setErrors(() => {
     });
