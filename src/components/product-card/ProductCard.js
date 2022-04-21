@@ -98,7 +98,7 @@ const ProductCard = ({ product }) => {
         <br />
         <Typography variant="body2" color="textSecondary" component="p">
           Price: $
-          {product.price}
+          {parseFloat(product.price).toFixed(2).toString()}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
