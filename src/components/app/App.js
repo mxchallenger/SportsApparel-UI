@@ -7,11 +7,8 @@ import ProductPage from '../product-page/ProductPage';
 import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
 import Header from '../header/Header';
-<<<<<<< HEAD
 import Maintenance from '../maintenance/Maintenance';
-=======
 import Toast from '../toast/Toast';
->>>>>>> aar-19-toast-component
 
 /**
  * @name App
@@ -24,11 +21,8 @@ const App = () => (
       <Route exact path="/" render={() => <ProductPage />} />
       <Route exact path="/checkout" render={() => <CheckoutPage />} />
       <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
-<<<<<<< HEAD
       <Route exact path="/maintenance" render={() => <Maintenance />} />
-=======
       <Route exact path="/toast" render={() => <Toast />} />
->>>>>>> aar-19-toast-component
     </Switch>
     <ToastContainer
       position="top-center"
