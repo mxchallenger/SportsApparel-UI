@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
-import './Footer.css';
+import styles from './Footer.module.css';
 
 const Footer = () => {
   const [visible, setVisible] = useState(false);
@@ -10,7 +10,7 @@ const Footer = () => {
     if (scrolled > 300) {
       setVisible(true);
     } else if (scrolled <= 300) {
-      setVisible(false);
+      setVisible(true);
     }
   };
 
@@ -22,13 +22,17 @@ const Footer = () => {
   };
   window.addEventListener('scroll', toggleVisible);
   return (
-    <div className="footer">
-      <p>2021 Sports Apparel, Inc &#169; </p>
+    <div className={styles.parent}>
+      <div className={styles.div5}>
+        <p>
+          2021 Sports Apparel, Inc &#169;
+        </p>
+      </div>
+      <div className={styles.div2}>
 
-      <button type="button" id="totop">
-        {' '}
         <FaArrowUp onClick={scrollToTop} style={{ display: visible ? 'inline' : 'none' }} />
-      </button>
+
+      </div>
 
     </div>
   );
