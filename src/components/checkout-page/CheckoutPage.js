@@ -20,7 +20,7 @@ export const CheckoutPage = () => {
     state: { products }
   } = useCart();
 
-  const [errorMsg, setErrors] = React.useState({});
+  const [errors, setErrors] = React.useState({});
 
   const [billingData, setBillingData] = React.useState({});
 
@@ -36,7 +36,7 @@ export const CheckoutPage = () => {
 
   const [checked, setChecked] = React.useState(false);
   const handleCheck = () => {
-    setChecked(true);
+    setChecked(!checked);
   };
 
   const handlePay = () => {
@@ -78,6 +78,7 @@ export const CheckoutPage = () => {
       billingAddress,
       creditCard
     );
+    validateCheckoutFields
     if (errors !== undefined) {
       return;
     }
