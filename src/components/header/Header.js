@@ -26,8 +26,12 @@ const Header = () => {
   const [googleError, setGoogleError] = useState('');
   const [apiError, setApiError] = useState(false);
   const [sidebar, setSidebar] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+  const handleOnChange = () => {
+    setIsChecked(!isChecked);
+  };
 
   /**
    * @name handleGoogleLoginSuccess
@@ -95,9 +99,18 @@ const Header = () => {
                   <AiOutlineClose />
                 </Link>
               </li>
-              {demographicFilters.map((item, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <li key={index} className={item.cName}>
+              {demographicFilters.map((item) => (
+                <li key={item} className={item.cName}>
+                  <div className="Demographics">
+                    <input
+                      type="checkbox"
+                      id="MENS"
+                      name="MENS"
+                      value="MENS"
+                      checked={isChecked}
+                      onChange={handleOnChange}
+                    />
+                  </div>
                   <span>{item.title}</span>
                 </li>
               ))}
