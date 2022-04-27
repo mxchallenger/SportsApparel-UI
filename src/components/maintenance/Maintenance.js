@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -138,13 +139,18 @@ const Maintenance = () => {
   return (
     <div style={containerStyle}>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR.concat(' Is the database running?')}</p>}
-      <h1 style={{ color: 'black' }}>Products Maintenance View</h1>
+      <h1 className={styles.pageHeader}>Products Maintenance View</h1>
       <div style={gridStyle} className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
         />
+      </div>
+      <div>
+        <NavLink to="/add-product-page">
+          <button type="button" className={styles.createProdBtn}>Create New Product</button>
+        </NavLink>
       </div>
     </div>
   );
