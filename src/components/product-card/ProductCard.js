@@ -13,6 +13,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { toast } from 'react-toastify';
 import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
 
@@ -66,7 +67,8 @@ const ProductCard = ({ product }) => {
           description: product.description,
           quantity: 1
         }
-      }
+      },
+      toast.success(`${product.name} has been added to your cart.`)
     );
   };
 
