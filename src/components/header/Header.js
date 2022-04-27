@@ -1,12 +1,19 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+// import { BsFillFilterCircleFill } from 'react-icons/bs';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
+import { IconContext } from 'react-icons';
+// import CheckBox from '../filter/checkbox';
 import loginUser from './HeaderService';
 import constants from '../../utils/constants';
 import './Header.css';
 import logo from './logo.png';
 import cart from './cart.png';
 import maint from './wrench.png';
+import demographicFilters from '../filter/DemographicFilterData';
 
 /**
  * @name Header
@@ -18,6 +25,10 @@ const Header = () => {
   const [user, setUser] = useState('');
   const [googleError, setGoogleError] = useState('');
   const [apiError, setApiError] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
+
   /**
    * @name handleGoogleLoginSuccess
    * @description Function to run if google login was successful
@@ -70,6 +81,30 @@ const Header = () => {
       <div id="cart">
         <NavLink to="/checkout"><img src={cart} alt="cart" /></NavLink>
       </div>
+      <>
+        <IconContext.Provider value={{ color: 'red' }}>
+          <div className="filter">
+            <Link to="/" className="menu-bars">
+              <AiOutlineMenu onClick={showSidebar} />
+            </Link>
+          </div>
+          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <ul className="nav-menu-items" onClick={showSidebar}>
+              <li className="navbar-toggle">
+                <Link to="/" className="menu-bars">
+                  <AiOutlineClose />
+                </Link>
+              </li>
+              {demographicFilters.map((item, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={index} className={item.cName}>
+                  <span>{item.title}</span>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </IconContext.Provider>
+      </>
       {user && <span>{user.firstName}</span>}
       {user && <span>{user.lastName}</span>}
       {googleError && <span>{googleError}</span>}
