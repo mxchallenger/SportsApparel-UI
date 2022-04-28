@@ -10,6 +10,6 @@
 }
 
 .price {
-  align-self: end;
+  align-content: right;
   justify-self: end;
 }

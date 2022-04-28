@@ -54,6 +54,7 @@ const ProductDetail = ({ onChange, productData }) => {
   return (
     <div className={styles.productDetail}>
       <FormItem
+        placeholder="e.g. (Adjective Category Type) Soft Golf Pant "
         type="text"
         id="name"
         label="Product Name"
@@ -75,6 +76,7 @@ const ProductDetail = ({ onChange, productData }) => {
         value={productData.imageSrc}
       />
       <FormItem
+        placeholder="e.g. (Category, Demographic, Adjective) Golf, Men, Soft"
         type="text"
         id="description"
         label="Product Description"
@@ -97,8 +99,9 @@ const ProductDetail = ({ onChange, productData }) => {
         value={productData.styleNumber}
       />
       <FormItem
+        placeholder="e.g. $###.##"
         className={styles.price}
-        type="double"
+        type="decimal"
         id="price"
         label="Price"
         onChange={onChange}
@@ -119,7 +122,8 @@ const ProductDetail = ({ onChange, productData }) => {
         value={productData.sku}
       />
       <FormItem
-        type="int"
+        placeholder="e.g. ##"
+        type="numeric"
         id="quantity"
         label="Quantity"
         onChange={onChange}
