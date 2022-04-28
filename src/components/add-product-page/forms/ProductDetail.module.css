@@ -1,0 +1,15 @@
+.productDetail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.5em
+}
+
+.label {
+  font-weight: 700;
+  color: #666666;
+}
+
+.price {
+  align-self: end;
+  justify-self: end;
+}
