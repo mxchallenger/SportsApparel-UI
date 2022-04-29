@@ -8,12 +8,12 @@
 }
 
 .createProdBtn {
-  background-color: gray;
-  border-radius: 25px;
-  margin-top: 25px;
-  float: left;
-  margin-left: 25px;
-  font-weight: bolder;
+    background-color: gray;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: large;
+    margin-top: 25px;
+    padding: .5% 1%;
 }
 
 .errMsg {

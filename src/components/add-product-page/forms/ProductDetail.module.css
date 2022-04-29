@@ -1,15 +1,12 @@
-.productDetail {
+.productDetailContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2.5em
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1.5em;
+  column-gap: 3em;
+  padding: 0 3em 0 3em;
 }
 
 .label {
   font-weight: 700;
   color: #666666;
-}
-
-.price {
-  align-content: right;
-  justify-self: end;
 }

@@ -149,7 +149,7 @@ const Maintenance = () => {
       </div>
       <div>
         <NavLink to="/add-product-page">
-          <button type="button" className={styles.createProdBtn}>Create New Product</button>
+          <button type="button" className={styles.createProdBtn}>Create A Product</button>
         </NavLink>
       </div>
     </div>

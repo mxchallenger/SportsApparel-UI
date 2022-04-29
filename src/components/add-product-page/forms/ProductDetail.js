@@ -10,63 +10,43 @@ import styles from './ProductDetail.module.css';
  */
 const ProductDetail = ({ onChange, productData }) => {
   const colors = [
-    'white', // '#000000',
-    'black', // '#ffffff',
-    'lightBlue', // '#39add1',
-    'darkBlue', // '#3079ab',
-    'mauve', // '#c25975',
-    'red', // '#e15258',
-    'orange', // '#f9845b',
-    'lavender', // '#838cc7',
-    'purple', // '#7d669e',
-    'aqua', // '#53bbb4',
-    'green', // '#51b46d',
-    'mustard', // '#e0ab18',
-    'darkGray', // '#637a91',
-    'pink', // '#f092b0',
-    'lightGray' // '#b7c0c7'
+    'White', // '#000000',
+    'Black', // '#ffffff',
+    'Dark Blue', // '#3079ab',
+    'Light Blue', // '#39add1',
+    'Mauve', // '#c25975',
+    'Red', // '#e15258',
+    'Orange', // '#f9845b',
+    'Lavender', // '#838cc7',
+    'Purple', // '#7d669e',
+    'Aqua', // '#53bbb4',
+    'Green', // '#51b46d',
+    'Mustard', // '#e0ab18',
+    'Dark Gray', // '#637a91',
+    'Light Gray', // '#b7c0c7'
+    'Pink' // '#f092b0',
+
   ];
-  const types = [
-    'Pant',
-    'Short',
-    'Shoe',
-    'Glove',
-    'Jacket',
-    'Tank Top',
-    'Sock',
-    'Sunglasses',
-    'Hat',
-    'Helmet',
-    'Belt',
-    'Visor',
-    'Shin Guard',
-    'Elbow Pad',
-    'Headband',
-    'Wristband',
-    'Hoodie',
-    'Flip Flop',
-    'Pool Noodle'
-  ];
+
   const demographics = ['Men', 'Women', 'Kids'];
-  const categories = ['Golf', 'Soccer', 'Basketball', 'Hockey', 'Football', 'Running', 'Baseball', 'Skateboarding', 'Boxing', 'Weightlifting'
-  ];
   const activeStatus = ['False', 'True'];
+
   return (
-    <div className={styles.productDetail}>
+    <div className={styles.productDetailContainer}>
       <FormItem
-        placeholder="e.g. (Adjective Category Type) Soft Golf Pant "
+        placeholder="e.g. Soft Golf Shirt "
         type="text"
         id="name"
         label="Product Name"
         onChange={onChange}
         value={productData.name}
       />
-      <FormItemDropdown
+      <FormItem
+        type="text"
         id="category"
         label="Category"
         onChange={onChange}
         value={productData.category}
-        options={categories}
       />
       <FormItem
         type="text"
@@ -76,19 +56,19 @@ const ProductDetail = ({ onChange, productData }) => {
         value={productData.imageSrc}
       />
       <FormItem
-        placeholder="e.g. (Category, Demographic, Adjective) Golf, Men, Soft"
+        placeholder="e.g. Golf, Men, Soft"
         type="text"
         id="description"
         label="Product Description"
         onChange={onChange}
         value={productData.description}
       />
-      <FormItemDropdown
+      <FormItem
+        type="text"
         id="type"
         label="Type"
         onChange={onChange}
         value={productData.type}
-        options={types}
       />
       <FormItem
         placeholder="e.g. sc#####"
@@ -115,6 +95,7 @@ const ProductDetail = ({ onChange, productData }) => {
         value={productData.material}
       />
       <FormItem
+        placeholder="e.g. ABC-EFG-HIGK"
         type="text"
         id="sku"
         label="SKU"
@@ -153,14 +134,12 @@ const ProductDetail = ({ onChange, productData }) => {
       />
 
       <FormItemDropdown
-        type="text"
         id="primaryColorCode"
         label="Primary Color"
         onChange={onChange}
         value={productData.primaryColorCode}
         options={colors}
       />
-
       <FormItem
         placeholder="e.g. mm/dd/yyyy"
         type="text"
@@ -182,7 +161,7 @@ const ProductDetail = ({ onChange, productData }) => {
         id="secondaryColorCode"
         label="Secondary Color"
         onChange={onChange}
-        value={productData.secondaryColorCOde}
+        value={productData.secondaryColorCode}
         options={colors}
       />
 

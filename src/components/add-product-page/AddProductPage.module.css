@@ -1,33 +1,28 @@
 .productContainer {
   display:grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    "product  product2 product3"
-    "product  product2 product3";
-  gap: 1em 2em;
-  padding: 0 2em;
-  margin: 2em 0;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 6fr 1fr;
+  gap: 1em 1em;
+  padding: 0 1em;
+  margin: 1em 0;
 }
 
 .product {
-  grid-area: product;
+  grid-area: 1 / 1 / 2 / span 3;
 }
 
-.product2{
-  grid-area: product2;
+.buttonArea {
+  grid-area: 2 / 2 / 3 / 3;
+  text-align: center;
 }
-
-.product3{
-  grid-area: product3;
-}
-
 .submitBtn {
   background-color: gray;
   border-radius: 25px;
+  font-weight: bold;
+  font-size: large;
   margin-top: 25px;
-  float: left;
-  margin-left: 25px;
-  font-weight: bolder;
+  padding: .5% 1%;
+  align-items:center
 }
 
 .title {
