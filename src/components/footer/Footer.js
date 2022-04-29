@@ -16,7 +16,7 @@ const Footer = () => {
     <div className={styles.parent}>
       <div className={styles.div5}>
         <p id={styles.footerlogo}>
-          2021 Sports Apparel, Inc &#169;
+          2022 All American Regex, Inc &#169;
         </p>
       </div>
       <div className={styles.div2}>
