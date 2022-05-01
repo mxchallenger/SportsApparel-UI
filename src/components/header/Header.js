@@ -1,19 +1,12 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-// import { BsFillFilterCircleFill } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
-import { IconContext } from 'react-icons';
-// import CheckBox from '../filter/checkbox';
 import loginUser from './HeaderService';
 import constants from '../../utils/constants';
 import './Header.css';
 import logo from './logo.png';
 import cart from './cart.png';
 import maint from './wrench.png';
-import demographicFilters from '../filter/DemographicFilterData';
 
 /**
  * @name Header
@@ -25,13 +18,6 @@ const Header = () => {
   const [user, setUser] = useState('');
   const [googleError, setGoogleError] = useState('');
   const [apiError, setApiError] = useState(false);
-  const [sidebar, setSidebar] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-
-  const showSidebar = () => setSidebar(!sidebar);
-  const handleOnChange = () => {
-    setIsChecked(!isChecked);
-  };
 
   /**
    * @name handleGoogleLoginSuccess
@@ -79,45 +65,12 @@ const Header = () => {
       <div id="home">
         <NavLink to="/"><img src={logo} alt="logo" /></NavLink>
       </div>
-      <div id="maint">
-        <NavLink to="/maintenance"><img src={maint} alt="Maintenance" /></NavLink>
-      </div>
       <div id="cart">
         <NavLink to="/checkout"><img src={cart} alt="cart" /></NavLink>
       </div>
-      <>
-        <IconContext.Provider value={{ color: 'red' }}>
-          <div className="filter">
-            <Link to="/" className="menu-bars">
-              <AiOutlineMenu onClick={showSidebar} />
-            </Link>
-          </div>
-          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className="nav-menu-items" onClick={showSidebar}>
-              <li className="navbar-toggle">
-                <Link to="/" className="menu-bars">
-                  <AiOutlineClose />
-                </Link>
-              </li>
-              {demographicFilters.map((item) => (
-                <li key={item} className={item.cName}>
-                  <div className="Demographics">
-                    <input
-                      type="checkbox"
-                      id="MENS"
-                      name="MENS"
-                      value="MENS"
-                      checked={isChecked}
-                      onChange={handleOnChange}
-                    />
-                  </div>
-                  <span>{item.title}</span>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </IconContext.Provider>
-      </>
+      <div id="maint">
+        <NavLink to="/maintenance"><img src={maint} alt="maint" /></NavLink>
+      </div>
       {user && <span>{user.firstName}</span>}
       {user && <span>{user.lastName}</span>}
       {googleError && <span>{googleError}</span>}
@@ -145,5 +98,4 @@ const Header = () => {
     </div>
   );
 };
-
 export default Header;

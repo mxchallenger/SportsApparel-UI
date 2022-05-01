@@ -1,19 +1,19 @@
-export const demographicFilters = [
+const demographicFilters = [
   {
     id: 1,
-    title: 'MEN',
+    title: 'Men',
     cName: 'nav-text',
     filterAddy: '&demographic=men'
   },
   {
     id: 2,
-    title: 'WOMEN',
+    title: 'Women',
     cName: 'nav-text',
     filterAddy: '&demographic=women'
   },
   {
     id: 3,
-    title: 'KIDS',
+    title: 'Kids',
     cName: 'nav-text',
     filterAddy: '&demographic=kids'
   }
