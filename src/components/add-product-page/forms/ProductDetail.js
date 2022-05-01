@@ -124,7 +124,7 @@ const ProductDetail = ({ onChange, productData }) => {
       </div>
       <div className={styles.item7}>
         <FormItem
-          placeholder="e.g. ##"
+          defaultValue="0"
           type="numeric"
           id="quantity"
           label="Quantity"
@@ -171,8 +171,7 @@ const ProductDetail = ({ onChange, productData }) => {
       </div>
       <div className={styles.item14}>
         <FormItem
-          placeholder="e.g. mm/dd/yyyy"
-          type="text"
+          type="date"
           id="releaseDate"
           label="Release Date"
           onChange={onChange}

@@ -1,4 +1,5 @@
-import React from 'react';
+import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 import ProductDetail from './forms/ProductDetail';
 import addProduct from './AddProductService';
 import styles from './AddProductPage.module.css';
@@ -9,7 +10,8 @@ import styles from './AddProductPage.module.css';
  * @return component
  */
 const AddProductPage = () => {
-  const [productData, setProductData] = React.useState({});
+  const history = useHistory();
+  const [productData, setProductData] = useState({});
 
   const onProductChange = (e) => {
     setProductData({ ...productData, [e.target.id]: e.target.value });
@@ -38,7 +40,7 @@ const AddProductPage = () => {
       quantity: productData.quantity
     };
     product.active = product.active === 'True';
-    addProduct(product);
+    addProduct(product).then(() => history.push('/maintenance'));
   };
   return (
     <div className={styles.productContainer}>

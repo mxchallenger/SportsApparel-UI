@@ -13,7 +13,10 @@ export default async function addProduct(products) {
   await HttpHelper(Constants.PRODUCT_ENDPOINT, 'POST', {
     products
   })
-    .then((response) => response.json())
+    .then((response) => {
+      toast.success('A product was added to the database');
+      response.json();
+    })
     .catch(() => {
       toast.error('Failed to add product to the database, check connectivity');
     });
