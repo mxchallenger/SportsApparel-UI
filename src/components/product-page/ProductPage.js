@@ -26,6 +26,7 @@ const ProductPage = () => {
             <ProductCard product={product} />
           </div>
         ))}
+        <div className="pages" id="container"> </div>
       </div>
     </div>
   );
