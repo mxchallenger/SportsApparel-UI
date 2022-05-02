@@ -73,14 +73,14 @@ export const CheckoutPage = () => {
       expiration: billingData.expiration,
       cardholder: billingData.cardholder
     };
-    const errors = validateCheckoutFields(
+    setErrors = validateCheckoutFields(
       deliveryAddress,
       billingAddress,
       creditCard
     );
     validateCheckoutFields
     if (errors !== undefined) {
-      return;
+      return errors;
     }
 
     makePurchase(productData, deliveryAddress, billingAddress, creditCard).then(() => history.push('/confirmation'));
