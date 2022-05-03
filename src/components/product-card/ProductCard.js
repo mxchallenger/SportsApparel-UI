@@ -1,5 +1,4 @@
 /* eslint-disable no-restricted-syntax */
-/* eslint-disable no-plusplus */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -64,7 +63,7 @@ const ProductCard = ({ product }) => {
   const onAdd = () => {
     for (const prod of products) { // <- refactor to map, 'no-restricted-syntax' disabled
       if (prod.id === product.id) {
-        prod.quantity++; // <- need to refactor this, 'no-plusplus' is disabled
+        prod.quantity += 1;
         products.dispatch(
           {
             type: 'delete',
