@@ -36,6 +36,7 @@ const ProductDetail = ({ onChange, productData }) => {
       <div className={styles.item1}>
         <FormItem
           className={styles.item1}
+          defaultValue=""
           placeholder="e.g. Soft Golf Shirt "
           type="text"
           id="name"
@@ -124,12 +125,13 @@ const ProductDetail = ({ onChange, productData }) => {
       </div>
       <div className={styles.item7}>
         <FormItem
-          defaultValue="0"
+          placeholder="e.g. 10"
           type="numeric"
           id="quantity"
           label="Quantity"
           onChange={onChange}
           value={productData.quantity}
+          pattern="/^[\d]$/"
         />
       </div>
       <div className={styles.item9}>

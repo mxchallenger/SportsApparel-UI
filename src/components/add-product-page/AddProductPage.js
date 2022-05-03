@@ -1,8 +1,10 @@
 import { useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import ProductDetail from './forms/ProductDetail';
 import addProduct from './AddProductService';
 import styles from './AddProductPage.module.css';
+import { productValidate } from './ProductValidate';
 
 /**
  * @name AddProductPage
@@ -17,30 +19,38 @@ const AddProductPage = () => {
     setProductData({ ...productData, [e.target.id]: e.target.value });
   };
 
-  const updateProduct = () => {
-    const product = {
-      dateCreated: '',
-      dateModified: '',
-      name: productData.name,
-      sku: productData.sku,
-      description: productData.description,
-      demographic: productData.demographics,
-      category: productData.category,
-      type: productData.type,
-      releaseDate: productData.releaseDate,
-      primaryColorCode: productData.primaryColorCode,
-      secondaryColorCode: productData.secondaryColorCode,
-      styleNumber: productData.styleNumber,
-      globalProductCode: productData.globalProductCode,
-      active: productData.active,
-      brand: productData.brand,
-      imageSrc: productData.imageSrc,
-      material: productData.material,
-      price: productData.price,
-      quantity: productData.quantity
+  const updateProduct = async () => {
+    const newProduct = {
+      Active: productData.active,
+      Brand: productData.brand,
+      Category: productData.category,
+      DateCreated: new Date().toJSON(),
+      DateModified: new Date().toJSON(),
+      Demographic: productData.demographics,
+      Description: productData.description,
+      GlobalProductCode: productData.globalProductCode,
+      Id: 0,
+      ImageSrc: productData.imageSrc,
+      Material: productData.material,
+      Name: productData.name,
+      Price: productData.price,
+      PrimaryColorCode: productData.primaryColorCode,
+      Quantity: productData.quantity,
+      ReleaseDate: productData.releaseDate,
+      SecondaryColorCode: productData.secondaryColorCode,
+      Sku: productData.sku,
+      StyleNumber: productData.styleNumber,
+      Type: productData.type
     };
-    product.active = product.active === 'True';
-    addProduct(product).then(() => history.push('/maintenance'));
+
+    const errorMsg = productValidate(newProduct);
+    if (errorMsg.length > 0) {
+      toast.error(`${errorMsg}`);
+    } else {
+      newProduct.Price = parseFloat(newProduct.Price.replace('$', ''));
+      newProduct.Active = newProduct.Active === 'True';
+      addProduct(newProduct).then(() => history.push('/maintenance'));
+    }
   };
   return (
     <div className={styles.productContainer}>

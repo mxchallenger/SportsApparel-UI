@@ -9,10 +9,8 @@ import Constants from '../../utils/constants';
  * @param {*} product to add to product repository
  * @returns product added response
  */
-export default async function addProduct(products) {
-  await HttpHelper(Constants.PRODUCT_ENDPOINT, 'POST', {
-    products
-  })
+export default async function addProduct(product) {
+  await HttpHelper(Constants.PRODUCT_ENDPOINT, 'POST', product)
     .then((response) => {
       toast.success('A product was added to the database');
       response.json();
