@@ -41,3 +41,7 @@ img {
     float: right;
     padding-right: 25px;
 }
+#cart-icon {
+    float: right;
+    position: inherit;
+}
