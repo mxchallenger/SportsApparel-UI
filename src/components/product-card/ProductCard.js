@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-plusplus */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -54,9 +56,30 @@ const useStyles = makeStyles((theme) => ({
 const ProductCard = ({ product }) => {
   const classes = useStyles();
 
-  const { dispatch } = useCart();
+  const {
+    state: { products },
+    dispatch
+  } = useCart();
 
   const onAdd = () => {
+    for (const prod of products) { // <- need to refactor this, 'no-plusplus' is disabled
+      if (prod.id === product.id) {
+        prod.quantity++;
+        products.dispatch(
+          {
+            type: 'delete',
+            product: {
+              id: product.id,
+              title: product.title,
+              price: product.price,
+              description: product.description,
+              quantity: 1
+            }
+          },
+          toast.success(`${product.name} has been added to your cart.`)
+        );
+      }
+    }
     dispatch(
       {
         type: 'add',
