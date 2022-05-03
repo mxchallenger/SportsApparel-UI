@@ -62,9 +62,9 @@ const ProductCard = ({ product }) => {
   } = useCart();
 
   const onAdd = () => {
-    for (const prod of products) { // <- need to refactor this, 'no-plusplus' is disabled
+    for (const prod of products) { // <- refactor to map, 'no-restricted-syntax' disabled
       if (prod.id === product.id) {
-        prod.quantity++;
+        prod.quantity++; // <- need to refactor this, 'no-plusplus' is disabled
         products.dispatch(
           {
             type: 'delete',
