@@ -16,7 +16,7 @@ const ProductPage = () => {
   const [updatedFilters, setUpdatedFilters] = useState('');
 
   useEffect(() => {
-    fetchProducts(updatedFilters, setProducts, setApiError);
+    fetchProducts(setProducts, setApiError, updatedFilters);
   }, [updatedFilters]);
 
   return (

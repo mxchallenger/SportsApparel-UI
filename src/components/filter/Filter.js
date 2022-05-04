@@ -3,34 +3,47 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import demographicFilters from './DemographicFilterData';
 import './Filter.css';
 
-function Filter({ setUpdatedFilters }) {
+function Filter({ setUpdatedFilters, pushover }) {
   const [sidebar, setSidebar] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState([]);
   const [filterDemographic, setFilterDemographic] = useState('');
+  const [checkedMens, setCheckedMens] = useState(false);
+  const [checkedWomens, setCheckedWomens] = useState(false);
+  const [checkedKids, setCheckedKids] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
-  const handleOnChange = (filterAddy) => {
-    const updatedFilterAddy = (filterAddy + filterDemographic);
-    setFilterDemographic(updatedFilterAddy);
+  const handleOnChange = (id) => {
+    if (id === 1) { setCheckedMens(!checkedMens); }
+    if (id === 2) { setCheckedWomens(!checkedWomens); }
+    if (id === 3) { setCheckedKids(!checkedKids); }
+    const updatedMultipleFilterAddy = () => {
+      // Object.prototype.hasOwnProperty.call(demographicFilters, id);
+    };
     setIsChecked(!isChecked);
+    setFilterDemographic(updatedMultipleFilterAddy);
   };
 
   const handleFilters = () => {
     setUpdatedFilters(filterDemographic);
+  };
+  const sidebarPush = () => {
+    showSidebar();
+    pushover(!sidebar);
   };
 
   return (
     <>
       <div className="wrapper" id="filter">
         <div className="menu-bars">
-          <AiOutlineMenu onClick={showSidebar} />
+          <AiOutlineMenu onClick={sidebarPush} />
         </div>
+
       </div>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
         <ul className="nav-menu-items">
           <ul className="navbar-toggle">
             <div>
-              <AiOutlineClose onClick={showSidebar} />
+              <AiOutlineClose onClick={sidebarPush} />
             </div>
           </ul>
           <li className="Demographics">
