@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactPaginate from 'react-paginate';
 import ProductPage from '../product-page/ProductPage';
 import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
@@ -29,6 +30,7 @@ const App = () => (
       position="top-center"
       autoClose={8000}
     />
+    <ReactPaginate />
     <Footer />
   </BrowserRouter>
 
