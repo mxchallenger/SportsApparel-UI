@@ -6,7 +6,6 @@ import ReviewOrderWidget from './ReviewOrderWidget';
 import DeliveryAddress from './forms/DeliveryAddress';
 import BillingDetails from './forms/BillingDetails';
 import makePurchase from './CheckoutService';
-
 /**
  * @name CheckoutPage
  * @description A view that contains details needed to process a transaction for items
@@ -24,13 +23,11 @@ const CheckoutPage = () => {
   const onBillingChange = (e) => {
     setBillingData({ ...billingData, [e.target.id]: e.target.value });
   };
-
   const [deliveryData, setDeliveryData] = React.useState({});
 
   const onDeliveryChange = (e) => {
     setDeliveryData({ ...deliveryData, [e.target.id]: e.target.value });
   };
-
   const [checked, setChecked] = React.useState(false);
   const handleCheck = () => {
     setChecked(!checked);
@@ -72,7 +69,6 @@ const CheckoutPage = () => {
     };
     makePurchase(productData, deliveryAddress, billingAddress, creditCard).then(() => history.push('/confirmation'));
   };
-
   return (
     <div className={styles.checkoutContainer}>
       <div className={`${styles.step} ${styles.order}`}>
@@ -110,5 +106,4 @@ const CheckoutPage = () => {
     </div>
   );
 };
-
 export default CheckoutPage;

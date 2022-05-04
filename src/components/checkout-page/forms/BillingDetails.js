@@ -16,16 +16,16 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
     <div className={styles.deliveryAddress}>
       {!useShippingForBilling && (
         <>
-
-          <FormItem
-            placeholder="e.g. 123 Sesame Street"
-            type="text"
-            id="billingStreet"
-            label="Street"
-            onChange={onChange}
-            value={billingData.billingStreet}
-          />
-
+          <div className={styles.danger}>
+            <FormItem
+              placeholder="e.g. 123 Sesame Street"
+              type="text"
+              id="billingStreet"
+              label="Street"
+              onChange={onChange}
+              value={(billingData.billingStreet) || ''}
+            />
+          </div>
           <FormItem
             placeholder="e.g. Unit #1"
             type="text"
