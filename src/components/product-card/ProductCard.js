@@ -61,7 +61,7 @@ const ProductCard = ({ product }) => {
   } = useCart();
 
   const onAdd = () => {
-    for (const prod of products) { // <- refactor to map, 'no-restricted-syntax' disabled
+    for (const prod of products) { // <- refactor to forEach or map, eslint'no-restricted-syntax'
       if (prod.id === product.id) {
         prod.quantity += 1;
         products.dispatch(

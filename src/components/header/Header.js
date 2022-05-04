@@ -82,7 +82,7 @@ const Header = () => {
           <svg style={{ height: 35, width: 35 }}>
             <circle cx={15} cy={15} r={15} stroke="black" strokeWidth={1} fill="red" scale="auto" />
             <text x="42%" y="45%" stroke="#ffff" textAnchor="middle" strokeWidth="1px" dy=".3em">
-              {products.length}
+              {products.length > 9 ? ('9+') : (products.length)}
             </text>
           </svg>
         </NavLink>
