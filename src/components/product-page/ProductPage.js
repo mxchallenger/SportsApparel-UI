@@ -19,8 +19,9 @@ const ProductPage = () => {
     fetchProducts(currentPage, setProducts, setApiError);
   }, [currentPage]);
 
-  const handlePageClick = (e) => {
-    setCurrentPage(e.target);
+  const handleClick = ({ selected: selectedPage }) => {
+    setCurrentPage(selectedPage);
+
     // step one save current page on click
     // 2 pass current page into a request
     // 3 send request to backend for products according to page number
@@ -44,7 +45,7 @@ const ProductPage = () => {
           pageCount="10"
           marginPagesDisplayed="2"
           pageRangeDisplayed="3"
-          onPageChange={handlePageClick}
+          onPageChange={handleClick}
           containerClassName="pagination justify-content-center"
           pageClassName="page-item"
           pageLinkClassName="page-link"
