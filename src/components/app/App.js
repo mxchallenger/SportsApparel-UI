@@ -9,7 +9,6 @@ import ConfirmationPage from '../confirmation-page/ConfirmationPage';
 import Header from '../header/Header';
 import Maintenance from '../maintenance/Maintenance';
 import Toast from '../toast/Toast';
-// import Filter from '../filter/Filter';
 
 /**
  * @name App

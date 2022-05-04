@@ -13,38 +13,23 @@ import fetchProducts from './ProductPageService';
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
-  // const [Filters, setFilters] = useState({
-  //  demographics: []
-  // });
+  const [updatedFilters, setUpdatedFilters] = useState('');
 
   useEffect(() => {
-    fetchProducts(setProducts, setApiError);
-  }, []);
-
-  // const showFilteredResults = (filters) => {
-  //  fetchProducts;
-  // };
-  // const handleFilters = (filters, demographic) => {
-  //  const newFilters = { ...Filters };
-  //  newFilters[demographic] = filters;
-
-  //  showFilteredResults(newFilters);
-  //  setFilters(newFilters);
-  // };
+    fetchProducts(updatedFilters, setProducts, setApiError);
+  }, [updatedFilters]);
 
   return (
     <>
       <div>
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-        <Filter />
-        <div className="page-wrap">
-          <div className={styles.app} id="main">
-            {products.map((product) => (
-              <div key={product.id}>
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
+        <Filter setUpdatedFilters={setUpdatedFilters} />
+        <div className={styles.app}>
+          {products.map((product) => (
+            <div key={product.id}>
+              <ProductCard product={product} />
+            </div>
+          ))}
         </div>
       </div>
     </>

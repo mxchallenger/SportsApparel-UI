@@ -3,19 +3,19 @@ const demographicFilters = [
     id: 1,
     title: 'Men',
     cName: 'nav-text',
-    filterAddy: '&demographic=men'
+    filterAddy: '/$demographic=Men'
   },
   {
     id: 2,
     title: 'Women',
     cName: 'nav-text',
-    filterAddy: '&demographic=women'
+    filterAddy: '/$demographic=Women'
   },
   {
     id: 3,
     title: 'Kids',
     cName: 'nav-text',
-    filterAddy: '&demographic=kids'
+    filterAddy: '/$demographic=Kids'
   }
 ];
 export default demographicFilters;

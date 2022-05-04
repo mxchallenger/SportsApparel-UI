@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-// import { IconContext } from 'react-icons';
 import demographicFilters from './DemographicFilterData';
 import './Filter.css';
 
-function Filter() {
+function Filter({ setUpdatedFilters }) {
   const [sidebar, setSidebar] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [filterDemographic, setFilterDemographic] = useState('');
 
   const showSidebar = () => setSidebar(!sidebar);
-  const handleOnChange = () => {
+  const handleOnChange = (filterAddy) => {
+    const updatedFilterAddy = (filterAddy + filterDemographic);
+    setFilterDemographic(updatedFilterAddy);
     setIsChecked(!isChecked);
+  };
+
+  const handleFilters = () => {
+    setUpdatedFilters(filterDemographic);
   };
 
   return (
@@ -32,7 +37,7 @@ function Filter() {
             <div id="Demographics" />
             <h2>Demographics</h2>
           </li>
-          {demographicFilters.map((item, index) => (
+          {demographicFilters.map((item, id) => (
             <>
               <li key={item} className={item.cName}>
                 <div className="DemographicsList">
@@ -41,8 +46,8 @@ function Filter() {
                     id="demographics"
                     name="demographics"
                     value="demographics"
-                    checked={isChecked[index]}
-                    onChange={() => handleOnChange(index)}
+                    checked={isChecked[id]}
+                    onChange={() => handleOnChange(item.filterAddy)}
                   />
                 </div>
                 <span>{item.title}</span>
@@ -52,7 +57,8 @@ function Filter() {
         </ul>
         <ul className="ApplyButton">
           <div id="ApplyButton">
-            <button type="submit"> Apply Filter </button>
+            <button type="submit" onClick={handleFilters}> Apply Filter </button>
+
           </div>
         </ul>
       </nav>
