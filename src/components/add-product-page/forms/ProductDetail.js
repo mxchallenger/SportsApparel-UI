@@ -1,7 +1,6 @@
 import React from 'react';
 import FormItem from '../../form/FormItem';
 import FormItemDropdown from '../../form/FormItemDropdown';
-import useForm from './ProductValidate';
 import styles from './ProductDetail.module.css';
 
 /**
@@ -10,8 +9,6 @@ import styles from './ProductDetail.module.css';
  * @return component
  */
 const ProductDetail = ({ onChange, productData }) => {
-  const errors = useForm({});
-
   const colors = [
     'White', // '#000000',
     'Black', // '#ffffff',
@@ -38,93 +35,99 @@ const ProductDetail = ({ onChange, productData }) => {
     <div className={styles.productDetailContainer}>
       <div className={styles.item1}>
         <FormItem
-          className={styles.item1}
-          defaultValue=""
           placeholder="e.g. Soft Golf Shirt "
           type="text"
           id="name"
           label="Product Name"
           onChange={onChange}
-          value={productData.name || ''}
-          errors={errors.name}
+          value={(productData.name) || ''}
         />
+
       </div>
       <div className={styles.item5}>
         <FormItem
+          defaultValue=""
           type="text"
           id="category"
           label="Category"
           onChange={onChange}
-          value={productData.category}
+          value={(productData.category) || ''}
         />
       </div>
       <div className={styles.item13}>
         <FormItem
           placeholder="e.g. https://m.media-amazon.com/images/I/81zNUlGpqJL._AC_UY550_.jpg"
+          defaultValue=""
           type="text"
           id="imageSrc"
           label="Image Source"
           onChange={onChange}
-          value={productData.imageSrc}
+          value={(productData.imageSrc) || ''}
         />
       </div>
       <div className={styles.item2}>
         <FormItem
           placeholder="e.g. Golf, Men, Soft"
+          defaultValue=""
           type="text"
           id="description"
           label="Product Description"
           onChange={onChange}
-          value={productData.description}
+          value={(productData.description) || ''}
         />
       </div>
       <div className={styles.item4}>
         <FormItem
           type="text"
+          defaultValue=""
           id="type"
           label="Type"
           onChange={onChange}
-          value={productData.type}
+          value={(productData.type) || ''}
         />
       </div>
       <div className={styles.item15}>
         <FormItem
           placeholder="e.g. sc#####"
+          defaultValue=""
           type="text"
           id="styleNumber"
           label="Style Number"
           onChange={onChange}
-          value={productData.styleNumber}
+          value={(productData.styleNumber) || ''}
         />
       </div>
       <div className={styles.item6}>
         <FormItem
           placeholder="e.g. $###.##"
+          defaultValue=""
           className={styles.price}
           type="decimal"
           id="price"
           label="Price"
           onChange={onChange}
-          value={productData.price}
+          value={(productData.price) || ''}
         />
       </div>
       <div className={styles.item12}>
         <FormItem
           type="text"
+          defaultValue=""
           id="material"
           label="Material"
           onChange={onChange}
-          value={productData.material}
+          value={(productData.material) || ''}
         />
       </div>
       <div className={styles.item16}>
         <FormItem
           placeholder="e.g. ABC-EFG-HIGK"
+          defaultValue=""
           type="text"
           id="sku"
           label="SKU"
           onChange={onChange}
-          value={productData.sku}
+          value={(productData.sku) || ''}
         />
       </div>
       <div className={styles.item7}>
@@ -134,7 +137,7 @@ const ProductDetail = ({ onChange, productData }) => {
           id="quantity"
           label="Quantity"
           onChange={onChange}
-          value={productData.quantity}
+          value={(productData.quantity) || ''}
         />
       </div>
       <div className={styles.item9}>
@@ -153,7 +156,7 @@ const ProductDetail = ({ onChange, productData }) => {
           id="globalProductCode"
           label="Global Product Code"
           onChange={onChange}
-          value={productData.globalProductCode}
+          value={(productData.globalProductCode) || ''}
         />
       </div>
       <div className={styles.item8}>
@@ -180,7 +183,7 @@ const ProductDetail = ({ onChange, productData }) => {
           id="releaseDate"
           label="Release Date"
           onChange={onChange}
-          value={productData.releaseDate}
+          value={(productData.releaseDate) || ''}
         />
       </div>
       <div className={styles.item3}>
@@ -189,7 +192,7 @@ const ProductDetail = ({ onChange, productData }) => {
           id="brand"
           label="Brand"
           onChange={onChange}
-          value={productData.brand}
+          value={(productData.brand) || ''}
         />
       </div>
       <div className={styles.item11}>

@@ -2,8 +2,8 @@ import { useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import ProductDetail from './forms/ProductDetail';
-import useForm from './forms/ProductValidate';
 import addProduct from './AddProductService';
+import { productValidate } from './forms/ProductValidate';
 import styles from './AddProductPage.module.css';
 
 /**
@@ -13,26 +13,7 @@ import styles from './AddProductPage.module.css';
  */
 const AddProductPage = () => {
   const history = useHistory();
-  const [productData, setProductData] = useState({
-    name: '',
-    active: '',
-    brand: '',
-    category: '',
-    demographics: '',
-    description: '',
-    globalProductCode: '',
-    imageSrc: '',
-    material: '',
-    price: '',
-    primaryColorCode: '',
-    quantity: '',
-    releaseDate: '',
-    secondaryColorCode: '',
-    sku: '',
-    styleNumber: '',
-    type: ''
-  });
-  const { handleSubmit, errors } = useForm(productData);
+  const [productData, setProductData] = useState({});
 
   const onProductChange = (e) => {
     setProductData({ ...productData, [e.target.id]: e.target.value });
@@ -61,18 +42,13 @@ const AddProductPage = () => {
       StyleNumber: productData.styleNumber,
       Type: productData.type
     };
-
-    newProduct.Price = parseFloat(newProduct.Price.replace('$', ''));
-    newProduct.Active = newProduct.Active === 'True';
-    addProduct(newProduct).then(() => history.push('/maintenance'));
-  };
-
-  const runTheDamnThing = () => {
-    handleSubmit();
-    if (!errors) {
-      updateProduct();
-    } else {
+    const errorMsg = productValidate(newProduct);
+    if (errorMsg.length > 0) {
       toast.error('Validate failed');
+    } else {
+      newProduct.Price = parseFloat(newProduct.Price.replace('$', ''));
+      newProduct.Active = newProduct.Active === 'True';
+      addProduct(newProduct).then(() => history.push('/maintenance'));
     }
   };
 
@@ -87,7 +63,7 @@ const AddProductPage = () => {
         />
       </div>
       <div className={styles.buttonArea}>
-        <button type="submit" className={styles.submitBtn} onClick={runTheDamnThing}>Submit</button>
+        <button type="submit" className={styles.submitBtn} onClick={updateProduct}>Submit</button>
       </div>
     </div>
   );

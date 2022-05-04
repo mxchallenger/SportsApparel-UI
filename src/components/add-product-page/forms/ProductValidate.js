@@ -1,16 +1,8 @@
-import { useState } from 'react';
 import { validate } from './Validate';
 
-const useForm = (data) => {
-  const [errors, setErrors] = useState({});
-
-  const handleSubmit = () => {
-    setErrors(validate(data));
-  };
-
-  return {
-    handleSubmit,
-    errors
-  };
+export const productValidate = (product) => {
+  const errors = [];
+  Object.entries(product).forEach((e) => validate(e, errors));
+  return errors.join(' * ');
 };
-export default useForm;
+export default productValidate;
