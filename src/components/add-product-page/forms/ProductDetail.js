@@ -1,6 +1,7 @@
 import React from 'react';
 import FormItem from '../../form/FormItem';
 import FormItemDropdown from '../../form/FormItemDropdown';
+import useForm from './ProductValidate';
 import styles from './ProductDetail.module.css';
 
 /**
@@ -9,6 +10,8 @@ import styles from './ProductDetail.module.css';
  * @return component
  */
 const ProductDetail = ({ onChange, productData }) => {
+  const errors = useForm({});
+
   const colors = [
     'White', // '#000000',
     'Black', // '#ffffff',
@@ -42,7 +45,8 @@ const ProductDetail = ({ onChange, productData }) => {
           id="name"
           label="Product Name"
           onChange={onChange}
-          value={productData.name}
+          value={productData.name || ''}
+          errors={errors.name}
         />
       </div>
       <div className={styles.item5}>
@@ -131,7 +135,6 @@ const ProductDetail = ({ onChange, productData }) => {
           label="Quantity"
           onChange={onChange}
           value={productData.quantity}
-          pattern="/^[\d]$/"
         />
       </div>
       <div className={styles.item9}>
