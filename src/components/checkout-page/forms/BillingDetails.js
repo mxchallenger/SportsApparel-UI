@@ -16,7 +16,7 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
     <div className={styles.step}>
       {!useShippingForBilling && (
         <>
-          <div className={styles.danger}>
+          <div className={styles.errorMessage}>
             <FormItem
               placeholder="e.g. 123 Sesame Street"
               type="text"

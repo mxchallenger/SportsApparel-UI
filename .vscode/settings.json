@@ -1,5 +1,25 @@
 {
   "prettier.singleQuote": false,
   "prettier.quoteProps": "consistent",
-  "prettier.jsxSingleQuote": false
+  "prettier.jsxSingleQuote": false,
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#ce5cd9",
+    "activityBar.activeBorder": "#dbd064",
+    "activityBar.background": "#ce5cd9",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#dbd064",
+    "activityBarBadge.foreground": "#15202b",
+    "sash.hoverBorder": "#ce5cd9",
+    "statusBar.background": "#c233cf",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#ce5cd9",
+    "statusBarItem.remoteBackground": "#c233cf",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#c233cf",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#c233cf99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#c233cf"
 }
