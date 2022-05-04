@@ -1,7 +1,7 @@
 import React from 'react';
 import FormItem from '../../form/FormItem';
 import FormItemDropdown from '../../form/FormItemDropdown';
-import styles from './DeliveryAddress.module.css';
+import styles from './BillingDelivery.module.css';
 
 /**
  * @name BillingDetails
@@ -10,10 +10,10 @@ import styles from './DeliveryAddress.module.css';
  */
 const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
   const usStates = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-
+  const errors = {};
   return (
 
-    <div className={styles.deliveryAddress}>
+    <div className={styles.step}>
       {!useShippingForBilling && (
         <>
           <div className={styles.danger}>
@@ -25,6 +25,9 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
               onChange={onChange}
               value={(billingData.billingStreet) || ''}
             />
+            {errors && (
+              <span className="validateErr"> errors </span>
+            )}
           </div>
           <FormItem
             placeholder="e.g. Unit #1"

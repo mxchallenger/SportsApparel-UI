@@ -1,7 +1,7 @@
 import React from 'react';
 import FormItem from '../../form/FormItem';
 import FormItemDropdown from '../../form/FormItemDropdown';
-import styles from './DeliveryAddress.module.css';
+import styles from './BillingDelivery.module.css';
 
 /**
  * @name DeliveryAddress
@@ -13,7 +13,7 @@ const DeliveryAddress = ({ onChange, deliveryData }) => {
 
   return (
 
-    <div className={styles.deliveryAddress}>
+    <div className={styles.danger}>
       <FormItem
         type="text"
         id="firstName"
