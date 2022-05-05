@@ -13,12 +13,13 @@ import styles from './ProductPage.module.css';
  * @return component
  */
 
-const ProductPage = ({ user }) => {
+const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [urlQuery, setUrlQuery] = useState('');
 
-  const filterByQuery = () => {
+  const fetchProductsByQuery = () => {
+    fetchProducts(setProducts, setApiError);
     fetchProducts(setProducts, urlQuery, setApiError);
   };
   useEffect(() => {
@@ -30,13 +31,13 @@ const ProductPage = ({ user }) => {
       <Box>
         <Filter
           setUrlQuery={setUrlQuery}
-          applyFilters={filterByQuery}
+          applyFilters={fetchProductsByQuery}
         />
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
         <div className={styles.app}>
           {products.map((product) => (
             <div key={product.id}>
-              <ProductCard product={product} user={user} />
+              <ProductCard product={product} />
             </div>
           ))}
         </div>
