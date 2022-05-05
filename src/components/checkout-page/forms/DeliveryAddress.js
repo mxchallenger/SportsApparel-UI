@@ -73,7 +73,7 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
   ];
   return (
     <div className={styles.deliveryAddress}>
-      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
+      <div className={errors.firstName === '' ? '' : styles.redDanger} />
       <FormItem
         type="text"
         id="firstName"

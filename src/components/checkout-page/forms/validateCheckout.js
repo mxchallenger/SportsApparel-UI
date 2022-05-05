@@ -46,21 +46,20 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked) {
     } else if (!/[a-zA-z0-9 -]+$/.test(billing.billingStreet)) {
       errors.billingStreet = 'Only contains letters, numbers, apostrophes and spaces.';
     }
+    if (!billing.city) {
+      errors.billingCity = 'Required Field';
+    } else if (!/[a-zA-z '-]+$/.test(billing.billingCity)) {
+      errors.billingCity = 'Only contains letters, numbers, apostrophes and spaces.';
+    }
+    if (!billing.zip) {
+      errors.billingZip = 'Required Field';
+    } else if (!/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(billing.billingZip)) {
+      errors.billingZip = 'Only contains 5-9 digits with xxxxx or xxxxx-xxxx';
+    }
+    if (billing.state === null) {
+      errors.billingState = 'Required Field';
+    }
   }
-  if (!billing.city) {
-    errors.billingCity = 'Required Field';
-  } else if (!/[a-zA-z '-]+$/.test(billing.billingCity)) {
-    errors.billingCity = 'Only contains letters, numbers, apostrophes and spaces.';
-  }
-  if (!billing.zip) {
-    errors.billingZip = 'Required Field';
-  } else if (!/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(billing.billingZip)) {
-    errors.billingZip = 'Only contains 5-9 digits with xxxxx or xxxxx-xxxx';
-  }
-  if (billing.state === null) {
-    errors.billingState = 'Required Field';
-  }
-
   // validate phone & email
   if (!billing.email) {
     errors.email = 'Required Field';
@@ -69,7 +68,7 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked) {
   }
   if (!billing.phone) {
     errors.phone = 'Required Field';
-  } else if (!/^[\d]{10}$/.test(billing.phone)) {
+  } else if (!/^[\d]{3}-[\d]{3}-[\d]{4}$/.test(billing.phone)) {
     errors.phone = 'Only contains 10 digits, no special characters';
   }
 
