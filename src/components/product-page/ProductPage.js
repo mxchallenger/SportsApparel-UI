@@ -16,22 +16,27 @@ const ProductPage = () => {
   const [apiError, setApiError] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
-
+  /**
+ * This hook fetches the current page number and
+ * displays a number of products according
+ * to page number
+ */
   useEffect(() => {
     fetchProducts(currentPage, setProducts, setApiError);
   }, [currentPage]);
-
+  /**
+   * This hook fetches the total page count of
+   * the pagination
+   */
   useEffect(() => {
     fetchProductsCount(setCount, setApiError);
   }, [count]);
-
+  /**
+   * This function allows clicks to individual page numbers
+   * @param {} selected
+   */
   const handleClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
-
-    // step one save current page on click
-    // 2 pass current page into a request
-    // 3 send request to backend for products according to page number
-    // Use this service to get the total product count
   };
   return (
     <div>
@@ -50,7 +55,7 @@ const ProductPage = () => {
           breakLabel=""
           pageCount={count}
           marginPagesDisplayed=""
-          pageRangeDisplayed="10"
+          pageRangeDisplayed="9"
           onPageChange={handleClick}
           containerClassName="pagination justify-content-center"
           pageClassName="page-item"
@@ -62,6 +67,8 @@ const ProductPage = () => {
           breakClassName="page-item"
           breakLinkClassName="page-link"
           activeClassName="active"
+          renderOnZeroPageCount={false}
+          forcePage={currentPage}
         />
       </div>
     </div>
