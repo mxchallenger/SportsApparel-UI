@@ -7,7 +7,7 @@ import './Header.css';
 import logo from './logo.png';
 import cart from './cart.png';
 import maint from './wrench.png';
-
+import { useCart } from '../checkout-page/CartContext';
 /**
  * @name Header
  * @description Displays the navigation header
@@ -59,6 +59,11 @@ const Header = () => {
     setGoogleError('There was a problem logging out with Google. Please wait and try again later.');
   };
 
+  const {
+    state: { products },
+    dispatch
+  } = useCart();
+  dispatch.useCart = null;
   return (
     <div className="header">
       <div id="home">
@@ -68,7 +73,19 @@ const Header = () => {
         <NavLink to="/maintenance"><img src={maint} alt="Maintenance" /></NavLink>
       </div>
       <div id="cart">
-        <NavLink to="/checkout"><img src={cart} alt="cart" /></NavLink>
+        <NavLink to="/checkout">
+          <img src={cart} alt="cart" />
+        </NavLink>
+      </div>
+      <div id="cart-icon">
+        <NavLink to="/checkout">
+          <svg style={{ height: 35, width: 35 }}>
+            <circle cx={15} cy={15} r={15} stroke="black" strokeWidth={1} fill="red" scale="auto" />
+            <text x="42%" y="45%" stroke="#ffff" textAnchor="middle" strokeWidth="1px" dy=".3em">
+              {products.length > 9 ? ('9+') : (products.length)}
+            </text>
+          </svg>
+        </NavLink>
       </div>
       {user && <span>{user.firstName}</span>}
       {user && <span>{user.lastName}</span>}
