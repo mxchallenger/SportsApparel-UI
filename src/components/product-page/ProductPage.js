@@ -1,38 +1,47 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useState } from 'react';
-import Filter from '../filter/Filter';
+import { Box } from '@mui/system';
 import ProductCard from '../product-card/ProductCard';
-import styles from './ProductPage.module.css';
 import Constants from '../../utils/constants';
-import fetchProducts from './ProductPageService';
+import Filter from '../filter-menu/Filter';
+import { fetchProducts, fetchProductsCount } from './ProductPageService';
+import styles from './ProductPage.module.css';
 
 /**
  * @name ProductPage
  * @description fetches products from API and displays products as product cards
  * @return component
  */
-const ProductPage = () => {
+
+const ProductPage = ({ user }) => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
-  const [updatedFilters, setUpdatedFilters] = useState('');
+  const [urlQuery, setUrlQuery] = useState('');
 
+  const filterByQuery = () => {
+    fetchProducts(setProducts, urlQuery, setApiError);
+  };
   useEffect(() => {
-    fetchProducts(setProducts, setApiError, updatedFilters);
-  }, [updatedFilters]);
+    fetchProductsCount(setApiError, urlQuery);
+  }, [urlQuery]);
 
   return (
-    <>
-      <div>
+    <div>
+      <Box>
+        <Filter
+          setUrlQuery={setUrlQuery}
+          applyFilters={filterByQuery}
+        />
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-        <Filter setUpdatedFilters={setUpdatedFilters} />
         <div className={styles.app}>
           {products.map((product) => (
             <div key={product.id}>
-              <ProductCard product={product} />
+              <ProductCard product={product} user={user} />
             </div>
           ))}
         </div>
-      </div>
-    </>
+      </Box>
+    </div>
   );
 };
 
