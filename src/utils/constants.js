@@ -7,6 +7,6 @@ module.exports = Object.freeze({
   PRODUCTS_ACTIVE_ENDPOINT: '/products/filters?pageNumber=1',
   GOOGLE_CLIENT_ID: '912899852587-7996nh9mlpvpa2446q0il4f9hj5o492h.apps.googleusercontent.com', // ENTER CLIENT ID HERE
   PRODUCT_ENDPOINT: '/products',
-  ACTIVE_COUNT_FILTER_ENDPOINT: '/products/active?pageNumber=1'
+  ACTIVE_COUNT_FILTER_ENDPOINT: '/products/count'
 
 });

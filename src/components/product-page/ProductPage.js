@@ -4,6 +4,7 @@ import ProductCard from '../product-card/ProductCard';
 import styles from './ProductPage.module.css';
 import Constants from '../../utils/constants';
 import fetchProducts from './ProductPageService';
+import fetchProductsCount from '../Pagination/Pagination';
 
 /**
  * @name ProductPage
@@ -13,11 +14,16 @@ import fetchProducts from './ProductPageService';
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [count, setCount] = useState();
 
   useEffect(() => {
     fetchProducts(currentPage, setProducts, setApiError);
   }, [currentPage]);
+
+  useEffect(() => {
+    fetchProductsCount(setCount, setApiError);
+  }, [count]);
 
   const handleClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
@@ -41,10 +47,10 @@ const ProductPage = () => {
         <ReactPaginate
           previousLabel="previous"
           nextLabel="next"
-          breakLabel="..."
-          pageCount="10"
-          marginPagesDisplayed="2"
-          pageRangeDisplayed="3"
+          breakLabel=""
+          pageCount={count}
+          marginPagesDisplayed=""
+          pageRangeDisplayed="10"
           onPageChange={handleClick}
           containerClassName="pagination justify-content-center"
           pageClassName="page-item"
