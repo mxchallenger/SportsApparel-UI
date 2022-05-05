@@ -9,7 +9,11 @@ import styles from './DeliveryAddress.module.css';
  * @return component
  */
 
-const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
+const BillingDetails = (
+  {
+    errors, onChange, billingData, useShippingForBilling
+  }
+) => {
   const usStates = [
     'Alabama',
     'Alaska',
@@ -76,15 +80,16 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
     <div className={styles.deliveryAddress}>
       {!useShippingForBilling && (
         <>
-          <FormItem
-            placeholder="e.g. 123 Sesame Street"
-            type="text"
-            id="billingStreet"
-            label="Street"
-            onChange={onChange}
-            value={billingData.billingStreet}
-          />
-
+          <div className={styles.errorMessage}>
+            <FormItem
+              placeholder="e.g. 123 Sesame Street"
+              type="text"
+              id="billingStreet"
+              label="Street"
+              onChange={onChange}
+              value={(billingData.billingStreet) || ''}
+            />
+          </div>
           <FormItem
             placeholder="e.g. Unit #1"
             type="text"
@@ -93,6 +98,7 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
             onChange={onChange}
             value={billingData.billingStreet2}
             required
+            errors={errors}
           />
 
           <FormItem
@@ -102,15 +108,16 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
             onChange={onChange}
             value={billingData.billingCity}
           />
-
-          <FormItemDropdown
-            id="billingState"
-            label="State"
-            onChange={onChange}
-            value={billingData.billingState}
-            options={usStates}
-          />
-
+          <div className={styles.errorMessage}>
+            <FormItemDropdown
+              id="billingState"
+              label="State"
+              onChange={onChange}
+              value={billingData.billingState}
+              options={usStates}
+              required
+            />
+          </div>
           <FormItem
             placeholder="e.g. 12345"
             type="text"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import FormItem from '../../form/FormItem';
 import FormItemDropdown from '../../form/FormItemDropdown';
 import styles from './DeliveryAddress.module.css';
@@ -8,11 +8,7 @@ import styles from './DeliveryAddress.module.css';
  * @return component
  */
 
-const DeliveryAddress = ({ onChange, deliveryData, errorMsg }) => {
-  useEffect(() => {
-    setErrors(() => {
-    });
-  }, [errorMsg]);
+const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
   const usStates = [
     'Alabama',
     'Alaska',
@@ -76,13 +72,18 @@ const DeliveryAddress = ({ onChange, deliveryData, errorMsg }) => {
   ];
   return (
     <div className={styles.deliveryAddress}>
-      <FormItem
-        type="text"
-        id="firstName"
-        label="First Name"
-        onChange={onChange}
-        value={deliveryData.firstName}
-      />
+      <div className={styles.errorMessage}>
+        <FormItem
+          required
+          type="text"
+          id="firstName"
+          label="First Name"
+          onChange={onChange}
+          value={(deliveryData === '')}
+          errors={errors}
+        />
+        {errors && <p className={styles.errorMessage}>{errors.firstName}</p>}
+      </div>
       <FormItem
         type="text"
         id="lastName"

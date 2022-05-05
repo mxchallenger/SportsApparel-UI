@@ -7,7 +7,7 @@ import styles from './FormItem.module.css';
  * @return component
  */
 const FormItem = ({
-  onChange, value, id, label, placeholder, type, errorMessage
+  onChange, value, id, label, placeholder, type
 }) => (
 
   <div>
@@ -24,7 +24,6 @@ const FormItem = ({
         />
       </div>
     </label>
-    <span className={styles.errors}>{errorMessage}</span>
   </div>
 );
 

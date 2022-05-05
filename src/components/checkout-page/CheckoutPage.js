@@ -1,19 +1,20 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useCart } from './CartContext';
 import styles from './CheckoutPage.module.css';
 import ReviewOrderWidget from './ReviewOrderWidget';
 import DeliveryAddress from './forms/DeliveryAddress';
 import BillingDetails from './forms/BillingDetails';
 import makePurchase from './CheckoutService';
-import { validateCheckoutFields } from '../../utils/Validation';
+import validateCheckout from './forms/validateCheckout';
 
 /**
  * @name CheckoutPage
  * @description A view that contains details needed to process a transaction for items
  * @return component
  */
-export const CheckoutPage = () => {
+const CheckoutPage = () => {
   const history = useHistory();
 
   const {
@@ -21,7 +22,7 @@ export const CheckoutPage = () => {
   } = useCart();
 
   const [errors, setErrors] = React.useState({});
-
+  const [isValid, setIsValid] = React.useState(false);
   const [billingData, setBillingData] = React.useState({});
 
   const onBillingChange = (e) => {
@@ -39,7 +40,7 @@ export const CheckoutPage = () => {
     setChecked(!checked);
   };
 
-  const handlePay = () => {
+  const purchaseObj = () => {
     const productData = products.map(({ id, quantity }) => ({ id, quantity }));
     const deliveryAddress = {
       firstName: deliveryData.firstName,
@@ -73,18 +74,17 @@ export const CheckoutPage = () => {
       expiration: billingData.expiration,
       cardholder: billingData.cardholder
     };
-    setErrors = validateCheckoutFields(
-      deliveryAddress,
-      billingAddress,
-      creditCard
-    );
-    validateCheckoutFields
-    if (errors !== undefined) {
-      return errors;
-    }
-
     makePurchase(productData, deliveryAddress, billingAddress, creditCard).then(() => history.push('/confirmation'));
   };
+
+  const handlePay = () => {
+    validateCheckout(deliveryData, setErrors, setIsValid);
+    if (isValid) {
+      purchaseObj();
+      toast.success('purchase successful');
+    }
+  };
+
   return (
     <div className={styles.checkoutContainer}>
       <div className={`${styles.step} ${styles.order}`}>
@@ -93,7 +93,7 @@ export const CheckoutPage = () => {
       </div>
       <div className={`${styles.step} ${styles.delivery}`}>
         <h3 className={styles.title}>2. Delivery Address</h3>
-        <DeliveryAddress onChange={onDeliveryChange} deliveryData={deliveryData} />
+        <DeliveryAddress onChange={onDeliveryChange} deliveryData={deliveryData} errors={errors} />
         <label htmlFor="useSame" className={styles.sameAddressText}>
           <div className={styles.useSameAddress}>
             <input
@@ -112,6 +112,7 @@ export const CheckoutPage = () => {
           onChange={onBillingChange}
           billingData={billingData}
           useShippingForBilling={checked}
+          errors={errors}
         />
       </div>
       <div className={styles.payNow}>

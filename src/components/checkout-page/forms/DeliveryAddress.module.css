@@ -8,3 +8,10 @@
   font-weight: 700;
   color: #666666;
 }
+
+.errorMessage {
+  color:red;
+  font-weight: 600;
+  margin: 0;
+  font-size: 14px;
+}
