@@ -1,53 +1,73 @@
 import { useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
 import ProductDetail from './forms/ProductDetail';
-import addProduct from './AddProductService';
-import { productValidate } from './forms/ProductValidate';
+import addProduct from './AddProductService'; import productValidate from './forms/ProductValidate';
 import styles from './AddProductPage.module.css';
 
 /**
  * @name AddProductPage
- * @description Allows entry of delivery address
+ * @description Allows entry of product
  * @return component
  */
 const AddProductPage = () => {
   const history = useHistory();
   const [productData, setProductData] = useState({});
-
+  const [errors, setErrors] = useState({});
+  const [valid, setValid] = useState(true);
   const onProductChange = (e) => {
     setProductData({ ...productData, [e.target.id]: e.target.value });
   };
-
+  const colors = {
+    White: '#000000',
+    Black: '#ffffff',
+    Dark_Blue: '#3079ab',
+    Light_Blue: '#39add1',
+    Mauve: '#c25975',
+    Red: '#e15258',
+    Orange: '#f9845b',
+    Lavender: '#838cc7',
+    Purple: '#7d669e',
+    Aqua: '#53bbb4',
+    Green: '#51b46d',
+    Mustard: '#e0ab18',
+    Dark_Gray: '#637a91',
+    Pink: '#f092b0'
+  };
   const updateProduct = async () => {
     const newProduct = {
-      Active: productData.active,
-      Brand: productData.brand,
-      Category: productData.category,
+      Active: productData.Active,
+      Brand: productData.Brand,
+      Category: productData.Category,
       DateCreated: new Date().toJSON(),
       DateModified: new Date().toJSON(),
-      Demographic: productData.demographics,
-      Description: productData.description,
-      GlobalProductCode: productData.globalProductCode,
+      Demographic: productData.Demographic,
+      Description: productData.Description,
+      GlobalProductCode: productData.GlobalProductCode,
       Id: 0,
-      ImageSrc: productData.imageSrc,
-      Material: productData.material,
-      Name: productData.name,
-      Price: productData.price,
-      PrimaryColorCode: productData.primaryColorCode,
-      Quantity: productData.quantity,
-      ReleaseDate: productData.releaseDate,
-      SecondaryColorCode: productData.secondaryColorCode,
-      Sku: productData.sku,
-      StyleNumber: productData.styleNumber,
-      Type: productData.type
+      ImageSrc: productData.ImageSrc,
+      Material: productData.Material,
+      Name: productData.Name,
+      Price: productData.Price,
+      PrimaryColorCode: productData.PrimaryColorCode,
+      Quantity: productData.Quantity,
+      ReleaseDate: productData.ReleaseDate,
+      SecondaryColorCode: productData.SecondaryColorCode,
+      Sku: productData.Sku,
+      StyleNumber: productData.StyleNumber,
+      Type: productData.Type
     };
-    const errorMsg = productValidate(newProduct);
-    if (errorMsg.length > 0) {
-      toast.error('Validate failed');
-    } else {
+    productValidate(newProduct, setErrors, setValid);
+    if (valid) {
+      let colorKey = newProduct.SecondaryColorCode.replace(' ', '_');
+      newProduct.SecondaryColorCode = colors[colorKey];
+      colorKey = newProduct.PrimaryColorCode.replace(' ', '_');
+      newProduct.PrimaryColorCode = colors[colorKey];
       newProduct.Price = parseFloat(newProduct.Price.replace('$', ''));
       newProduct.Active = newProduct.Active === 'True';
+      newProduct.ReleaseDate = newProduct.ReleaseDate.replace(/-/g, '/');
+      if (newProduct.Quantity === '0') {
+        newProduct.Active = false;
+      }
       addProduct(newProduct).then(() => history.push('/maintenance'));
     }
   };
@@ -57,9 +77,9 @@ const AddProductPage = () => {
       <div className={`${styles.step} ${styles.product}`}>
         <h3 className={styles.title}>Create New Product</h3>
         <ProductDetail
-          className={styles.product}
           onChange={onProductChange}
           productData={productData}
+          errors={errors}
         />
       </div>
       <div className={styles.buttonArea}>

@@ -1,7 +1,7 @@
 .productDetailContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  row-gap: 1.5em;
+  row-gap: 1em;
   column-gap: 3em;
   padding: 0 3em 0 3em;
 }
@@ -10,7 +10,11 @@
   font-weight: 700;
   color: #666666;
 }
-
+.errorMessage {
+  color: red;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
 .item1 {
   grid-area: 1 / 1;
 }
