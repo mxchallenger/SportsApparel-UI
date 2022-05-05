@@ -21,7 +21,7 @@ img {
 }
 #cart {
     float: right;
-    padding-right: 25px;
+    padding-right: 35px;
     max-height: 100px;
     max-width: 50px;
     overflow: hidden;
@@ -46,6 +46,6 @@ img {
     top: 0;
     right: 0;
     position: absolute;
-    padding-right: 25px;
+    padding-right: 35px;
     padding-top: 7px;
 }
