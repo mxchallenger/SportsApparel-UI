@@ -73,7 +73,7 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
   ];
   return (
     <div className={styles.deliveryAddress}>
-      <div className={errors.firstName === '' ? '' : styles.redDanger} />
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
       <FormItem
         type="text"
         id="firstName"
@@ -83,6 +83,7 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
         errors={errors}
       />
       {errors && <p className={styles.errorMessage}>{errors.firstName}</p>}
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
       <FormItem
         type="text"
         id="lastName"
@@ -91,6 +92,7 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
         value={deliveryData.lastName || ''}
         errors={errors}
       />
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
       {errors && <p className={styles.errorMessage}>{errors.lastName}</p>}
       <FormItem
         placeholder="e.g. 123 Sesame Street"
@@ -101,6 +103,7 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
         value={deliveryData.street || ''}
         errors={errors}
       />
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
       {errors && <p className={styles.errorMessage}>{errors.street}</p>}
       <FormItem
         placeholder="e.g. Unit #1"
@@ -111,6 +114,7 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
         value={deliveryData.street2 || ''}
         errors={errors}
       />
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
       {errors && <p className={styles.errorMessage}>{errors.street2}</p>}
       <FormItem
         type="text"
@@ -120,6 +124,7 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
         value={deliveryData.city || ''}
         errors={errors}
       />
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
       {errors && <p className={styles.errorMessage}>{errors.city}</p>}
       <FormItemDropdown
         id="state"
@@ -129,6 +134,7 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
         options={usStates}
         errors={errors}
       />
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
       {errors && <p className={styles.errorMessage}>{errors.state}</p>}
       <FormItem
         placeholder="e.g. 12345"

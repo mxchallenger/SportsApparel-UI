@@ -75,13 +75,13 @@ const CheckoutPage = () => {
       cardholder: billingData.cardholder
     };
     makePurchase(productData, deliveryAddress, billingAddress, creditCard).then(() => history.push('/confirmation'));
+    toast.success('Purchase Successful');
   };
 
   const handlePay = () => {
-    validateCheckout(deliveryData, billingData, setErrors, setIsValid, checked);
+    validateCheckout(deliveryData, billingData, setErrors, setIsValid, checked, purchaseObj);
     if (isValid) {
       purchaseObj();
-      toast.success('purchase successful');
     }
   };
 

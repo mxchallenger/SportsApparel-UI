@@ -1,6 +1,6 @@
-function validateCheckout(delivery, billing, setErrors, setIsValid, checked) {
+function validateCheckout(delivery, billing, setErrors, setIsValid, checked, purchaseObj) {
   const errors = {};
-  let isValid = false;
+  const isValid = false;
 
   // validate names
   if (!delivery.firstName) {
@@ -68,7 +68,7 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked) {
   }
   if (!billing.phone) {
     errors.phone = 'Required Field';
-  } else if (!/^[\d]{3}-[\d]{3}-[\d]{4}$/.test(billing.phone)) {
+  } else if (!/^[\d]{10}$/.test(billing.phone)) {
     errors.phone = 'Only contains 10 digits, no special characters';
   }
 
@@ -88,17 +88,14 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked) {
   } else if (!/^(0[1-9]|1[0-2])([/-]{1})[23][\d]$/.test(billing.expiration)) {
     errors.expiration = 'Must be MM/YY or MM-YY';
   }
-  /*
-    const errorsArray = Object.entries(errors);
-    if (errorsArray.length > 0) {
-      isValid = false;
-    }
-  */
+  const errorsArray = Object.entries(errors);
 
-  if (!errors.contains) {
-    isValid = true;
+  if (!errorsArray.length > 0) {
+    setIsValid(true);
+    purchaseObj();
+  } else {
+    setIsValid(isValid);
+    setErrors(errors);
   }
-  setIsValid(isValid);
-  setErrors(errors);
 }
 export default validateCheckout;
