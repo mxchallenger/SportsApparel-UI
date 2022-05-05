@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 function validateCheckout(delivery, billing, setErrors, setIsValid, checked, purchaseObj) {
   const errors = {};
   const isValid = false;
@@ -96,6 +98,7 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked, pur
   } else {
     setIsValid(isValid);
     setErrors(errors);
+    toast.error('Purchase was not completed and you have not been charged, please check your errors and try again.');
   }
 }
 export default validateCheckout;

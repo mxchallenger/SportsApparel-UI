@@ -15,7 +15,6 @@ const BillingDetails = (
   }
 ) => {
   const usStates = [
-    '',
     'Alabama',
     'Alaska',
     'American Samoa',
@@ -81,7 +80,7 @@ const BillingDetails = (
     <div className={styles.deliveryAddress}>
       {!useShippingForBilling && (
         <div className={styles.errorMessage}>
-          <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+          <div className={errors.billingStreet === undefined ? undefined : styles.redDanger}>
             <FormItem
               placeholder="e.g. 123 Sesame Street"
               type="text"
@@ -91,7 +90,7 @@ const BillingDetails = (
               value={(billingData.billingStreet) || ''}
             />
           </div>
-          <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+          <div className={errors.billingStreet2 === undefined ? undefined : styles.redDanger}>
             {errors && <p className={styles.errorMessage}>{errors.billingStreet}</p>}
             <FormItem
               placeholder="e.g. Unit #1"
@@ -103,7 +102,7 @@ const BillingDetails = (
               errors={errors}
             />
           </div>
-          <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+          <div className={errors.billingCity === undefined ? undefined : styles.redDanger}>
             {errors && <p className={styles.errorMessage}>{errors.billingStreet2}</p>}
             <FormItem
               type="text"
@@ -115,19 +114,18 @@ const BillingDetails = (
           </div>
           {errors && <p className={styles.errorMessage}>{errors.billingCity}</p>}
           <div className={styles.errorMessage}>
-            <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+            <div className={errors.billingState === undefined ? undefined : (styles.redDanger)}>
               <FormItemDropdown
                 id="billingState"
                 label="State"
                 onChange={onChange}
                 value={billingData.billingStreet}
                 options={usStates}
-                errors={errors}
               />
             </div>
             {errors && <p className={styles.errorMessage}>{errors.billingState}</p>}
           </div>
-          <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+          <div className={errors.billingZip === undefined ? undefined : styles.redDanger}>
             <FormItem
               placeholder="e.g. 12345"
               type="text"
@@ -141,7 +139,7 @@ const BillingDetails = (
         </div>
       )}
       <div>
-        <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
+        <div className={errors.email === undefined ? undefined : styles.redDanger} />
         <FormItem
           placeholder="e.g. example@catalyte.io"
           type="email"
@@ -152,7 +150,7 @@ const BillingDetails = (
         />
       </div>
       {errors && <p className={styles.errorMessage}>{errors.email}</p>}
-      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
+      <div className={errors.phone === undefined ? undefined : styles.redDanger} />
       <FormItem
         placeholder="e.g. 555-555-5555"
         type="text"
@@ -163,7 +161,7 @@ const BillingDetails = (
       />
       {errors && <p className={styles.errorMessage}>{errors.phone}</p>}
 
-      <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+      <div className={errors.creditCard === undefined ? undefined : styles.redDanger}>
         <FormItem
           placeholder="e.g. 1234567812345678"
           type="text"
@@ -174,7 +172,7 @@ const BillingDetails = (
         />
       </div>
       {errors && <p className={styles.errorMessage}>{errors.creditCard}</p>}
-      <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+      <div className={errors.cvv === undefined ? undefined : styles.redDanger}>
         <FormItem
           placeholder="e.g. 555"
           type="text"
@@ -185,7 +183,7 @@ const BillingDetails = (
         />
       </div>
       {errors && <p className={styles.errorMessage}>{errors.cvv}</p>}
-      <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+      <div className={errors.expiration === undefined ? undefined : styles.redDanger}>
         <FormItem
           placeholder="e.g. 05/21"
           type="text"
@@ -196,7 +194,7 @@ const BillingDetails = (
         />
       </div>
       {errors && <p className={styles.errorMessage}>{errors.expiration}</p>}
-      <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+      <div className={errors.cardholder === undefined ? undefined : styles.redDanger}>
         <FormItem
           type="text"
           id="cardholder"

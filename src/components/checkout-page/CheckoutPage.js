@@ -80,11 +80,7 @@ const CheckoutPage = () => {
 
   const handlePay = () => {
     validateCheckout(deliveryData, billingData, setErrors, setIsValid, checked, purchaseObj);
-    if (isValid) {
-      purchaseObj();
-    } else {
-      toast.error('Purchase was not completed and you have not been charged, please check your errors and try again.');
-    }
+    isValid(false);
   };
 
   return (
