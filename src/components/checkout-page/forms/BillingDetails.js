@@ -81,57 +81,62 @@ const BillingDetails = (
     <div className={styles.deliveryAddress}>
       {!useShippingForBilling && (
         <div className={styles.errorMessage}>
-          <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
-          <FormItem
-            placeholder="e.g. 123 Sesame Street"
-            type="text"
-            id="billingStreet"
-            label="Street"
-            onChange={onChange}
-            value={(billingData.billingStreet) || ''}
-          />
-          <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
-          {errors && <p className={styles.errorMessage}>{errors.billingStreet}</p>}
-          <FormItem
-            placeholder="e.g. Unit #1"
-            type="text"
-            id="billingStreet2"
-            label="Street 2 (Optional)"
-            onChange={onChange}
-            value={billingData.billingStreet2}
-            errors={errors}
-          />
-          <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
-          {errors && <p className={styles.errorMessage}>{errors.billingStreet2}</p>}
-          <FormItem
-            type="text"
-            id="billingCity"
-            label="City"
-            onChange={onChange}
-            value={billingData.billingCity || ''}
-          />
-          {errors && <p className={styles.errorMessage}>{errors.billingCity}</p>}
-          <div className={styles.errorMessage}>
-            <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
-            <FormItemDropdown
-              id="billingState"
-              label="State"
+          <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+            <FormItem
+              placeholder="e.g. 123 Sesame Street"
+              type="text"
+              id="billingStreet"
+              label="Street"
               onChange={onChange}
-              value={billingData.billingStreet}
-              options={usStates}
+              value={(billingData.billingStreet) || ''}
+            />
+          </div>
+          <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+            {errors && <p className={styles.errorMessage}>{errors.billingStreet}</p>}
+            <FormItem
+              placeholder="e.g. Unit #1"
+              type="text"
+              id="billingStreet2"
+              label="Street 2 (Optional)"
+              onChange={onChange}
+              value={billingData.billingStreet2}
               errors={errors}
             />
+          </div>
+          <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+            {errors && <p className={styles.errorMessage}>{errors.billingStreet2}</p>}
+            <FormItem
+              type="text"
+              id="billingCity"
+              label="City"
+              onChange={onChange}
+              value={billingData.billingCity || ''}
+            />
+          </div>
+          {errors && <p className={styles.errorMessage}>{errors.billingCity}</p>}
+          <div className={styles.errorMessage}>
+            <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+              <FormItemDropdown
+                id="billingState"
+                label="State"
+                onChange={onChange}
+                value={billingData.billingStreet}
+                options={usStates}
+                errors={errors}
+              />
+            </div>
             {errors && <p className={styles.errorMessage}>{errors.billingState}</p>}
           </div>
-          <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
-          <FormItem
-            placeholder="e.g. 12345"
-            type="text"
-            id="billingZip"
-            label="Zip"
-            onChange={onChange}
-            value={billingData.billingZip || ''}
-          />
+          <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+            <FormItem
+              placeholder="e.g. 12345"
+              type="text"
+              id="billingZip"
+              label="Zip"
+              onChange={onChange}
+              value={billingData.billingZip || ''}
+            />
+          </div>
           {errors && <p className={styles.errorMessage}>{errors.billingZip}</p>}
         </div>
       )}
@@ -145,18 +150,20 @@ const BillingDetails = (
           onChange={onChange}
           value={billingData.email || ''}
         />
-        {errors && <p className={styles.errorMessage}>{errors.email}</p>}
-        <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
-        <FormItem
-          placeholder="e.g. 555-555-5555"
-          type="text"
-          id="phone"
-          label="Phone"
-          onChange={onChange}
-          value={billingData.phone || ''}
-        />
-        {errors && <p className={styles.errorMessage}>{errors.phone}</p>}
-        <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
+      </div>
+      {errors && <p className={styles.errorMessage}>{errors.email}</p>}
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
+      <FormItem
+        placeholder="e.g. 555-555-5555"
+        type="text"
+        id="phone"
+        label="Phone"
+        onChange={onChange}
+        value={billingData.phone || ''}
+      />
+      {errors && <p className={styles.errorMessage}>{errors.phone}</p>}
+
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
         <FormItem
           placeholder="e.g. 1234567812345678"
           type="text"
@@ -165,8 +172,9 @@ const BillingDetails = (
           onChange={onChange}
           value={billingData.creditCard || ''}
         />
-        {errors && <p className={styles.errorMessage}>{errors.creditCard}</p>}
-        <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
+      </div>
+      {errors && <p className={styles.errorMessage}>{errors.creditCard}</p>}
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
         <FormItem
           placeholder="e.g. 555"
           type="text"
@@ -175,8 +183,9 @@ const BillingDetails = (
           onChange={onChange}
           value={billingData.cvv || ''}
         />
-        {errors && <p className={styles.errorMessage}>{errors.cvv}</p>}
-        <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
+      </div>
+      {errors && <p className={styles.errorMessage}>{errors.cvv}</p>}
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
         <FormItem
           placeholder="e.g. 05/21"
           type="text"
@@ -185,8 +194,9 @@ const BillingDetails = (
           onChange={onChange}
           value={billingData.expiration || ''}
         />
-        {errors && <p className={styles.errorMessage}>{errors.expiration}</p>}
-        <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
+      </div>
+      {errors && <p className={styles.errorMessage}>{errors.expiration}</p>}
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
         <FormItem
           type="text"
           id="cardholder"
@@ -194,9 +204,10 @@ const BillingDetails = (
           onChange={onChange}
           value={billingData.cardholder || ''}
         />
-        {errors && <p className={styles.errorMessage}>{errors.cardholder}</p>}
       </div>
+      {errors && <p className={styles.errorMessage}>{errors.cardholder}</p>}
     </div>
+
   );
 };
 
