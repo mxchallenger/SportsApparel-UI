@@ -10,6 +10,7 @@ import styles from './DeliveryAddress.module.css';
 
 const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
   const usStates = [
+    '',
     'Alabama',
     'Alaska',
     'American Samoa',
@@ -72,63 +73,74 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
   ];
   return (
     <div className={styles.deliveryAddress}>
-      <div className={styles.errorMessage}>
-        <FormItem
-          required
-          type="text"
-          id="firstName"
-          label="First Name"
-          onChange={onChange}
-          value={(deliveryData === '')}
-          errors={errors}
-        />
-        {errors && <p className={styles.errorMessage}>{errors.firstName}</p>}
-      </div>
+      <div className={errors.firstName === undefined ? undefined : styles.redDanger} />
+      <FormItem
+        type="text"
+        id="firstName"
+        label="First Name"
+        onChange={onChange}
+        value={deliveryData.firstName || ''}
+        errors={errors}
+      />
+      {errors && <p className={styles.errorMessage}>{errors.firstName}</p>}
       <FormItem
         type="text"
         id="lastName"
         label="Last Name"
         onChange={onChange}
-        value={deliveryData.lastName}
+        value={deliveryData.lastName || ''}
+        errors={errors}
       />
+      {errors && <p className={styles.errorMessage}>{errors.lastName}</p>}
       <FormItem
         placeholder="e.g. 123 Sesame Street"
         type="text"
         id="street"
         label="Street"
         onChange={onChange}
-        value={deliveryData.street}
+        value={deliveryData.street || ''}
+        errors={errors}
       />
+      {errors && <p className={styles.errorMessage}>{errors.street}</p>}
       <FormItem
         placeholder="e.g. Unit #1"
         type="text"
         id="street2"
         label="Street 2 (Optional)"
         onChange={onChange}
-        value={deliveryData.street2}
+        value={deliveryData.street2 || ''}
+        errors={errors}
       />
+      {errors && <p className={styles.errorMessage}>{errors.street2}</p>}
       <FormItem
         type="text"
         id="city"
         label="City"
         onChange={onChange}
-        value={deliveryData.city}
+        value={deliveryData.city || ''}
+        errors={errors}
       />
+      {errors && <p className={styles.errorMessage}>{errors.city}</p>}
       <FormItemDropdown
         id="state"
         label="State"
         onChange={onChange}
         value={deliveryData.state}
         options={usStates}
+        errors={errors}
       />
+      {errors && <p className={styles.errorMessage}>{errors.state}</p>}
       <FormItem
         placeholder="e.g. 12345"
         type="text"
         id="zip"
         label="Zip"
         onChange={onChange}
-        value={deliveryData.zip}
+        value={deliveryData.zip || ''}
+        errors={errors}
+        required
       />
+      {errors && <p className={styles.errorMessage}>{errors.zip}</p>}
     </div>
   );
 };

@@ -78,7 +78,7 @@ const CheckoutPage = () => {
   };
 
   const handlePay = () => {
-    validateCheckout(deliveryData, setErrors, setIsValid);
+    validateCheckout(deliveryData, billingData, setErrors, setIsValid, checked);
     if (isValid) {
       purchaseObj();
       toast.success('purchase successful');
