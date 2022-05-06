@@ -15,3 +15,7 @@
 .page {
 float: center;
 }
+
+.hide{
+  display: none;
+}

@@ -54,8 +54,8 @@ const ProductPage = () => {
           nextLabel="next"
           breakLabel=""
           pageCount={count}
-          marginPagesDisplayed=""
-          pageRangeDisplayed="9"
+          marginPagesDisplayed="0"
+          pageRangeDisplayed="10"
           onPageChange={handleClick}
           containerClassName="pagination justify-content-center"
           pageClassName="page-item"
@@ -69,6 +69,7 @@ const ProductPage = () => {
           activeClassName="active"
           renderOnZeroPageCount={false}
           forcePage={currentPage}
+          disabledClassName={styles.hide}
         />
       </div>
     </div>
