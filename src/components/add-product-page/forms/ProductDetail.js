@@ -35,12 +35,13 @@ const ProductDetail = ({ onChange, productData, errors }) => {
     <div className={styles.productDetailContainer}>
       <div className={styles.item1}>
         <FormItem
+          defaultValue={(productData.Name || '')}
           placeholder="e.g. Soft Golf Shirt "
           type="text"
           id="Name"
           label="Product Name"
           onChange={onChange}
-          value={(productData.Name || '')}
+          value={productData.Name}
           errors={errors}
         />
         {errors && <p className={styles.errorMessage}>{errors.Name}</p>}
@@ -191,6 +192,7 @@ const ProductDetail = ({ onChange, productData, errors }) => {
 
       <div className={styles.item8}>
         <FormItemDropdown
+          defaultValue={activeStatus[0]}
           id="Active"
           label="Active"
           onChange={onChange}
@@ -203,6 +205,7 @@ const ProductDetail = ({ onChange, productData, errors }) => {
 
       <div className={styles.item10}>
         <FormItemDropdown
+          defaultValue={colors[0]}
           id="PrimaryColorCode"
           label="Primary Color"
           onChange={onChange}
@@ -240,6 +243,7 @@ const ProductDetail = ({ onChange, productData, errors }) => {
 
       <div className={styles.item11}>
         <FormItemDropdown
+          defaultValue={colors[0]}
           id="SecondaryColorCode"
           label="Secondary Color"
           onChange={onChange}
