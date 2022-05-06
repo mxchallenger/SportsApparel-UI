@@ -20,10 +20,11 @@ img {
 }
 #cart {
     float: right;
-    padding-right: 25px;
+    padding-right: 35px;
     max-height: 100px;
     max-width: 50px;
     overflow: hidden;
+    position: relative;
 }
 #maint {
   float: left;
@@ -40,5 +41,10 @@ img {
     float: right;
     padding-right: 25px;
 }
-  
-  
+#cart-icon {
+    top: 0;
+    right: 0;
+    position: absolute;
+    padding-right: 35px;
+    padding-top: 7px;
+}
