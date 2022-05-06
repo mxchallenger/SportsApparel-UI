@@ -165,6 +165,7 @@ const ProductDetail = ({ onChange, productData, errors }) => {
 
       <div className={styles.item9}>
         <FormItemDropdown
+          defaultValue={demographic[0]}
           id="Demographic"
           label="Demographic"
           onChange={onChange}

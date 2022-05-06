@@ -1,7 +1,8 @@
 import { useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
 import ProductDetail from './forms/ProductDetail';
-import addProduct from './AddProductService'; import productValidate from './forms/ProductValidate';
+import addProduct from './AddProductService';
+import productValidate from './forms/ProductValidate';
 import styles from './AddProductPage.module.css';
 
 /**
@@ -10,13 +11,13 @@ import styles from './AddProductPage.module.css';
  * @return component
  */
 const AddProductPage = () => {
-  const history = useHistory();
   const [productData, setProductData] = useState({});
   const [errors, setErrors] = useState({});
-  const [valid, setValid] = useState(true);
   const onProductChange = (e) => {
     setProductData({ ...productData, [e.target.id]: e.target.value });
   };
+  const history = useHistory();
+
   const colors = {
     White: '#000000',
     Black: '#ffffff',
@@ -33,9 +34,10 @@ const AddProductPage = () => {
     Dark_Gray: '#637a91',
     Pink: '#f092b0'
   };
-  const updateProduct = async () => {
+
+  const productObj = () => {
     const newProduct = {
-      Active: productData.Active,
+      Active: productData.Quantity === '0' ? false : productData.Active === 'True',
       Brand: productData.Brand,
       Category: productData.Category,
       DateCreated: new Date().toJSON(),
@@ -47,31 +49,21 @@ const AddProductPage = () => {
       ImageSrc: productData.ImageSrc,
       Material: productData.Material,
       Name: productData.Name,
-      Price: productData.Price,
-      PrimaryColorCode: productData.PrimaryColorCode,
+      Price: parseFloat(String(productData.Price).replace('$', '')),
+      PrimaryColorCode: colors[String(productData.PrimaryColorCode).replace(' ', '_')],
       Quantity: productData.Quantity,
-      ReleaseDate: productData.ReleaseDate,
-      SecondaryColorCode: productData.SecondaryColorCode,
+      ReleaseDate: String(productData.ReleaseDate).replace(/-/g, '/'),
+      SecondaryColorCode: colors[String(productData.SecondaryColorCode).replace(' ', '_')],
       Sku: productData.Sku,
       StyleNumber: productData.StyleNumber,
       Type: productData.Type
     };
-    productValidate(newProduct, setErrors, setValid);
-    if (valid) {
-      let colorKey = newProduct.SecondaryColorCode.replace(' ', '_');
-      newProduct.SecondaryColorCode = colors[colorKey];
-      colorKey = newProduct.PrimaryColorCode.replace(' ', '_');
-      newProduct.PrimaryColorCode = colors[colorKey];
-      newProduct.Price = parseFloat(newProduct.Price.replace('$', ''));
-      newProduct.Active = newProduct.Active === 'True';
-      newProduct.ReleaseDate = newProduct.ReleaseDate.replace(/-/g, '/');
-      if (newProduct.Quantity === '0') {
-        newProduct.Active = false;
-      }
-      addProduct(newProduct).then(() => history.push('/maintenance'));
-    }
+    addProduct(newProduct).then(() => history.push('/maintenance'));
   };
 
+  const updateProduct = () => {
+    productValidate(productData, setErrors, productObj);
+  };
   return (
     <div className={styles.productContainer}>
       <div className={`${styles.step} ${styles.product}`}>
