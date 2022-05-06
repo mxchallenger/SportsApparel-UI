@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -13,6 +14,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { toast } from 'react-toastify';
 import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
 
@@ -53,9 +55,30 @@ const useStyles = makeStyles((theme) => ({
 const ProductCard = ({ product }) => {
   const classes = useStyles();
 
-  const { dispatch } = useCart();
+  const {
+    state: { products },
+    dispatch
+  } = useCart();
 
   const onAdd = () => {
+    for (const prod of products) {
+      if (prod.id === product.id) {
+        prod.quantity += 1;
+        products.dispatch(
+          {
+            type: 'delete',
+            product: {
+              id: product.id,
+              title: product.title,
+              price: product.price,
+              description: product.description,
+              quantity: 1
+            }
+          },
+          toast.success(`${product.name} has been added to your cart.`)
+        );
+      }
+    }
     dispatch(
       {
         type: 'add',
@@ -66,7 +89,8 @@ const ProductCard = ({ product }) => {
           description: product.description,
           quantity: 1
         }
-      }
+      },
+      toast.success(`${product.name} has been added to your cart.`)
     );
   };
 
