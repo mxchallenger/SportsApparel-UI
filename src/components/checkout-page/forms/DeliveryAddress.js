@@ -73,13 +73,13 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
   ];
   return (
     <div className={styles.deliveryAddress}>
-      <div className={errors.firstName === undefined ? undefined : styles.redDanger}>
+      <div className={errors.firstName === undefined ? undefined : styles.invalid}>
         <FormItem
           type="text"
           id="firstName"
           label="First Name"
           onChange={onChange}
-          value={deliveryData.firstName || ''}
+          value={deliveryData.firstName}
           errors={errors}
         />
       </div>
@@ -135,7 +135,7 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
           id="state"
           label="State"
           onChange={onChange}
-          value={deliveryData.state}
+          value={deliveryData.state || ''}
           options={usStates}
           errors={errors}
         />

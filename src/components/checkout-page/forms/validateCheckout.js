@@ -58,7 +58,7 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked, pur
     } else if (!/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(billing.billingZip)) {
       errors.billingZip = 'Only contains 5-9 digits with xxxxx or xxxxx-xxxx';
     }
-    if (billing.state === null) {
+    if (billing.state === [0]) {
       errors.billingState = 'Required Field';
     }
   }

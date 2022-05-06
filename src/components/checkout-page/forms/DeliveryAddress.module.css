@@ -8,7 +8,7 @@
   color: #666666;
 }
 
-.redDanger {
+form:invalid {
 border-color: red;
 border:2px;
 
