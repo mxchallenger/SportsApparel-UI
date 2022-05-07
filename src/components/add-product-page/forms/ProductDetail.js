@@ -2,6 +2,9 @@ import React from 'react';
 import FormItem from '../../form/FormItem';
 import FormItemDropdown from '../../form/FormItemDropdown';
 import styles from './ProductDetail.module.css';
+import colors from '../utils/ProductColors';
+import demographic from '../utils/ProductDemographics';
+import activeStatus from '../utils/ProductStatus';
 
 /**
  * @name DeliveryAddress
@@ -9,27 +12,7 @@ import styles from './ProductDetail.module.css';
  * @return component
  */
 const ProductDetail = ({ onChange, productData, errors }) => {
-  const colors = [
-    'White', // '#000000',
-    'Black', // '#ffffff',
-    'Dark Blue', // '#3079ab',
-    'Light Blue', // '#39add1',
-    'Mauve', // '#c25975',
-    'Red', // '#e15258',
-    'Orange', // '#f9845b',
-    'Lavender', // '#838cc7',
-    'Purple', // '#7d669e',
-    'Aqua', // '#53bbb4',
-    'Green', // '#51b46d',
-    'Mustard', // '#e0ab18',
-    'Dark Gray', // '#637a91',
-    'Light Gray', // '#b7c0c7'
-    'Pink' // '#f092b0',
-
-  ];
-
-  const demographic = ['Men', 'Women', 'Kids'];
-  const activeStatus = ['False', 'True'];
+  const colorsArray = Object.keys(colors).map((c) => c.replace(/_/g, ' '));
 
   return (
     <div className={styles.productDetailContainer}>
@@ -205,12 +188,12 @@ const ProductDetail = ({ onChange, productData, errors }) => {
 
       <div className={styles.item10}>
         <FormItemDropdown
-          defaultValue={colors[0]}
+          defaultValue={colorsArray[0]}
           id="PrimaryColorCode"
           label="Primary Color"
           onChange={onChange}
           value={productData.PrimaryColorCode}
-          options={colors}
+          options={colorsArray}
           errors={errors}
         />
         {errors && <p className={styles.errorMessage}>{errors.PrimaryColorCode}</p>}
@@ -222,7 +205,7 @@ const ProductDetail = ({ onChange, productData, errors }) => {
           id="ReleaseDate"
           label="Release Date"
           onChange={onChange}
-          value={(productData.ReleaseDate || '')}
+          value={productData.ReleaseDate}
           errors={errors}
         />
         {errors && <p className={styles.errorMessage}>{errors.Releasedate}</p>}
@@ -243,12 +226,12 @@ const ProductDetail = ({ onChange, productData, errors }) => {
 
       <div className={styles.item11}>
         <FormItemDropdown
-          defaultValue={colors[0]}
+          defaultValue={colorsArray[0]}
           id="SecondaryColorCode"
           label="Secondary Color"
           onChange={onChange}
-          value={productData.SecondaryColorCode}
-          options={colors}
+          value={productData.PrimaryColorCode}
+          options={colorsArray}
           errors={errors}
         />
         {errors && <p className={styles.errorMessage}>{errors.SecondaryColorCode}</p>}
