@@ -2,10 +2,11 @@ import { useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
 import ProductDetail from './forms/ProductDetail';
 import addProduct from './AddProductService';
-import productValidate from './forms/ProductValidate';
+import validateProduct from './utils/ValidateProduct';
 import styles from './AddProductPage.module.css';
 import colors from './utils/ProductColors';
 import activeStatus from './utils/ProductStatus';
+import demographic from './utils/ProductDemographics';
 
 /**
  * @name AddProductPage
@@ -13,21 +14,23 @@ import activeStatus from './utils/ProductStatus';
  * @return component
  */
 const AddProductPage = () => {
+  const colorsArray = Object.keys(colors);
   const [productData, setProductData] = useState({
     Active: activeStatus[0],
     Brand: '',
     Category: '',
     Description: '',
+    Demographic: demographic[0],
     GlobalProductCode: '',
     ImageSrc: '',
     Material: '',
     Name: '',
     Price: '',
-    PrimaryColorCode: colors.White,
+    PrimaryColorCode: colorsArray[0],
     Quantity: '',
-    ReleaseDate: '02-22-2022',
+    ReleaseDate: '2022-02-22',
     Sku: '',
-    SecondaryColorCode: colors.White,
+    SecondaryColorCode: colorsArray[0],
     StyleNumber: '',
     Type: ''
   });
@@ -52,10 +55,10 @@ const AddProductPage = () => {
       Material: productData.Material,
       Name: productData.Name,
       Price: parseFloat(String(productData.Price).replace('$', '')),
-      PrimaryColorCode: colors[String(productData.PrimaryColorCode).replace(' ', '_')],
+      PrimaryColorCode: colors[productData.PrimaryColorCode],
       Quantity: productData.Quantity,
       ReleaseDate: productData.ReleaseDate,
-      SecondaryColorCode: colors[String(productData.SecondaryColorCode).replace(' ', '_')],
+      SecondaryColorCode: colors[productData.SecondaryColorCode],
       Sku: productData.Sku,
       StyleNumber: productData.StyleNumber,
       Type: productData.Type
@@ -64,7 +67,7 @@ const AddProductPage = () => {
   };
 
   const updateProduct = () => {
-    productValidate(productData, setErrors, productObj);
+    validateProduct(productData, setErrors, productObj);
   };
   return (
     <div className={styles.productContainer}>

@@ -1,16 +1,27 @@
-import validate from './Validate';
+import validateContents from './ValidateContents';
 
-function productValidate(product, errorsCallback, pushProduct) {
+/**
+ *
+ * @param {Object} product to validate
+ * @param {Function} errorsCallback sets errors state variable object
+ * @param {Function} pushProduct function that sends a product to add
+ * to database.
+ */
+function validateProduct(product, errorsCallback, pushProduct) {
   const fieldErrors = {};
   const productArray = Object.entries(product);
   if (productArray.length > 0) {
     Object.entries(product).forEach((field) => {
       const key = field[0];
-      if (field[1] === undefined) {
+      let inputValue = field[1];
+      if (typeof (inputValue) === 'string') {
+        inputValue = inputValue.trim();
+      }
+      if ((inputValue === undefined) || (inputValue === null)) {
         const error = { [key]: 'Required Field' };
         Object.assign(fieldErrors, error);
       } else {
-        const errorValue = validate(field);
+        const errorValue = validateContents(field);
         if (errorValue) {
           const error = { [key]: `${errorValue}` };
           Object.assign(fieldErrors, error);
@@ -28,4 +39,4 @@ function productValidate(product, errorsCallback, pushProduct) {
   }
 }
 
-export default productValidate;
+export default validateProduct;

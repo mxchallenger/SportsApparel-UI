@@ -230,7 +230,7 @@ const ProductDetail = ({ onChange, productData, errors }) => {
           id="SecondaryColorCode"
           label="Secondary Color"
           onChange={onChange}
-          value={productData.PrimaryColorCode}
+          value={productData.SecondaryColorCode}
           options={colorsArray}
           errors={errors}
         />
