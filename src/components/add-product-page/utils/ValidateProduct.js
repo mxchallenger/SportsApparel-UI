@@ -1,4 +1,5 @@
 import validateContents from './ValidateContents';
+import validateFields from './ValidateFields';
 
 /**
  *
@@ -9,28 +10,18 @@ import validateContents from './ValidateContents';
  */
 function validateProduct(product, errorsCallback, pushProduct) {
   const fieldErrors = {};
-  const productArray = Object.entries(product);
-  if (productArray.length > 0) {
-    Object.entries(product).forEach((field) => {
-      const key = field[0];
-      let inputValue = field[1];
-      if (typeof (inputValue) === 'string') {
-        inputValue = inputValue.trim();
-      }
-      if ((inputValue === undefined) || (inputValue === null)) {
-        const error = { [key]: 'Required Field' };
-        Object.assign(fieldErrors, error);
-      } else {
-        const errorValue = validateContents(field);
-        if (errorValue) {
-          const error = { [key]: `${errorValue}` };
-          Object.assign(fieldErrors, error);
-        }
-      }
-    });
-  } else {
-    Object.assign(fieldErrors, { Name: 'All fields are required.' });
-  }
+  Object.entries(product).forEach((field) => {
+    let errorValue = '';
+    errorValue = validateFields(field);
+    if (!errorValue) {
+      errorValue = validateContents(field);
+    }
+    if (errorValue) {
+      const error = { [field[0]]: `${errorValue}` };
+      Object.assign(fieldErrors, error);
+    }
+  });
+
   const errorsArray = Object.entries(fieldErrors);
   if (errorsArray.length <= 0) {
     pushProduct();
