@@ -9,7 +9,7 @@ function validateFields(field) {
   if (typeof (inputValue) === 'string') {
     inputValue = inputValue.trim();
   }
-  if ((inputValue === undefined) || (inputValue === null)) {
+  if ((inputValue === undefined || inputValue === null || inputValue === '')) {
     error = `${field[0]}: Required Field`;
   }
   return error;

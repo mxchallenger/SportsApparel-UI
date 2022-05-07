@@ -11,7 +11,7 @@ function validateContents(field) {
   const key = field[0];
   if (Object.prototype.hasOwnProperty.call(patterns, key)) {
     if (!patterns[key].test(field[1])) {
-      error = 'Invalid Format';
+      error = `${field[0]}: Invalid Format`;
     }
   }
   return error;
