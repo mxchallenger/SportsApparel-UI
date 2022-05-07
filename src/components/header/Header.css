@@ -20,7 +20,7 @@ img {
 }
 #cart {
     float: right;
-    padding-right: 35px;
+    padding-right: 10px;
     max-height: 100px;
     max-width: 50px;
     overflow: hidden;
@@ -35,12 +35,13 @@ img {
 }
 #googleLogin {
     float: right;
-    padding-right: 25px;
+    padding-right: 10px;
 }
 #googleLogout {
     float: right;
-    padding-right: 25px;
+    padding-right: 10px;
 }
+<<<<<<< HEAD
 #cart-icon {
     top: 0;
     right: 0;
@@ -48,3 +49,5 @@ img {
     padding-right: 35px;
     padding-top: 7px;
 }
+=======
+>>>>>>> eb686ec6f82ccc841f8c3ce2b45947e999753aa0

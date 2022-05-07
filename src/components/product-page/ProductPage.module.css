@@ -1,11 +1,12 @@
 .app {
+  background-color: white;
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(auto-fit, 250px);
   justify-content: space-evenly;
-  margin: 20px;
+  margin: 10px;
+  position: static;
 }
-
 .errMsg {
   color: red;
   font-size: 14px;

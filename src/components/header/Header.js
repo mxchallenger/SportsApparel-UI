@@ -18,6 +18,7 @@ const Header = () => {
   const [user, setUser] = useState('');
   const [googleError, setGoogleError] = useState('');
   const [apiError, setApiError] = useState(false);
+
   /**
    * @name handleGoogleLoginSuccess
    * @description Function to run if google login was successful
@@ -69,9 +70,6 @@ const Header = () => {
       <div id="home">
         <NavLink to="/"><img src={logo} alt="logo" /></NavLink>
       </div>
-      <div id="maint">
-        <NavLink to="/maintenance"><img src={maint} alt="Maintenance" /></NavLink>
-      </div>
       <div id="cart">
         <NavLink to="/checkout">
           <img src={cart} alt="cart" />
@@ -86,6 +84,9 @@ const Header = () => {
             </text>
           </svg>
         </NavLink>
+      </div>
+      <div id="maint">
+        <NavLink to="/maintenance"><img src={maint} alt="maint" /></NavLink>
       </div>
       {user && <span>{user.firstName}</span>}
       {user && <span>{user.lastName}</span>}
@@ -114,5 +115,4 @@ const Header = () => {
     </div>
   );
 };
-
 export default Header;

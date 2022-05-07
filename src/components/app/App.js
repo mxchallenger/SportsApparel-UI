@@ -30,6 +30,7 @@ const App = () => (
       autoClose={8000}
     />
     <Footer />
+    );
   </BrowserRouter>
 
 );
