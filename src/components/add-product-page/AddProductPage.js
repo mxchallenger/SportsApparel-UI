@@ -28,7 +28,7 @@ const AddProductPage = () => {
     Price: '',
     PrimaryColorCode: colorsArray[0],
     Quantity: '',
-    ReleaseDate: '2022-02-22',
+    ReleaseDate: '',
     Sku: '',
     SecondaryColorCode: colorsArray[0],
     StyleNumber: '',
@@ -57,16 +57,18 @@ const AddProductPage = () => {
       Price: parseFloat(String(productData.Price).replace('$', '')),
       PrimaryColorCode: colors[productData.PrimaryColorCode],
       Quantity: productData.Quantity,
-      ReleaseDate: productData.ReleaseDate,
       SecondaryColorCode: colors[productData.SecondaryColorCode],
       Sku: productData.Sku,
       StyleNumber: productData.StyleNumber,
       Type: productData.Type
     };
+    const dateArray = productData.ReleaseDate.split('-');
+    newProduct.ReleaseDate = `${dateArray[1]}/${dateArray[2]}/${dateArray[0]}`;
     addProduct(newProduct).then(() => history.push('/maintenance'));
   };
 
-  const updateProduct = () => {
+  const updateProduct = (e) => {
+    e.preventDefault();
     validateProduct(productData, setErrors, productObj);
   };
   return (
@@ -80,7 +82,7 @@ const AddProductPage = () => {
         />
       </div>
       <div className={styles.buttonArea}>
-        <button type="submit" className={styles.submitBtn} onClick={updateProduct}>Submit</button>
+        <button onClick={updateProduct} type="button" className={styles.submitBtn}>Submit</button>
       </div>
     </div>
   );
