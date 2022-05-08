@@ -208,7 +208,7 @@ const ProductDetail = ({ onChange, productData, errors }) => {
           value={productData.ReleaseDate}
           errors={errors}
         />
-        {errors && <p className={styles.errorMessage}>{errors.Releasedate}</p>}
+        {errors && <p className={styles.errorMessage}>{errors.ReleaseDate}</p>}
       </div>
 
       <div className={styles.item3}>
