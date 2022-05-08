@@ -1,5 +1,4 @@
 import patterns from './ProductRegex';
-
 /**
  * Validates through a regex pattern.
  * @param {Object} field of a product object to be validated.

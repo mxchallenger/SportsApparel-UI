@@ -13,8 +13,7 @@ const patterns = {
   StyleNumber: /^sc([\d]{5})$/,
   GlobalProductCode: /^po-([A-Z]{7})$/,
   Sku: /^[A-Z]{3}-[A-Z]{3}-([A-Z]{2,10})$/,
-  ImageSrc:
-    /^(?:http(s)?:\/\/)?[\w.-]+(?:[\w-]+)+[\w\-_~:/?#[\]@!$&'()*+,;=.]+$/g
+  ImageSrc: /^(http(s)?:\/\/)[a-zA-Z0-9@:%._\\+~#?&-//=]{2,256}$/
 };
 
 export default patterns;
