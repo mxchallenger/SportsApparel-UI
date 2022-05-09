@@ -8,7 +8,7 @@ import activeStatus from '../utils/ProductStatus';
 
 /**
  * @name DeliveryAddress
- * @description Allows entry of delivery address
+ * @description Allows entry of product data
  * @return component
  */
 const ProductDetail = ({ onChange, productData, errors }) => {

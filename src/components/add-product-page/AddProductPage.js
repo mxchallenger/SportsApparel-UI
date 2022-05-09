@@ -10,7 +10,7 @@ import demographic from './utils/ProductDemographics';
 
 /**
  * @name AddProductPage
- * @description Allows entry of product
+ * @description Allows entry/validation/post of product
  * @return component
  */
 const AddProductPage = () => {

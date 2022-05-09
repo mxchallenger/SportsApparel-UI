@@ -1,5 +1,6 @@
 /**
  *
+ * Checks for empty, null, or space filled fields.
  * @param {Object} field is a product field.
  * @returns {Object} error object for state.
  */

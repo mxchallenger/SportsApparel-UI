@@ -2,7 +2,8 @@ import validateContents from './ValidateContents';
 import validateFields from './ValidateFields';
 
 /**
- *
+ * Iterates through the fields of a product object to validate each
+ * field.
  * @param {Object} product to validate
  * @param {Function} errorsCallback sets errors state variable object
  * @param {Function} pushProduct function that sends a product to add
