@@ -43,17 +43,3 @@ export async function fetchProductsCount(setCount, setApiError, queryString) {
       setApiError(false);
     });
 }
-
-export async function fetchOnInitialPageLoad(onInitialPageLoad, setProducts, setApiError) {
-  await HttpHelper(`${Constants.PRODUCTS_ACTIVE_ENDPOINT}`, 'GET')
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error(Constants.API_ERROR);
-    })
-    .then(setProducts)
-    .catch(() => {
-      setApiError(true);
-    });
-}

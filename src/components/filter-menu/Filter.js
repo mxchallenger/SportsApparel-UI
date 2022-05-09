@@ -28,7 +28,6 @@ function Filter({ applyFilters, setUrlQuery }) {
       value: false
     }
   ];
-
   const [filters, setFilters] = useState({
     demographic: demographicFilters
   });

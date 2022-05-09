@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 import ProductCard from '../product-card/ProductCard';
@@ -13,15 +12,17 @@ import styles from './ProductPage.module.css';
  * @return component
  */
 
-const ProductPage = () => {
+const ProductPage = ({ user }) => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [urlQuery, setUrlQuery] = useState('');
 
-  const fetchProductsByQuery = () => {
-    fetchProducts(setProducts, setApiError);
+  const filterByQuery = () => {
     fetchProducts(setProducts, urlQuery, setApiError);
   };
+  useEffect(() => {
+    fetchProducts(setProducts, setApiError);
+  }, []);
   useEffect(() => {
     fetchProductsCount(setApiError, urlQuery);
   }, [urlQuery]);
@@ -31,13 +32,13 @@ const ProductPage = () => {
       <Box>
         <Filter
           setUrlQuery={setUrlQuery}
-          applyFilters={fetchProductsByQuery}
+          applyFilters={filterByQuery}
         />
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
         <div className={styles.app}>
           {products.map((product) => (
             <div key={product.id}>
-              <ProductCard product={product} />
+              <ProductCard product={product} user={user} />
             </div>
           ))}
         </div>

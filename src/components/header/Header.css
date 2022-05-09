@@ -20,7 +20,7 @@ img {
 }
 #cart {
     float: right;
-    padding-right: 10px;
+    padding-right: 35px;
     max-height: 100px;
     max-width: 50px;
     overflow: hidden;
@@ -41,7 +41,6 @@ img {
     float: right;
     padding-right: 10px;
 }
-<<<<<<< HEAD
 #cart-icon {
     top: 0;
     right: 0;
@@ -49,5 +48,3 @@ img {
     padding-right: 35px;
     padding-top: 7px;
 }
-=======
->>>>>>> eb686ec6f82ccc841f8c3ce2b45947e999753aa0
