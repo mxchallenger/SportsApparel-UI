@@ -20,13 +20,15 @@ export const getSubtotal = (products) => toPrice(products.reduce(
 
 /**
  * Gets the subtotal of an order
+ * * @param {Object []} products
+ * * @param {int} rate
  * @returns Number
  */
-export const getShippingRate = (products) => {
+export const getShippingRate = (products, rate) => {
   if (getSubtotal(products) > `$${50}`) {
-    return 0;
+    return 0 + rate;
   }
-  return 5;
+  return 5 + rate;
 };
 
 /**
@@ -38,7 +40,7 @@ export const getShippingRate = (products) => {
  * @returns sets state for products if 200 response, else sets state for apiError
  */
 export async function fetchRate(setRate, shippingState, setApiError) {
-  await HttpHelper(`${Constants.SHIPPING_RATES_ENDPOINT}?=${shippingState}`, 'GET')
+  await HttpHelper(`${Constants.SHIPPING_RATES_ENDPOINT}?state=${shippingState}`, 'GET')
     .then((response) => {
       if (response.ok) {
         return response.json();
