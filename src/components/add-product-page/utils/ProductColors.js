@@ -2,8 +2,8 @@
  * Colors object that is accessed by in multiple areas.
  */
 const colors = {
-  White: '#000000',
-  Black: '#ffffff',
+  White: '#ffffff',
+  Black: '#000000',
   'Dark Blue': '#3079ab',
   'Light Blue': '#39add1',
   Mauve: '#c25975',
