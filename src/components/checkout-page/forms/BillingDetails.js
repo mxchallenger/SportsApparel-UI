@@ -9,13 +9,11 @@ import styles from './DeliveryAddress.module.css';
  * @return component
  */
 
-const BillingDetails = (
-  {
-    errors, onChange, billingData, useShippingForBilling, handlePay
-  }
-) => {
+const BillingDetails = ({
+  errors, onChange, billingData, useShippingForBilling
+}) => {
   const usStates = [
-    '',
+    'Choose State',
     'Alabama',
     'Alaska',
     'American Samoa',
@@ -119,9 +117,10 @@ const BillingDetails = (
               <FormItemDropdown
                 id="billingState"
                 label="State"
-                onChange={handlePay}
+                onChange={onChange}
                 value={billingData.billingState}
                 options={usStates}
+                errors={errors}
               />
             </div>
             {errors && <p className={styles.errorMessage}>{errors.billingState}</p>}

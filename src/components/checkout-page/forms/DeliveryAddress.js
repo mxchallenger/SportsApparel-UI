@@ -10,7 +10,7 @@ import styles from './DeliveryAddress.module.css';
 
 const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
   const usStates = [
-    '',
+    'Choose State',
     'Alabama',
     'Alaska',
     'American Samoa',
@@ -135,7 +135,7 @@ const DeliveryAddress = ({ deliveryData, onChange, errors }) => {
           id="state"
           label="State"
           onChange={onChange}
-          value={deliveryData.state || ''}
+          value={deliveryData.state}
           options={usStates}
           errors={errors}
         />

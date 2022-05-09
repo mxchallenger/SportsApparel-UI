@@ -37,7 +37,7 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked, pur
   } else if (!/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(delivery.zip)) {
     errors.zip = 'Only contains 5-9 digits with xxxxx or xxxxx-xxxx';
   }
-  if (delivery.state === null) {
+  if (delivery.state === 'Choose State' || !delivery.state) {
     errors.state = 'Required Field';
   }
 
@@ -58,7 +58,7 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked, pur
     } else if (!/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(billing.billingZip)) {
       errors.billingZip = 'Only contains 5-9 digits with xxxxx or xxxxx-xxxx';
     }
-    if (billing.state === [0]) {
+    if (billing.billingState === 'Choose State' || !billing.billingState) {
       errors.billingState = 'Required Field';
     }
   }
