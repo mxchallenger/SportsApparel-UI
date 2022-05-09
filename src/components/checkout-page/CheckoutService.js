@@ -32,7 +32,7 @@ export default async function makePurchase(products, deliveryAddress, billingAdd
  * @returns sets state for products if 200 response, else sets state for apiError
  */
 export async function fetchRate(setRate, shippingState, setApiError) {
-  await HttpHelper(`${Constants.SHIPPING_RATES_ENDPOINT}?${shippingState}`, 'GET')
+  await HttpHelper(`${Constants.SHIPPING_RATES_ENDPOINT}?=${shippingState}`, 'GET')
     .then((response) => {
       if (response.ok) {
         return response.json();

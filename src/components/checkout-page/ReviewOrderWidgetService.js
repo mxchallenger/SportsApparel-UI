@@ -1,4 +1,7 @@
 // import React from 'react';
+import HttpHelper from '../../utils/HttpHelper';
+import Constants from '../../utils/constants';
+
 /**
  * converts a price to a formatted string
  * @param {number} price
@@ -25,3 +28,25 @@ export const getShippingRate = (products) => {
   }
   return 5;
 };
+
+/**
+ *
+ * @name fetchRate
+ * @description Utilizes HttpHelper to make a get request to an API
+ * @param {*} setProducts sets state for products
+ * @param {*} setApiError sets error if response other than 200 is returned
+ * @returns sets state for products if 200 response, else sets state for apiError
+ */
+export async function fetchRate(setRate, shippingState, setApiError) {
+  await HttpHelper(`${Constants.SHIPPING_RATES_ENDPOINT}?=${shippingState}`, 'GET')
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(Constants.API_ERROR);
+    })
+    .then(setRate)
+    .catch(() => {
+      setApiError(true);
+    });
+}

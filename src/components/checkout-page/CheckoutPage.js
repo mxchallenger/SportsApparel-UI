@@ -35,7 +35,6 @@ const CheckoutPage = () => {
   const handleCheck = () => {
     setChecked(!checked);
   };
-
   const handlePay = () => {
     const productData = products.map(({ id, quantity }) => ({ id, quantity }));
     const deliveryAddress = {
