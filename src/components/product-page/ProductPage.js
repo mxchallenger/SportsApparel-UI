@@ -4,7 +4,7 @@ import ProductCard from '../product-card/ProductCard';
 import styles from './ProductPage.module.css';
 import Constants from '../../utils/constants';
 import fetchProducts from './ProductPageService';
-import fetchProductsCount from '../Pagination/Pagination';
+import fetchProductsCount from '../Pagination/Pagination_PageCount';
 
 /**
  * @name ProductPage
@@ -52,10 +52,10 @@ const ProductPage = () => {
         <ReactPaginate
           previousLabel="previous"
           nextLabel="next"
-          breakLabel=""
+          breakLabel="..."
           pageCount={count}
-          marginPagesDisplayed="0"
-          pageRangeDisplayed="10"
+          marginPagesDisplayed={0}
+          pageRangeDisplayed={8}
           onPageChange={handleClick}
           containerClassName="pagination justify-content-center"
           pageClassName="page-item"
@@ -67,7 +67,7 @@ const ProductPage = () => {
           breakClassName="page-item"
           breakLinkClassName="page-link"
           activeClassName="active"
-          renderOnZeroPageCount={false}
+          renderOnZeroPageCount={!false}
           forcePage={currentPage}
           disabledClassName={styles.hide}
         />
