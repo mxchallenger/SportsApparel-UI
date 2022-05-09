@@ -29,23 +29,27 @@ const Maintenance = () => {
     {
       field: 'name',
       sortable: true,
-      width: 250
+      width: 250,
+      editable: true
     },
     {
       field: 'description',
-      width: 250
+      width: 250,
+      editable: true
     },
     {
       field: 'price',
       sortable: true,
       type: 'rightAligned',
       width: 100,
-      valueFormatter: formatCurrency
+      valueFormatter: formatCurrency,
+      editable: true
     },
     {
       field: 'quantity',
       width: 100,
-      type: 'rightAligned'
+      type: 'rightAligned',
+      editable: true
     },
     {
       field: 'active',
@@ -55,33 +59,40 @@ const Maintenance = () => {
     },
     {
       field: 'category',
-      width: 150
+      width: 150,
+      editable: true
     },
     {
       field: 'type',
-      width: 125
+      width: 125,
+      editable: true
     },
     {
       field: 'brand',
-      width: 125
+      width: 125,
+      editable: true
     },
     {
       field: 'material',
-      width: 130
+      width: 130,
+      editable: true
     },
     { field: 'demographic' },
     {
       headerName: 'Image Source',
       field: 'imageSrc',
-      width: 250
+      width: 250,
+      editable: true
     },
     {
       headerName: 'Image',
       field: 'imageSrc',
-      cellRenderer: addImage
+      cellRenderer: addImage,
+      editable: true
     },
     {
-      field: 'primaryColorCode'
+      field: 'primaryColorCode',
+      editable: true
     },
     {
       headerName: 'Primary Color',
@@ -90,7 +101,8 @@ const Maintenance = () => {
       cellRenderer: addColorBox
     },
     {
-      field: 'secondaryColorCode'
+      field: 'secondaryColorCode',
+      editable: true
     },
     {
       headerName: 'Secondary Color',
@@ -100,15 +112,18 @@ const Maintenance = () => {
     },
     {
       field: 'styleNumber',
-      width: 130
+      width: 130,
+      editable: true
     },
     {
       field: 'sku',
-      width: 130
+      width: 130,
+      editable: true
     },
     {
       field: 'globalProductCode',
-      width: 175
+      width: 175,
+      editable: true
     },
     { field: 'releaseDate' },
     {
@@ -117,7 +132,7 @@ const Maintenance = () => {
     },
     {
       field: 'dateModified',
-      editable: false
+      editable: true
     }
   ];
 
