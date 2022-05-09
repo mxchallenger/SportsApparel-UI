@@ -6,5 +6,6 @@ module.exports = Object.freeze({
   PURCHASE_ENDPOINT: '/purchases',
   PRODUCTS_ACTIVE_ENDPOINT: '/products/active',
   GOOGLE_CLIENT_ID: '201856258433-i0jkaa7khiljea3ngspjjm4ctngv4d4o.apps.googleusercontent.com', // ENTER CLIENT ID HERE
-  PRODUCT_ENDPOINT: '/products'
+  PRODUCT_ENDPOINT: '/products',
+  SHIPPING_RATE_ENDPOINT: '/shippingrates'
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCart } from './CartContext';
 import OrderItem from './OrderItem';
-import { getSubtotal } from './ReviewOrderWidgetService';
+import { getShippingRate, getSubtotal } from './ReviewOrderWidgetService';
 import styles from './ReviewOrderWidget.module.css';
 
 /**
@@ -44,7 +44,7 @@ const ReviewOrderWidget = () => {
           <p>Shipping</p>
         </div>
         <div className={styles.price}>
-          <p>{getSubtotal(products) > `$${50}` ? 0 : 5}</p>
+          <p>{getShippingRate(products)}</p>
         </div>
       </div>
     </>
