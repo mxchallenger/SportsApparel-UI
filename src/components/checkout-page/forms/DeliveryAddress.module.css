@@ -8,11 +8,22 @@
   color: #666666;
 }
 
-form:invalid {
-border-color: red;
-border:2px;
-
+.input {
+  margin-top: .5em;
+  width: 100%;
+  padding: .5em;
+  box-sizing: border-box;
 }
+
+.errorBorder{
+  margin-top: .5em;
+  width: 100%;
+  padding: .5em;
+  box-sizing: border-box;
+  border-color: red;
+  border:2px;
+}
+
 .errorMessage {
   color:red;
   font-weight: 400;

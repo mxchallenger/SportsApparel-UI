@@ -64,3 +64,12 @@
   color: #666666;
   font-weight: 700;
 }
+
+.errorBorder{
+  margin-top: .5em;
+  width: 100%;
+  padding: .5em;
+  box-sizing: border-box;
+  border-color: red;
+  border:2px;
+}

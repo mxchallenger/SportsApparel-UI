@@ -1,95 +1,113 @@
 import { toast } from 'react-toastify';
-
+import { memos, rEx } from './validateUtils';
+/**
+ * @name validateCheckout
+ * @param {*} delivery - deliveryData from CheckoutPage
+ * @param {*} billing - billingData from CheckoutPage
+ * @param {*} setErrors - function to set error messages
+ * @param {*} setIsValid - function to set validity
+ * @param {*} checked - status of checkbox on CheckoutPage
+ * @param {*} purchaseObj - purchase object data from CheckoutPage
+ * @returns validation status of checkout form and either sets error messages
+ * and displays toast for invalid or calls the purchase object to make purchase
+ * for valid forms.
+ */
 function validateCheckout(delivery, billing, setErrors, setIsValid, checked, purchaseObj) {
   const errors = {};
   const isValid = false;
-
-  // validate names
+  /**
+   * Validates names for letters, dashes, apostrophes and spaces.
+   * @param {string} firstName
+   * @param {string} lastName
+   * @param {string} cardholder
+   * @returns error messages
+   */
   if (!delivery.firstName) {
-    errors.firstName = 'Required Field';
-  } else if (!/[a-zA-z '-]+$/.test(delivery.firstName)) {
-    errors.firstName = 'Only contains letters, dashes, apostrophes and spaces.';
+    errors.firstName = memos.required;
+  } else if (!rEx.names.test(delivery.firstName)) {
+    errors.firstName = memos.names;
   }
   if (!delivery.lastName) {
-    errors.lastName = 'Required Field';
-  } else if (!/[a-zA-z '-]+$/.test(delivery.lastName)) {
-    errors.lastName = 'Only contains letters, dashes, apostrophes and spaces.';
+    errors.lastName = memos.required;
+  } else if (!rEx.names.test(delivery.lastName)) {
+    errors.lastName = memos.names;
   }
   if (!billing.cardholder) {
-    errors.cardholder = 'Required Field';
-  } else if (!/[a-zA-z '-]+$/.test(billing.cardholder)) {
-    errors.cardholder = 'Only contains letters, dashes, apostrophes and spaces.';
+    errors.cardholder = memos.required;
+  } else if (!rEx.names.test(billing.cardholder)) {
+    errors.cardholder = memos.names;
   }
 
   // validate delivery street address
   if (!delivery.street) {
-    errors.street = 'Required Field';
-  } else if (!/[a-zA-z0-9 -]+$/.test(delivery.street)) {
-    errors.street = 'Only contains letters, numbers, apostrophes and spaces.';
+    errors.street = memos.required;
+  } else if (!rEx.street.test(delivery.street)) {
+    errors.street = memos.street;
   }
   if (!delivery.city) {
-    errors.city = 'Required Field';
-  } else if (!/[a-zA-z '-]+$/.test(delivery.city)) {
-    errors.city = 'Only contains letters, numbers, apostrophes and spaces.';
+    errors.city = memos.required;
+  } else if (!rEx.names.test(delivery.city)) {
+    errors.city = memos.names;
   }
   if (!delivery.zip) {
-    errors.zip = 'Required Field';
-  } else if (!/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(delivery.zip)) {
-    errors.zip = 'Only contains 5-9 digits with xxxxx or xxxxx-xxxx';
+    errors.zip = memos.required;
+  } else if (!rEx.zip.test(delivery.zip)) {
+    errors.zip = memos.zip;
   }
   if (delivery.state === 'Choose State' || !delivery.state) {
-    errors.state = 'Required Field';
+    errors.state = memos.required;
   }
 
   // validate billing street address
   if (checked === false) {
     if (!billing.billingStreet) {
-      errors.billingStreet = 'Required Field';
-    } else if (!/[a-zA-z0-9 -]+$/.test(billing.billingStreet)) {
-      errors.billingStreet = 'Only contains letters, numbers, apostrophes and spaces.';
+      errors.billingStreet = memos.required;
+    } else if (!rEx.street.test(billing.billingStreet)) {
+      errors.billingStreet = memos.street;
     }
-    if (!billing.city) {
-      errors.billingCity = 'Required Field';
-    } else if (!/[a-zA-z '-]+$/.test(billing.billingCity)) {
-      errors.billingCity = 'Only contains letters, numbers, apostrophes and spaces.';
+    if (!billing.billingCity) {
+      errors.billingCity = memos.required;
+    } else if (!rEx.names.test(billing.billingCity)) {
+      errors.billingCity = memos.names;
     }
-    if (!billing.zip) {
-      errors.billingZip = 'Required Field';
-    } else if (!/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(billing.billingZip)) {
-      errors.billingZip = 'Only contains 5-9 digits with xxxxx or xxxxx-xxxx';
+    if (!billing.billingZip) {
+      errors.billingZip = memos.required;
+    } else if (!rEx.zip.test(billing.billingZip)) {
+      errors.billingZip = memos.zip;
     }
     if (billing.billingState === 'Choose State' || !billing.billingState) {
-      errors.billingState = 'Required Field';
+      errors.billingState = memos.required;
     }
   }
   // validate phone & email
   if (!billing.email) {
-    errors.email = 'Required Field';
-  } else if (!/^[\w-]+@[\w-]+.[\w-]+$/.test(billing.email)) {
-    errors.email = 'Invalid email, only contains letters, numbers, dashes, underscores';
+    errors.email = memos.required;
+  } else if (!rEx.email.test(billing.email)) {
+    errors.email = memos.email;
   }
   if (!billing.phone) {
-    errors.phone = 'Required Field';
-  } else if (!/^[\d]{10}$/.test(billing.phone)) {
-    errors.phone = 'Only contains 10 digits, no special characters';
+    errors.phone = memos.required;
+  } else if (!rEx.phone.test(billing.phone)) {
+    errors.phone = memos.phone;
   }
 
   // validate credit card
   if (!billing.creditCard) {
-    errors.creditCard = 'Required Field';
-  } else if (!/^[\d]{14,19}$/.test(billing.creditCard)) {
-    errors.creditCard = 'Contains 14-19 digits';
+    errors.creditCard = memos.required;
+  } else if (!rEx.creditCard.test(billing.creditCard)) {
+    errors.creditCard = memos.creditCard;
   }
   if (!billing.cvv) {
-    errors.cvv = 'Required Field';
-  } else if (!/^[\d]{3,4}$/.test(billing.cvv)) {
-    errors.cvv = 'Contains 3-4 digits';
+    errors.cvv = memos.required;
+  } else if (!rEx.cvv.test(billing.cvv)) {
+    errors.cvv = memos.cvv;
   }
   if (!billing.expiration) {
-    errors.expiration = 'Required Field';
-  } else if (!/^(0[1-9]|1[0-2])([/-]{1})[23][\d]$/.test(billing.expiration)) {
-    errors.expiration = 'Must be MM/YY or MM-YY';
+    errors.expiration = memos.required;
+  } else if (!rEx.expiry.test(billing.expiration)) {
+    errors.expiration = memos.expiry;
   }
+
   const errorsArray = Object.entries(errors);
 
   if (!errorsArray.length > 0) {
@@ -97,7 +115,7 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked, pur
     purchaseObj();
   } else {
     setIsValid(isValid);
-    setErrors(errors);
+    setErrors(errorsArray);
     toast.error('Purchase was not completed and you have not been charged, please check your errors and try again.');
   }
 }

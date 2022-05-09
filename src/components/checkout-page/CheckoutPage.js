@@ -12,8 +12,13 @@ import validateCheckout from './forms/validateCheckout';
 /**
  * @name CheckoutPage
  * @description A view that contains details needed to process a transaction for items
- * @return component
- */
+ * @returns Component
+ * @function makePurchase
+ * @description the function that sends the purchaseObj to the api when validated.
+ * @function handlePay
+ * @description the function triggered by the form submit button that starts the frontend validation
+ * @returns the validation status of the form and either submits (calls purchaseObj) or sets errors.
+ *  */
 const CheckoutPage = () => {
   const history = useHistory();
 
@@ -39,7 +44,12 @@ const CheckoutPage = () => {
   const handleCheck = () => {
     setChecked(!checked);
   };
-
+  /**
+   * @function purchaseObj
+   * @description sends the validated purchase information that is
+   * collected from the form through makePurchase
+   * @returns purchase confirmation and a toast
+   */
   const purchaseObj = () => {
     const productData = products.map(({ id, quantity }) => ({ id, quantity }));
     const deliveryAddress = {
@@ -77,7 +87,11 @@ const CheckoutPage = () => {
     makePurchase(productData, deliveryAddress, billingAddress, creditCard).then(() => history.push('/confirmation'));
     toast.success('Purchase Successful');
   };
-
+  /**
+   * @name handlePay
+   * @description a function triggered by the purchase click event.
+   * @returns validated or invalidated checkout attempt. Valid calls purchaseObj.
+   */
   const handlePay = () => {
     validateCheckout(deliveryData, billingData, setErrors, setIsValid, checked, purchaseObj);
     isValid(false);
@@ -91,7 +105,11 @@ const CheckoutPage = () => {
       </div>
       <div className={`${styles.step} ${styles.delivery}`}>
         <h3 className={styles.title}>2. Delivery Address</h3>
-        <DeliveryAddress onChange={onDeliveryChange} deliveryData={deliveryData} errors={errors} />
+        <DeliveryAddress
+          onChange={onDeliveryChange}
+          deliveryData={deliveryData}
+          errors={errors}
+        />
         <label htmlFor="useSame" className={styles.sameAddressText}>
           <div className={styles.useSameAddress}>
             <input
