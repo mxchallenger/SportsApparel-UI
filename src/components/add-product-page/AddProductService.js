@@ -12,8 +12,12 @@ import Constants from '../../utils/constants';
 export default async function addProduct(product) {
   await HttpHelper(Constants.PRODUCT_ENDPOINT, 'POST', product)
     .then((response) => {
-      toast.success('A product was added to the database');
-      response.json();
+      if (response.ok) {
+        toast.success('A product was added to the database');
+        response.json();
+      } else {
+        toast.error('Failed to add product, check internal error');
+      }
     })
     .catch(() => {
       toast.error('Failed to add product to the database, check connectivity');
