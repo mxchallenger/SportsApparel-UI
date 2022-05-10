@@ -31,7 +31,6 @@ const CheckoutPage = () => {
     billingStreet: '',
     billingStreet2: '',
     billingCity: '',
-    billingState: '',
     billingZip: '',
     email: '',
     phone: '',
@@ -51,7 +50,6 @@ const CheckoutPage = () => {
     street: '',
     street2: '',
     city: '',
-    state: '',
     zip: ''
   });
 

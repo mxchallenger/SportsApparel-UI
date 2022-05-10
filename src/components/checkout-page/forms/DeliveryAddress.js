@@ -75,7 +75,6 @@ const DeliveryAddress = ({
   ];
   return (
     <div className={styles.deliveryAddress}>
-      <div className={!errors.firstName === undefined ? undefined : styles.errorBorder} />
       <FormItem
         type="text"
         id="firstName"
