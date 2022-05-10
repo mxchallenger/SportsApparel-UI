@@ -1,27 +1,11 @@
 import { toast } from 'react-toastify';
 import { memos, rEx } from './validateUtils';
-/**
- * @name validateCheckout
- * @param {*} delivery - deliveryData from CheckoutPage
- * @param {*} billing - billingData from CheckoutPage
- * @param {*} setErrors - function to set error messages
- * @param {*} setIsValid - function to set validity
- * @param {*} checked - status of checkbox on CheckoutPage
- * @param {*} purchaseObj - purchase object data from CheckoutPage
- * @returns validation status of checkout form and either sets error messages
- * and displays toast for invalid or calls the purchase object to make purchase
- * for valid forms.
- */
+
 function validateCheckout(delivery, billing, setErrors, setIsValid, checked, purchaseObj) {
   const errors = {};
   const isValid = false;
-  /**
-   * Validates names for letters, dashes, apostrophes and spaces.
-   * @param {string} firstName
-   * @param {string} lastName
-   * @param {string} cardholder
-   * @returns error messages
-   */
+
+  // validate names
   if (!delivery.firstName) {
     errors.firstName = memos.required;
   } else if (!rEx.names.test(delivery.firstName)) {
@@ -32,6 +16,7 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked, pur
   } else if (!rEx.names.test(delivery.lastName)) {
     errors.lastName = memos.names;
   }
+
   if (!billing.cardholder) {
     errors.cardholder = memos.required;
   } else if (!rEx.names.test(billing.cardholder)) {
@@ -80,6 +65,7 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked, pur
     }
   }
   // validate phone & email
+  // validate phone & email
   if (!billing.email) {
     errors.email = memos.required;
   } else if (!rEx.email.test(billing.email)) {
@@ -108,15 +94,13 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked, pur
     errors.expiration = memos.expiry;
   }
 
-  const errorsArray = Object.entries(errors);
-
-  if (!errorsArray.length > 0) {
+  if (!Object.entries(errors).length > 0) {
     setIsValid(true);
     purchaseObj();
   } else {
     setIsValid(isValid);
-    setErrors(errorsArray);
-    toast.error('Purchase was not completed and you have not been charged, please check your errors and try again.');
+    setErrors(errors);
+    toast.error('Purchase was not completed and you have not been charged. lease check your errors and try again.');
   }
 }
 export default validateCheckout;
