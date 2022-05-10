@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { BsTools } from 'react-icons/bs';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import loginUser from './HeaderService';
 import constants from '../../utils/constants';
 import './Header.css';
 import logo from './logo.png';
 import cart from './cart.png';
-import maint from './wrench.png';
 import { useCart } from '../checkout-page/CartContext';
 /**
  * @name Header
@@ -86,10 +86,10 @@ const Header = () => {
         </NavLink>
       </div>
       <div id="maint">
-        <NavLink to="/maintenance"><img src={maint} alt="maint" /></NavLink>
+        <NavLink to="/maintenance"><BsTools size={25} style={{ fill: 'white' }} alt="maint" /></NavLink>
       </div>
-      {user && <span>{user.firstName}</span>}
-      {user && <span>{user.lastName}</span>}
+      {user && <span className="firstName">{user.firstName}</span>}
+      {user && <span className="lastName">{user.lastName}</span>}
       {googleError && <span>{googleError}</span>}
       {apiError && <span>Api Error</span>}
       {!user ? (

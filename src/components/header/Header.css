@@ -1,6 +1,7 @@
 .header {
     background: black;
     top: 0;
+    width: 98%;
     padding-top: 20px;
     padding-bottom: 60px;
     padding-left: 25px;
@@ -20,6 +21,7 @@ img {
 }
 #cart {
     float: right;
+    padding-right: 25px;
     padding-right: 35px;
     max-height: 100px;
     max-width: 50px;
@@ -28,27 +30,39 @@ img {
 }
 #maint {
   float: left;
-  padding-right: 25px;
+  padding-top: 5px;
+  padding-right: 20px;
   max-height: 100px;
+  height: 50px;
   max-width: 50px;
   overflow: hidden;
+  color: white;
 }
 #googleLogin {
     float: right;
-    padding-right: 10px;
+    padding-right: 25px;
+}
+.firstName {
     color: white;
+    float: left;
+    padding-left: 825px;
+    padding-top: 5px;
+    margin-right: 5px;
+}
+.lastName {
+    color: white;
+    float: left;
+    padding-top: 5px;
 }
 #googleLogout {
     float: right;
-    padding-right: 10px;
+    padding-right: 25px;
 }
 #cart-icon {
     top: 0;
     right: 0;
     position: absolute;
+    padding-right: 25px;
     padding-right: 35px;
     padding-top: 7px;
-}
-#span {
-    color: white;
 }
