@@ -55,7 +55,7 @@ const ProductPage = () => {
           breakLabel="..."
           pageCount={count}
           marginPagesDisplayed={0}
-          pageRangeDisplayed={8}
+          pageRangeDisplayed={9}
           onPageChange={handleClick}
           containerClassName="pagination justify-content-center"
           pageClassName="page-item"
