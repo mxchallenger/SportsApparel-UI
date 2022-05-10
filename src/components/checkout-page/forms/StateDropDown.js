@@ -15,7 +15,6 @@ const StateDropDown = ({ onChange, shippingState }) => {
     <div className={styles.shippingState}>
 
       <FormItemDropdown
-        id="state"
         label="State"
         onChange={onChange}
         value={shippingState.state}

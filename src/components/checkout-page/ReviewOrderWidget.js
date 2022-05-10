@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Constants from '../../utils/constants';
 import { useCart } from './CartContext';
 import OrderItem from './OrderItem';
 import { fetchRate, getShippingRate, getSubtotal } from './ReviewOrderWidgetService';
@@ -16,22 +15,16 @@ const ReviewOrderWidget = () => {
     state: { products }
   } = useCart();
 
-  const [rate, setRate] = React.useState(0);
-  const [apiError, setApiError] = useState(false);
-
   const [shippingState, setShippingState] = useState('');
+  const [rateObject, setRateObject] = useState({ rate: 1 });
 
   const onDeliveryChange = (e) => {
-    fetchRate(setRate, shippingState, setApiError);
     setShippingState(e.target.value);
   };
 
   useEffect(() => {
-    fetchRate(setApiError, setRate);
-  }, []);
-  useEffect(() => {
-    fetchRate(setApiError, shippingState);
-  }, [shippingState]);
+    fetchRate(setRateObject, shippingState);
+  }, [setRateObject, rateObject, shippingState]);
 
   return (
     <>
@@ -64,7 +57,8 @@ const ReviewOrderWidget = () => {
           <p>Shipping</p>
         </div>
         <div className={styles.price}>
-          <p>{getShippingRate(products, rate)}</p>
+          <p>{getShippingRate(products, rateObject.rate)}</p>
+          <p>{rateObject.rate}</p>
         </div>
       </div>
       <StateDropDown
@@ -72,7 +66,6 @@ const ReviewOrderWidget = () => {
         value={shippingState.state}
         shippingState={shippingState}
       />
-      {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
     </>
   );
 };
