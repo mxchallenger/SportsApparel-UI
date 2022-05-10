@@ -16,6 +16,7 @@ const ProductPage = () => {
   const [apiError, setApiError] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
+
   /**
  * This hook fetches the current page number and
  * displays a number of products according
@@ -38,6 +39,7 @@ const ProductPage = () => {
   const handleClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
   };
+
   return (
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
@@ -67,7 +69,7 @@ const ProductPage = () => {
           breakClassName="page-item"
           breakLinkClassName="page-link"
           activeClassName="active"
-          renderOnZeroPageCount={!false}
+          renderOnZeroPageCount={false}
           forcePage={currentPage}
           disabledClassName={styles.hide}
         />
