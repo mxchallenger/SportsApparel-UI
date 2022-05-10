@@ -179,7 +179,7 @@ const ProductDetail = ({ onChange, productData, errors }) => {
           id="Active"
           label="Active"
           onChange={onChange}
-          value={productData.Active}
+          value={productData.Quantity === '0' ? activeStatus[0] : productData.Active}
           options={activeStatus}
           errors={errors}
         />
