@@ -27,7 +27,6 @@ const CheckoutPage = () => {
   } = useCart();
 
   const [errors, setErrors] = React.useState({});
-  const [isValid, setIsValid] = React.useState(false);
   const [billingData, setBillingData] = React.useState({});
 
   const onBillingChange = (e) => {
@@ -93,8 +92,7 @@ const CheckoutPage = () => {
    * @returns validated or invalidated checkout attempt. Valid calls purchaseObj.
    */
   const handlePay = () => {
-    validateCheckout(deliveryData, billingData, setErrors, setIsValid, checked, purchaseObj);
-    isValid(false);
+    validateCheckout(deliveryData, billingData, setErrors, checked, purchaseObj);
   };
 
   return (

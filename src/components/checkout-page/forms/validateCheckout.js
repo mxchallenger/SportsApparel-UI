@@ -1,9 +1,8 @@
 import { toast } from 'react-toastify';
 import { memos, rEx } from './validateUtils';
 
-function validateCheckout(delivery, billing, setErrors, setIsValid, checked, purchaseObj) {
+function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
   const errors = {};
-  const isValid = false;
 
   // validate names
   if (!delivery.firstName) {
@@ -95,12 +94,10 @@ function validateCheckout(delivery, billing, setErrors, setIsValid, checked, pur
   }
 
   if (!Object.entries(errors).length > 0) {
-    setIsValid(true);
     purchaseObj();
   } else {
-    setIsValid(isValid);
     setErrors(errors);
-    toast.error('Purchase was not completed and you have not been charged. lease check your errors and try again.');
+    toast.error('Purchase was not completed and you have not been charged. Please check your errors and try again.');
   }
 }
 export default validateCheckout;
