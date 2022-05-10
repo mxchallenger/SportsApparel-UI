@@ -8,21 +8,21 @@ function Filter({ applyFilters, setUrlQuery }) {
   const demographicFilters = [
     {
       id: 1,
-      title: 'MEN',
+      title: 'Men',
       cName: 'navText',
       filterAddy: 'demographic=Men&',
       value: false
     },
     {
       id: 2,
-      title: 'WOMEN',
+      title: 'Women',
       cName: 'navText',
       filterAddy: 'demographic=Women&',
       value: false
     },
     {
       id: 3,
-      title: 'KIDS',
+      title: 'Kids',
       cName: 'navText',
       filterAddy: 'demographic=Kids&',
       value: false
@@ -112,7 +112,7 @@ function Filter({ applyFilters, setUrlQuery }) {
           </li>
           {filters.demographic.map((item) => (
             <>
-              <li key={item} className={item.cName}>
+              <ul key={item} className={item.cName}>
                 <div className="DemographicsList">
                   <input
                     type="checkbox"
@@ -124,7 +124,7 @@ function Filter({ applyFilters, setUrlQuery }) {
                   />
                 </div>
                 <span>{item.title}</span>
-              </li>
+              </ul>
             </>
           ))}
         </ul>

@@ -36,6 +36,7 @@ img {
 #googleLogin {
     float: right;
     padding-right: 10px;
+    color: white;
 }
 #googleLogout {
     float: right;
@@ -47,4 +48,7 @@ img {
     position: absolute;
     padding-right: 35px;
     padding-top: 7px;
+}
+#span {
+    color: white;
 }
