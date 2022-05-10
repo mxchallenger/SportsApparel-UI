@@ -27,13 +27,33 @@ const CheckoutPage = () => {
   } = useCart();
 
   const [errors, setErrors] = React.useState({});
-  const [billingData, setBillingData] = React.useState({});
+  const [billingData, setBillingData] = React.useState({
+    billingStreet: '',
+    billingStreet2: '',
+    billingCity: '',
+    billingState: '',
+    billingZip: '',
+    email: '',
+    phone: '',
+    creditCard: '',
+    cardholder: '',
+    cvv: '',
+    expiration: ''
+  });
 
   const onBillingChange = (e) => {
     setBillingData({ ...billingData, [e.target.id]: e.target.value });
   };
 
-  const [deliveryData, setDeliveryData] = React.useState({});
+  const [deliveryData, setDeliveryData] = React.useState({
+    firstName: '',
+    lastName: '',
+    street: '',
+    street2: '',
+    city: '',
+    state: '',
+    zip: ''
+  });
 
   const onDeliveryChange = (e) => {
     setDeliveryData({ ...deliveryData, [e.target.id]: e.target.value });

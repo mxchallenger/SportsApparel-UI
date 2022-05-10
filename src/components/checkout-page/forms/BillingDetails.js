@@ -74,21 +74,20 @@ const BillingDetails = ({
     'Wisconsin',
     'Wyoming'
   ];
-
   return (
-
     <div className={styles.deliveryAddress}>
       {!useShippingForBilling && (
         <>
-
-          <FormItem
-            placeholder="e.g. 123 Sesame Street"
-            type="text"
-            id="billingStreet"
-            label="Street"
-            onChange={onChange}
-            value={(billingData.billingStreet)}
-          />
+          <div className={errors.billingStreet === undefined ? undefined : styles.errorBorder}>
+            <FormItem
+              placeholder="e.g. 123 Sesame Street"
+              type="text"
+              id="billingStreet"
+              label="Street"
+              onChange={onChange}
+              value={billingData.billingStreet}
+            />
+          </div>
           {errors && <p className={styles.errorMessage}>{errors.billingStreet}</p>}
 
           <FormItem

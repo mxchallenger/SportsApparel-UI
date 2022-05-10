@@ -75,14 +75,13 @@ const DeliveryAddress = ({
   ];
   return (
     <div className={styles.deliveryAddress}>
+      <div className={!errors.firstName === undefined ? undefined : styles.errorBorder} />
       <FormItem
-        // className={!hasErrors ? styles.input : styles.errorBorder}
         type="text"
         id="firstName"
         label="First Name"
         onChange={onChange}
         value={deliveryData.firstName}
-        errors={errors}
       />
       {errors && <p className={styles.errorMessage}>{errors.firstName}</p>}
 
