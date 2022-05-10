@@ -16,15 +16,29 @@ const ReviewOrderWidget = () => {
   } = useCart();
 
   const [shippingState, setShippingState] = useState('');
-  const [rateObject, setRateObject] = useState({ rate: 1 });
+  const [rate, setRateObject] = useState(0);
 
   const onDeliveryChange = (e) => {
     setShippingState(e.target.value);
+    fetchRate(setRateObject, [rate]);
   };
 
   useEffect(() => {
-    fetchRate(setRateObject, shippingState);
-  }, [setRateObject, rateObject, shippingState]);
+    fetchRate(setRateObject);
+  }, [rate]);
+  useEffect(() => {
+    fetchRate(shippingState);
+  }, [shippingState]);
+
+  // const [rateObject, setRateObject] = useState({ rate: 1 });
+
+  // const onDeliveryChange = (e) => {
+  //   setShippingState(e.target.value);
+  // };
+
+  // useEffect(() => {
+  //   fetchRate(setRateObject, shippingState);
+  // }, [setRateObject, rateObject, shippingState]);
 
   return (
     <>
@@ -57,8 +71,8 @@ const ReviewOrderWidget = () => {
           <p>Shipping</p>
         </div>
         <div className={styles.price}>
-          <p>{getShippingRate(products, rateObject.rate)}</p>
-          <p>{rateObject.rate}</p>
+          <p>{getShippingRate(products, rate)}</p>
+          <p>{rate}</p>
         </div>
       </div>
       <StateDropDown
