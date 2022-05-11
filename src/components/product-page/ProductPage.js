@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import ProductCard from '../product-card/ProductCard';
 import styles from './ProductPage.module.css';
 import Constants from '../../utils/constants';
-import fetchProducts from './ProductPageService';
+import fetchProducts from '../Pagination/PaginationService';
 import fetchProductsCount from '../Pagination/Pagination_PageCount';
 import Modal from '../Product Modal/ProductModal';
 
