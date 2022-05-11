@@ -12,3 +12,11 @@
   font-size: 14px;
   margin: 0px 2px 4px 4px;
 }
+
+.page {
+float: center;
+}
+
+.hide{
+  display: none;
+}
