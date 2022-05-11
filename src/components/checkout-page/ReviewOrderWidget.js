@@ -29,22 +29,23 @@ const ReviewOrderWidget = () => {
   //   // fetchRate(setRateObject, [rate]);
   // };
 
-  const onDeliveryChange = ({ shippingRate: rate}) => {
+  const onDeliveryChange = (e) => {
     setShippingState(e.target.value);
+    setRateObject(rate);
   };
 
-  // useEffect(() => {
-  //   fetchRate(setRateObject);
-  // }, [rate]);
   useEffect(() => {
-    fetchRate(shippingState);
+    fetchRate(rate, setApiError);
+  }, [rate]);
+  useEffect(() => {
+    fetchRate(shippingState, setApiError);
   }, [shippingState]);
 
   // const [rateObject, setRateObject] = useState({ rate: 1 });
 
-  useEffect(() => {
-    fetchRate(setRateObject, shippingState, setApiError);
-  }, [setRateObject, rate, shippingState]);
+  // useEffect(() => {
+  //   fetchRate(setRateObject, shippingState, setApiError);
+  // }, [setRateObject, rate, shippingState]);
 
   return (
     <>
