@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from './CartContext';
 import OrderItem from './OrderItem';
-import { fetchRate, getShippingRate, getSubtotal } from './ReviewOrderWidgetService';
+import
+{
+  fetchRate,
+  fetchRateObject,
+  getShippingRate,
+  getSubtotal
+}
+  from './ReviewOrderWidgetService';
 import styles from './ReviewOrderWidget.module.css';
 import StateDropDown from './forms/StateDropDown';
 import Constants from '../../utils/constants';
@@ -17,7 +24,7 @@ const ReviewOrderWidget = () => {
   } = useCart();
 
   const [shippingState, setShippingState] = useState('');
-  const [rate, setRateObject] = useState();
+  const [rate, setRateObject] = useState(0);
   const [apiError, setApiError] = useState(false);
 
   // const {
@@ -31,10 +38,14 @@ const ReviewOrderWidget = () => {
 
   const onDeliveryChange = (e) => {
     setShippingState(e.target.value);
+    setRateObject(rate);
   };
 
   useEffect(() => {
-    fetchRate(setRateObject, setApiError);
+    fetchRate(setShippingState, setApiError);
+  }, [shippingState]);
+  useEffect(() => {
+    fetchRateObject(setRateObject, setApiError);
   }, [rate]);
   useEffect(() => {
     fetchRate(shippingState, setApiError);
@@ -80,13 +91,14 @@ const ReviewOrderWidget = () => {
         <div className={styles.price}>
           <p>{getShippingRate(products, rate)}</p>
           <p>{`${rate}`}</p>
+          <p>{`${shippingState}`}</p>
         </div>
       </div>
       <StateDropDown
         onChange={onDeliveryChange}
         value={shippingState.state}
         shippingState={shippingState}
-        shippingRate={rate}
+        rate={rate}
       />
     </>
   );
