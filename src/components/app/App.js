@@ -31,6 +31,7 @@ const App = () => (
       position="top-center"
       autoClose={8000}
     />
+
     <Footer />
   </BrowserRouter>
 

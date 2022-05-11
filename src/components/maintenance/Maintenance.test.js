@@ -29,6 +29,5 @@ describe('Maintenance Component Tests', () => {
       <Maintenance />, container
     );
     expect(screen.getByTestId('errMsg')).toHaveTextContent('Oops, something went wrong');
-  }
-  );
+  });
 });
