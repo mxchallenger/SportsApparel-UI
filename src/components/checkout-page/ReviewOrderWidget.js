@@ -4,6 +4,7 @@ import OrderItem from './OrderItem';
 import { fetchRate, getShippingRate, getSubtotal } from './ReviewOrderWidgetService';
 import styles from './ReviewOrderWidget.module.css';
 import StateDropDown from './forms/StateDropDown';
+import Constants from '../../utils/constants';
 
 /**
  * @name ReviewOrderWidget
@@ -16,32 +17,38 @@ const ReviewOrderWidget = () => {
   } = useCart();
 
   const [shippingState, setShippingState] = useState('');
-  const [rate, setRateObject] = useState(0);
+  const [rate, setRateObject] = useState();
+  const [apiError, setApiError] = useState(false);
 
-  const onDeliveryChange = (e) => {
+  // const {
+  //   state: { shippingRate }
+  // } = rate();
+
+  // const onDeliveryChange = (e) => {
+  //   setShippingState(e.target.value);
+  //   // fetchRate(setRateObject, [rate]);
+  // };
+
+  const onDeliveryChange = ({ shippingRate: rate}) => {
     setShippingState(e.target.value);
-    fetchRate(setRateObject, [rate]);
   };
 
-  useEffect(() => {
-    fetchRate(setRateObject);
-  }, [rate]);
+  // useEffect(() => {
+  //   fetchRate(setRateObject);
+  // }, [rate]);
   useEffect(() => {
     fetchRate(shippingState);
   }, [shippingState]);
 
   // const [rateObject, setRateObject] = useState({ rate: 1 });
 
-  // const onDeliveryChange = (e) => {
-  //   setShippingState(e.target.value);
-  // };
-
-  // useEffect(() => {
-  //   fetchRate(setRateObject, shippingState);
-  // }, [setRateObject, rateObject, shippingState]);
+  useEffect(() => {
+    fetchRate(setRateObject, shippingState, setApiError);
+  }, [setRateObject, rate, shippingState]);
 
   return (
     <>
+      {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <div className="oops">
         {products.length === 0
           && <h1> Oops, your cart is empty!</h1>}
@@ -72,7 +79,7 @@ const ReviewOrderWidget = () => {
         </div>
         <div className={styles.price}>
           <p>{getShippingRate(products, rate)}</p>
-          <p>{rate}</p>
+          <p>{`${rate}`}</p>
         </div>
       </div>
       <StateDropDown
