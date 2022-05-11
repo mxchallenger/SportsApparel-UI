@@ -1,7 +1,14 @@
 .parent{ 
+<<<<<<< Updated upstream
   position:fixed;
   bottom: 0;
   width: 100%;  
+=======
+  position: static;
+  display: flex;
+  top: 0;
+  height: 50px;
+>>>>>>> Stashed changes
   background: black;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
