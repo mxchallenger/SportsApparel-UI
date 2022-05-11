@@ -48,11 +48,17 @@ img {
     padding-left: 825px;
     padding-top: 5px;
     margin-right: 5px;
+    font-size: 18px;
+    font-weight: bold;
+
 }
 .lastName {
     color: white;
     float: left;
     padding-top: 5px;
+    font-size: 18px;
+    font-weight: bold;
+
 }
 #googleLogout {
     float: right;
