@@ -78,16 +78,15 @@ const BillingDetails = ({
     <div className={styles.deliveryAddress}>
       {!useShippingForBilling && (
         <>
-          <div className={errors.billingStreet === undefined ? undefined : styles.errorBorder}>
-            <FormItem
-              placeholder="e.g. 123 Sesame Street"
-              type="text"
-              id="billingStreet"
-              label="Street"
-              onChange={onChange}
-              value={billingData.billingStreet}
-            />
-          </div>
+          <FormItem
+            placeholder="e.g. 123 Sesame Street"
+            type="text"
+            id="billingStreet"
+            label="Street"
+            onChange={onChange}
+            value={billingData.billingStreet}
+            className={(errors.billingStreet ? styles.errorBorder : styles.input)}
+          />
           {errors && <p className={styles.errorMessage}>{errors.billingStreet}</p>}
 
           <FormItem
@@ -97,6 +96,7 @@ const BillingDetails = ({
             label="Street 2 (Optional)"
             onChange={onChange}
             value={billingData.billingStreet2}
+            className={styles.input}
           />
           {errors && <p className={styles.errorMessage}>{errors.billingStreet2}</p>}
 
@@ -106,6 +106,7 @@ const BillingDetails = ({
             label="City"
             onChange={onChange}
             value={billingData.billingCity}
+            className={(errors.billingCity ? styles.errorBorder : styles.input)}
           />
           {errors && <p className={styles.errorMessage}>{errors.billingCity}</p>}
 
@@ -115,6 +116,7 @@ const BillingDetails = ({
             onChange={onChange}
             value={billingData.billingState}
             options={usStates}
+            className={(errors.billingState ? styles.errorBorder : styles.input)}
           />
           {errors && <p className={styles.errorMessage}>{errors.billingState}</p>}
 
@@ -125,6 +127,7 @@ const BillingDetails = ({
             label="Zip"
             onChange={onChange}
             value={billingData.billingZip}
+            className={(errors.billingZip ? styles.errorBorder : styles.input)}
           />
           {errors && <p className={styles.errorMessage}>{errors.billingZip}</p>}
         </>
@@ -136,6 +139,7 @@ const BillingDetails = ({
         label="Email"
         onChange={onChange}
         value={billingData.email}
+        className={(errors.email ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.email}</p>}
 
@@ -146,6 +150,7 @@ const BillingDetails = ({
         label="Phone"
         onChange={onChange}
         value={billingData.phone}
+        className={(errors.phone ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.phone}</p>}
 
@@ -156,6 +161,7 @@ const BillingDetails = ({
         label="Credit Card"
         onChange={onChange}
         value={billingData.creditCard}
+        className={(errors.creditCard ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.creditCard}</p>}
 
@@ -166,6 +172,7 @@ const BillingDetails = ({
         label="CVV"
         onChange={onChange}
         value={billingData.cvv}
+        className={(errors.cvv ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.cvv}</p>}
 
@@ -176,6 +183,7 @@ const BillingDetails = ({
         label="Expiration"
         onChange={onChange}
         value={billingData.expiration}
+        className={(errors.expiration ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.expiration}</p>}
 
@@ -185,6 +193,7 @@ const BillingDetails = ({
         label="Cardholder Name"
         onChange={onChange}
         value={billingData.cardholder}
+        className={(errors.cardholder ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.cardholder}</p>}
     </div>

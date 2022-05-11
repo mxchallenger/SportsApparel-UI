@@ -81,6 +81,7 @@ const DeliveryAddress = ({
         label="First Name"
         onChange={onChange}
         value={deliveryData.firstName}
+        className={(errors.firstName ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.firstName}</p>}
 
@@ -90,7 +91,7 @@ const DeliveryAddress = ({
         label="Last Name"
         onChange={onChange}
         value={deliveryData.lastName}
-        errors={errors}
+        className={(errors.lastName ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.lastName}</p>}
 
@@ -101,7 +102,7 @@ const DeliveryAddress = ({
         label="Street"
         onChange={onChange}
         value={deliveryData.street}
-        errors={errors}
+        className={(errors.street ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.street}</p>}
 
@@ -112,7 +113,7 @@ const DeliveryAddress = ({
         label="Street 2 (Optional)"
         onChange={onChange}
         value={deliveryData.street2}
-        errors={errors}
+        className={(errors.street2 ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.street2}</p>}
 
@@ -122,7 +123,7 @@ const DeliveryAddress = ({
         label="City"
         onChange={onChange}
         value={deliveryData.city}
-        errors={errors}
+        className={(errors.city ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.city}</p>}
 
@@ -132,7 +133,7 @@ const DeliveryAddress = ({
         onChange={onChange}
         value={deliveryData.state}
         options={usStates}
-        errors={errors}
+        className={(errors.state ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.state}</p>}
 
@@ -143,7 +144,7 @@ const DeliveryAddress = ({
         label="Zip"
         onChange={onChange}
         value={deliveryData.zip}
-        errors={errors}
+        className={(errors.zip ? styles.errorBorder : styles.input)}
       />
       {errors && <p className={styles.errorMessage}>{errors.zip}</p>}
     </div>

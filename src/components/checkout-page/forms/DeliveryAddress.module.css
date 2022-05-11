@@ -21,3 +21,18 @@
   font-weight: 400;
   font-size: 12px;
 }
+
+.errorBorder{
+  margin-top: .5em;
+  width: 100%;
+  padding: .5em;
+  box-sizing: border-box;
+  border: red solid 2px
+}
+
+.input {
+  margin-top: .5em;
+  width: 100%;
+  padding: .5em;
+  box-sizing: border-box;
+}
