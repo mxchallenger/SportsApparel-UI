@@ -31,11 +31,10 @@ const ReviewOrderWidget = () => {
 
   const onDeliveryChange = (e) => {
     setShippingState(e.target.value);
-    setRateObject(rate);
   };
 
   useEffect(() => {
-    fetchRate(rate, setApiError);
+    fetchRate(setRateObject, setApiError);
   }, [rate]);
   useEffect(() => {
     fetchRate(shippingState, setApiError);
@@ -87,6 +86,7 @@ const ReviewOrderWidget = () => {
         onChange={onDeliveryChange}
         value={shippingState.state}
         shippingState={shippingState}
+        shippingRate={rate}
       />
     </>
   );
