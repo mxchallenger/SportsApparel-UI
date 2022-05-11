@@ -1,13 +1,146 @@
 .app {
+  background-color: white;
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(auto-fit, 250px);
   justify-content: space-evenly;
-  margin: 20px;
+  margin: 10px;
+  position: static;
 }
-
 .errMsg {
   color: red;
   font-size: 14px;
   margin: 0px 2px 4px 4px;
+<<<<<<< HEAD
 }
+=======
+}
+
+.page {
+  float: center;
+}
+
+.hide {
+  display: none;
+}
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none
+}
+
+.pageLink {
+  position: relative;
+  display: block;
+  color: #0d6efd;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .pageLink {
+    transition: none
+  }
+}
+
+.pageLink:hover {
+  z-index: 2;
+  color: #0a58ca;
+  background-color: #e9ecef;
+  border-color: #dee2e6
+}
+
+.pageLink:focus {
+  z-index: 3;
+  color: #0a58ca;
+  background-color: #e9ecef;
+  outline: 0;
+  box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25)
+}
+
+.pageItem:not(:first-child) .pageLink {
+  margin-left: -1px
+}
+
+.pageItem.active .pageLink {
+  z-index: 3;
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd
+}
+
+.pageItem.disabled .pageLink {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #fff;
+  border-color: #dee2e6
+}
+
+.pageLink {
+  padding: .375rem .75rem
+}
+
+.pageItem:first-child .pageLink {
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem
+}
+
+.pageItem:last-child .pageLink {
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem
+}
+
+.pagination-lg .pageLink {
+  padding: .75rem 1.5rem;
+  font-size: 1.25rem
+}
+
+.pagination-lg .pageItem:first-child .pageLink {
+  border-top-left-radius: .3rem;
+  border-bottom-left-radius: .3rem
+}
+
+.pagination-lg .pageItem:last-child .pageLink {
+  border-top-right-radius: .3rem;
+  border-bottom-right-radius: .3rem
+}
+
+.pagination-sm .pageLink {
+  padding: .25rem .5rem;
+  font-size: .875rem
+}
+
+.pagination-sm .pageItem:first-child .pageLink {
+  border-top-left-radius: .2rem;
+  border-bottom-left-radius: .2rem
+}
+
+.pagination-sm .pageItem:last-child .pageLink {
+  border-top-right-radius: .2rem;
+  border-bottom-right-radius: .2rem
+}
+
+.badge {
+  display: inline-block;
+  padding: .35em .65em;
+  font-size: .75em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem
+}
+
+.badge:empty {
+  display: none
+}
+
+.justifyContentCenter {
+  justify-content: center !important
+}
+>>>>>>> f75e4bee4acd4f516b4fd755458d65ecee7a51b8

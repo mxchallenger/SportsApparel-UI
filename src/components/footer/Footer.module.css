@@ -1,6 +1,10 @@
 .parent{ 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   position:fixed;
+=======
+  position:static;
+>>>>>>> f75e4bee4acd4f516b4fd755458d65ecee7a51b8
   bottom: 0;
   width: 100%;  
 =======
