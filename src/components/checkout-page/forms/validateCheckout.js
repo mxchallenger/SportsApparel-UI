@@ -94,31 +94,26 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
     // Checks for a decade of 2 or 3 followed by any digit 0-9
   } else if (!rEx.expiry.test(billing.expiration)) {
     errors.expiration = memos.expiryMmYy;
-    const isExpiryValid = () => {
-      const parts = billing.expiration.split(/\D/);
-      const month = parseInt(parts[0], 10) + 1;
-      const year = parseInt(parts[1], 10);
-      const dateString = `20${year}-``0${month}`;
-      const today = Date.now();
-      const cardDate = Date.parse(dateString);
-      const isCardDateOk = today < cardDate;
-
-      if (!rEx.expiry.test(billing.expiration)) {
-        errors.expiration = memos.expiryMmYy;
-      } else if (isCardDateOk === false) {
-        errors.expiration = memos.expiryPastDate;
-      }
-    };
-    // Runs the final validation step, checks to see if there are errors present
-    // calls the purchase method if there are no errors
-    // otherwise sets errors and runs a toast
-
-    if (!Object.entries(errors).length > 0) {
-      purchaseObj();
-    } else {
-      setErrors(errors);
-      toast.error('Purchase was not completed and you have not been charged. Please check your errors and try again.');
+  } else {
+    const parts = billing.expiration.split(/\D/);
+    const month = parseInt(parts[0], 10) + 1;
+    const year = parseInt(parts[1], 10);
+    const dateString = `20${year}-``0${month}`;
+    if (Date.now > Date.parse(dateString)) {
+      errors.expiration = memos.expiryPastDate;
     }
+  }
+};
+// Runs the final validation step, checks to see if there are errors present
+// calls the purchase method if there are no errors
+// otherwise sets errors and runs a toast
+
+if (!Object.entries(errors).length > 0) {
+  purchaseObj();
+} else {
+  setErrors(errors);
+  toast.error('Purchase was not completed and you have not been charged. Please check your errors and try again.');
+}
   }
 }
 export default validateCheckout;
