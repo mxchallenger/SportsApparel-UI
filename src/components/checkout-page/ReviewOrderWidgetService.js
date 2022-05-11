@@ -26,9 +26,9 @@ export const getSubtotal = (products) => toPrice(products.reduce(
  */
 export const getShippingRate = (products, rate) => {
   if (getSubtotal(products) > `$${50}`) {
-    return 0 + rate;
+    return `$${0 + rate}`;
   }
-  return 5 + rate;
+  return `$${5 + rate}`;
 };
 
 /**
@@ -39,7 +39,7 @@ export const getShippingRate = (products, rate) => {
  * @param {*} setApiError sets error if response other than 200 is returned
  * @returns sets state for products if 200 response, else sets state for apiError
  */
-export async function fetchRate(shippingState, setShippingState, setApiError) {
+export async function fetchRate(setRate, shippingState, setApiError) {
   await HttpHelper(`${Constants.SHIPPING_RATE_ENDPOINT}/?state=${shippingState}`, 'GET')
     .then((response) => {
       if (response.ok) {
@@ -47,21 +47,7 @@ export async function fetchRate(shippingState, setShippingState, setApiError) {
       }
       throw new Error(Constants.API_ERROR);
     })
-    .then(setShippingState)
-    .catch(() => {
-      setApiError(false);
-    });
-}
-
-export async function fetchRateObject(setRateObject, shippingState, setApiError) {
-  await HttpHelper(`${Constants.SHIPPING_RATE_ENDPOINT}/?state=${shippingState}`, 'GET')
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error(Constants.API_ERROR);
-    })
-    .then(setRateObject)
+    .then(setRate)
     .catch(() => {
       setApiError(false);
     });

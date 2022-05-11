@@ -4,7 +4,7 @@ import OrderItem from './OrderItem';
 import FormItemDropdown from '../form/FormItemDropdown';
 import
 {
-  fetchRateObject,
+  fetchRate,
   getShippingRate,
   getSubtotal
 }
@@ -22,69 +22,16 @@ const ReviewOrderWidget = () => {
     state: { products }
   } = useCart();
 
-  const [rate, setRateObject] = useState(0);
+  const [rate, setRate] = useState(0);
   const [apiError, setApiError] = useState(false);
 
   const usStates = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
-  // const onDeliveryChange = (e) => {
-  //   setShippingState(e.target.value);
-  //   fetchRate(setShippingState, shippingState, setRateObject, setApiError);
-  //   fetchRate(rate);
-  // };
-
-  // const onDeliveryChange = (e) => {
-  //   setShippingState(e.target.value);
-  //   fetchRate(setShippingState, shippingState, setApiError);
-  //   fetchRateObject(setRateObject, setApiError);
-  //   fetchRateObject(rate);
-  // };
-
   const onDeliveryChange = (e) => {
     const shippingState = e.target.value;
-    fetchRateObject(setRateObject, shippingState, setApiError);
-    setRateObject(rate);
+    fetchRate(setRate, shippingState, setApiError);
+    setRate(rate);
   };
-
-  // useEffect(() => {
-  //   fetchRate(setRateObject, setApiError);
-  // }, [rate]);
-  // useEffect(() => {
-  //   fetchRate(shippingState, setApiError);
-  // }, [shippingState]);
-
-  // useEffect(() => {
-  //   fetchRateObject(setRateObject, setApiError);
-  // }, [rate]);
-  // useEffect(() => {
-  //   fetchProducts(setProducts, setApiError);
-  // }, []);
-  // useEffect(() => {
-  //   fetchProductsCount(setApiError, urlQuery);
-  // }, [urlQuery]);
-
-  // const onDeliveryChange = () => {
-  //   setShippingState(e.target.value);
-  //   useEffect(() => {
-  //     fetchRateObject(setRateObject, setApiError);
-  //   }, [rate]);
-  // };
-
-  // useEffect(() => {
-  //   setShippingStateHelper(setShippingState, setApiError);
-  // }, [shippingState]);
-  // useEffect(() => {
-  //   fetchRateObject(setRateObject, setApiError);
-  // }, [rate]);
-  // useEffect(() => {
-  //   setShippingStateHelper(shippingState, setApiError);
-  // }, [shippingState]);
-
-  // const [rateObject, setRateObject] = useState({ rate: 1 });
-
-  // useEffect(() => {
-  //   fetchRate(setRateObject, shippingState, setApiError);
-  // }, [setRateObject, rate, shippingState]);
   return (
     <>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
@@ -118,7 +65,6 @@ const ReviewOrderWidget = () => {
         </div>
         <div className={styles.price}>
           <p>{getShippingRate(products, rate)}</p>
-          <p>{`${rate}`}</p>
         </div>
       </div>
       <div>
