@@ -5,6 +5,7 @@ import styles from './ProductPage.module.css';
 import Constants from '../../utils/constants';
 import fetchProducts from './ProductPageService';
 import fetchProductsCount from '../Pagination/Pagination_PageCount';
+import Modal from '../Product Modal/ProductModal';
 
 /**
  * @name ProductPage
@@ -16,6 +17,7 @@ const ProductPage = () => {
   const [apiError, setApiError] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
+  const [openModal, setOpenModal] = useState(false);
 
   /**
  * This hook fetches the current page number and
@@ -32,6 +34,7 @@ const ProductPage = () => {
   useEffect(() => {
     fetchProductsCount(setCount, setApiError);
   }, [count]);
+
   /**
    * This function allows clicks to individual page numbers
    * @param {} selected
@@ -46,6 +49,7 @@ const ProductPage = () => {
       <div className={styles.app}>
         {products.map((product) => (
           <div key={product.id}>
+            <Modal />
             <ProductCard product={product} />
           </div>
         ))}
