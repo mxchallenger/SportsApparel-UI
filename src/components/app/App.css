@@ -81,5 +81,15 @@
 .warning {
   background-color: #f0ad4e;
 }
-
-
+.filter {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.MENS, .WOMENS, .KIDS {
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}

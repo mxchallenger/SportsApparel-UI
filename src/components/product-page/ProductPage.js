@@ -1,19 +1,33 @@
 import React, { useEffect, useState } from 'react';
+import { Box } from '@mui/system';
 import ReactPaginate from 'react-paginate';
 import ProductCard from '../product-card/ProductCard';
-import styles from './ProductPage.module.css';
 import Constants from '../../utils/constants';
-import fetchProducts from './ProductPageService';
-import fetchProductsCount from '../Pagination/Pagination_PageCount';
+import Filter from '../filter-menu/Filter';
+import { fetchProducts, fetchProductsCount } from './ProductPageService';
+import styles from './ProductPage.module.css';
 
 /**
  * @name ProductPage
  * @description fetches products from API and displays products as product cards
  * @return component
  */
+
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
+  const [urlQuery, setUrlQuery] = useState('');
+
+  const filterByQuery = () => {
+    fetchProducts(setProducts, urlQuery, setApiError);
+  };
+  useEffect(() => {
+    fetchProducts(setProducts, setApiError);
+  }, []);
+  useEffect(() => {
+    fetchProductsCount(setApiError, urlQuery);
+  }, [urlQuery]);
+
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
 
@@ -34,22 +48,28 @@ const ProductPage = () => {
   }, [count]);
   /**
    * This function allows clicks to individual page numbers
-   * @param {} selected
-   */
+   * @param { } selected
+        */
   const handleClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
   };
 
   return (
     <div>
-      {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <div className={styles.app}>
-        {products.map((product) => (
-          <div key={product.id}>
-            <ProductCard product={product} />
-          </div>
-        ))}
-      </div>
+      <Box>
+        <Filter
+          setUrlQuery={setUrlQuery}
+          applyFilters={filterByQuery}
+        />
+        {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
+        <div className={styles.app}>
+          {products.map((product) => (
+            <div key={product.id}>
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      </Box>
       <div>
         <ReactPaginate
           previousLabel="previous"
