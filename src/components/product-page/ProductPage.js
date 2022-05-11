@@ -4,6 +4,8 @@ import ReactPaginate from 'react-paginate';
 import ProductCard from '../product-card/ProductCard';
 import Constants from '../../utils/constants';
 import Filter from '../filter-menu/Filter';
+import fetchProducts2 from '../Pagination/PaginationService';
+import fetchProductsCount2 from '../Pagination/Pagination_PageCount';
 import { fetchProducts, fetchProductsCount } from './ProductPageService';
 import styles from './ProductPage.module.css';
 
@@ -17,6 +19,8 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [urlQuery, setUrlQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
+  const [count, setCount] = useState();
 
   const filterByQuery = () => {
     fetchProducts(setProducts, urlQuery, setApiError);
@@ -28,28 +32,27 @@ const ProductPage = () => {
     fetchProductsCount(setApiError, urlQuery);
   }, [urlQuery]);
 
-  const [currentPage, setCurrentPage] = useState(0);
-  const [count, setCount] = useState();
-
   /**
  * This hook fetches the current page number and
  * displays a number of products according
  * to page number
  */
   useEffect(() => {
-    fetchProducts(currentPage, setProducts, setApiError);
+    fetchProducts2(currentPage, setProducts, setApiError);
   }, [currentPage]);
   /**
    * This hook fetches the total page count of
    * the pagination
    */
   useEffect(() => {
-    fetchProductsCount(setCount, setApiError);
+    fetchProductsCount2(setCount, setApiError);
   }, [count]);
+
   /**
    * This function allows clicks to individual page numbers
    * @param { } selected
         */
+
   const handleClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
   };
