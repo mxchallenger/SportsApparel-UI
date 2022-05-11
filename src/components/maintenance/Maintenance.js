@@ -1,8 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback, useEffect, useMemo, useState
+} from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import Button from '@material-ui/core/Button';
 import fetchProducts from './MaintenanceService';
+// import updateProducts from './MaintenanceUpdateService';
 import { addColorBox } from './AddColorBox';
 import { addImage } from './AddImage';
 import { formatCurrency } from './FormatCurrency';
@@ -18,7 +22,8 @@ import Constants from '../../utils/constants';
 const Maintenance = () => {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
   const gridStyle = useMemo(() => ({ height: 500, width: '100%' }), []);
-
+  const getRowId = useCallback((params) => params.data.id, []);
+  const nameValueGetter = (params) => params.data.name;
   const columnDefs = [
     {
       field: 'id',
@@ -29,27 +34,23 @@ const Maintenance = () => {
     {
       field: 'name',
       sortable: true,
-      width: 250,
-      editable: true
+      width: 250
     },
     {
       field: 'description',
-      width: 250,
-      editable: true
+      width: 250
     },
     {
       field: 'price',
       sortable: true,
       type: 'rightAligned',
       width: 100,
-      valueFormatter: formatCurrency,
-      editable: true
+      valueFormatter: formatCurrency
     },
     {
       field: 'quantity',
       width: 100,
-      type: 'rightAligned',
-      editable: true
+      type: 'rightAligned'
     },
     {
       field: 'active',
@@ -59,40 +60,33 @@ const Maintenance = () => {
     },
     {
       field: 'category',
-      width: 150,
-      editable: true
+      width: 150
     },
     {
       field: 'type',
-      width: 125,
-      editable: true
+      width: 125
     },
     {
       field: 'brand',
-      width: 125,
-      editable: true
+      width: 125
     },
     {
       field: 'material',
-      width: 130,
-      editable: true
+      width: 130
     },
     { field: 'demographic' },
     {
       headerName: 'Image Source',
       field: 'imageSrc',
-      width: 250,
-      editable: true
+      width: 250
     },
     {
       headerName: 'Image',
       field: 'imageSrc',
-      cellRenderer: addImage,
-      editable: true
+      cellRenderer: addImage
     },
     {
-      field: 'primaryColorCode',
-      editable: true
+      field: 'primaryColorCode'
     },
     {
       headerName: 'Primary Color',
@@ -101,8 +95,7 @@ const Maintenance = () => {
       cellRenderer: addColorBox
     },
     {
-      field: 'secondaryColorCode',
-      editable: true
+      field: 'secondaryColorCode'
     },
     {
       headerName: 'Secondary Color',
@@ -112,18 +105,15 @@ const Maintenance = () => {
     },
     {
       field: 'styleNumber',
-      width: 130,
-      editable: true
+      width: 130
     },
     {
       field: 'sku',
-      width: 130,
-      editable: true
+      width: 130
     },
     {
       field: 'globalProductCode',
-      width: 175,
-      editable: true
+      width: 175
     },
     { field: 'releaseDate' },
     {
@@ -131,8 +121,7 @@ const Maintenance = () => {
       editable: false
     },
     {
-      field: 'dateModified',
-      editable: true
+      field: 'dateModified'
     }
   ];
 
@@ -154,11 +143,23 @@ const Maintenance = () => {
     <div style={containerStyle}>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR.concat(' Is the database running?')}</p>}
       <h1 style={{ color: 'black' }}>Products Maintenance View</h1>
+      <Button
+        variant="contained"
+        style={{
+          color: 'white', background: 'black', outlineColor: 'red', outlineWidth: '1px', outlineStyle: 'solid', marginLeft: '2px', marginBottom: '2px'
+        }}
+      >
+        Submit Changes
+
+      </Button>
       <div style={gridStyle} className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}
+          nameValueGetter={nameValueGetter}
+          onCellEditingStopped={nameValueGetter}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
+          getRowId={getRowId}
         />
       </div>
     </div>
