@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useCart } from './CartContext';
 import OrderItem from './OrderItem';
 import
 {
-  fetchRate,
+  setShippingStateHelper,
   fetchRateObject,
   getShippingRate,
   getSubtotal
@@ -27,29 +27,39 @@ const ReviewOrderWidget = () => {
   const [rate, setRateObject] = useState(0);
   const [apiError, setApiError] = useState(false);
 
-  // const {
-  //   state: { shippingRate }
-  // } = rate();
-
-  // const onDeliveryChange = (e) => {
-  //   setShippingState(e.target.value);
-  //   // fetchRate(setRateObject, [rate]);
-  // };
-
   const onDeliveryChange = (e) => {
     setShippingState(e.target.value);
-    setRateObject(rate);
+    setShippingStateHelper(setShippingState, shippingState, setApiError);
+    fetchRateObject(setRateObject, setApiError);
+    fetchRateObject(rate);
   };
 
-  useEffect(() => {
-    fetchRate(setShippingState, setApiError);
-  }, [shippingState]);
-  useEffect(() => {
-    fetchRateObject(setRateObject, setApiError);
-  }, [rate]);
-  useEffect(() => {
-    fetchRate(shippingState, setApiError);
-  }, [shippingState]);
+  // useEffect(() => {
+  //   fetchRateObject(setRateObject, setApiError);
+  // }, [rate]);
+  // useEffect(() => {
+  //   fetchProducts(setProducts, setApiError);
+  // }, []);
+  // useEffect(() => {
+  //   fetchProductsCount(setApiError, urlQuery);
+  // }, [urlQuery]);
+
+  // const onDeliveryChange = () => {
+  //   setShippingState(e.target.value);
+  //   useEffect(() => {
+  //     fetchRateObject(setRateObject, setApiError);
+  //   }, [rate]);
+  // };
+
+  // useEffect(() => {
+  //   setShippingStateHelper(setShippingState, setApiError);
+  // }, [shippingState]);
+  // useEffect(() => {
+  //   fetchRateObject(setRateObject, setApiError);
+  // }, [rate]);
+  // useEffect(() => {
+  //   setShippingStateHelper(shippingState, setApiError);
+  // }, [shippingState]);
 
   // const [rateObject, setRateObject] = useState({ rate: 1 });
 
@@ -98,7 +108,6 @@ const ReviewOrderWidget = () => {
         onChange={onDeliveryChange}
         value={shippingState.state}
         shippingState={shippingState}
-        rate={rate}
       />
     </>
   );
