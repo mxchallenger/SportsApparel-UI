@@ -91,7 +91,7 @@ const ProductPage = () => {
           nextLinkClassName={styles.pageLink}
           breakClassName={styles.pageItem}
           breakLinkClassName={styles.pageLink}
-          activeClassName={styles.pageItem}
+          activeClassName={styles.active}
           renderOnZeroPageCount={false}
           forcePage={currentPage}
           disabledClassName={styles.hide}
