@@ -131,7 +131,8 @@ const Maintenance = () => {
   };
   const [rowData, setRowData] = useState([]);
   const [apiError, setApiError] = useState(false);
-  // const printRow = (params) => console.log(params.data);
+  const [updatedRow, setUpdatedRow] = useState({});
+  const updateRow = (params) => setUpdatedRow(params.data);
   useEffect(() => {
     fetchProducts(setRowData, setApiError);
   }, []);
@@ -152,7 +153,8 @@ const Maintenance = () => {
       <div style={gridStyle} className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}
-          onCellValueChanged={setRowData}
+          updatedRow={updatedRow}
+          onCellValueChanged={updateRow}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
         />
