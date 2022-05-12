@@ -8,14 +8,6 @@
   color: #666666;
 }
 
-.invalid {
-  margin-top: .5em;
-  width: 100%;
-  padding: .5em;
-  box-sizing: border-box;
-  border-color: solid red 2px;
-}
-
 .errorMessage {
   color:red;
   font-weight: 400;
@@ -27,7 +19,7 @@
   width: 100%;
   padding: .5em;
   box-sizing: border-box;
-  border: red solid 2px
+  border: red dotted 3px
 }
 
 .input {

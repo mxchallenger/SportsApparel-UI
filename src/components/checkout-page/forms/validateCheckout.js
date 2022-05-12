@@ -95,25 +95,33 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
   } else if (!rEx.expiry.test(billing.expiration)) {
     errors.expiration = memos.expiryMmYy;
   } else {
+    // split the expiration date into parts
     const parts = billing.expiration.split(/\D/);
+    // convert month to int & add a month
     const month = parseInt(parts[0], 10) + 1;
+    // convert year to int
     const year = parseInt(parts[1], 10);
-    const dateString = `20${year}-``0${month}`;
-    if (Date.now > Date.parse(dateString)) {
+    // compile dateString param with YYYY-MM
+    const dateString = `20${year}-${month}`;
+    // get todays date in milliseconds since Jan 1, 1970
+    const today = Date.now();
+    // push dateString param through parse to get milliseconds since
+    // Jan 1, 1970 for card expiration date
+    const expiryDate = Date.parse(dateString);
+    // checks to see if card expiration is greater than today in milliseconds
+    if (today > expiryDate) {
       errors.expiration = memos.expiryPastDate;
     }
   }
-};
-// Runs the final validation step, checks to see if there are errors present
-// calls the purchase method if there are no errors
-// otherwise sets errors and runs a toast
+  // Runs the final validation step, checks to see if there are errors present
+  // calls the purchase method if there are no errors
+  // otherwise sets errors and runs a toast
 
-if (!Object.entries(errors).length > 0) {
-  purchaseObj();
-} else {
-  setErrors(errors);
-  toast.error('Purchase was not completed and you have not been charged. Please check your errors and try again.');
-}
+  if (!Object.entries(errors).length > 0) {
+    purchaseObj();
+  } else {
+    setErrors(errors);
+    toast.error('Purchase was not completed and you have not been charged. Please check your errors and try again.');
   }
 }
 export default validateCheckout;
