@@ -1,5 +1,5 @@
 import React, {
-  useCallback, useEffect, useMemo, useState
+  useEffect, useMemo, useState
 } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -22,8 +22,6 @@ import Constants from '../../utils/constants';
 const Maintenance = () => {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
   const gridStyle = useMemo(() => ({ height: 500, width: '100%' }), []);
-  const getRowId = useCallback((params) => params.data.id, []);
-  const nameValueGetter = (params) => params.data.name;
   const columnDefs = [
     {
       field: 'id',
@@ -131,10 +129,9 @@ const Maintenance = () => {
     editable: true,
     width: 110
   };
-
   const [rowData, setRowData] = useState([]);
   const [apiError, setApiError] = useState(false);
-
+  // const printRow = (params) => console.log(params.data);
   useEffect(() => {
     fetchProducts(setRowData, setApiError);
   }, []);
@@ -155,11 +152,9 @@ const Maintenance = () => {
       <div style={gridStyle} className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}
-          nameValueGetter={nameValueGetter}
-          onCellEditingStopped={nameValueGetter}
+          onCellValueChanged={setRowData}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
-          getRowId={getRowId}
         />
       </div>
     </div>
