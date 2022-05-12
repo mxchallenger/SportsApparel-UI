@@ -25,7 +25,7 @@ export const getSubtotal = (products) => toPrice(products.reduce(
  * @returns Number
  */
 export const getShippingRate = (products, rate) => {
-  if (getSubtotal(products) > `$${50}`) {
+  if (getSubtotal(products) > `$${50.00}`) {
     return `$${0 + rate}`;
   }
   return `$${5 + rate}`;

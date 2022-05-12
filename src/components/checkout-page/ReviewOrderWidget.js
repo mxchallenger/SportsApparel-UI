@@ -51,29 +51,31 @@ const ReviewOrderWidget = () => {
         />
       ))}
       <hr />
-      <div className={styles.subtotal}>
-        <div>
-          <p>Subtotal</p>
+      <div className="total">
+        <div className={styles.subtotal}>
+          <div>
+            <p>Subtotal</p>
+          </div>
+          <div className={styles.subtotal.price}>
+            <p>{getSubtotal(products)}</p>
+          </div>
         </div>
-        <div className={styles.price}>
-          <p>{getSubtotal(products)}</p>
+        <div className={styles.shipping.state}>
+          <FormItemDropdown
+            label="Delivery State"
+            onChange={onDeliveryChange}
+            value={usStates.state}
+            options={usStates}
+          />
         </div>
-      </div>
-      <div className={styles.shipping}>
-        <div>
-          <p>Shipping</p>
+        <div className={styles.shipping}>
+          <div>
+            <p>Shipping</p>
+          </div>
+          <div className={styles.shipping.price}>
+            <p>{getShippingRate(products, rate)}</p>
+          </div>
         </div>
-        <div className={styles.price}>
-          <p>{getShippingRate(products, rate)}</p>
-        </div>
-      </div>
-      <div>
-        <FormItemDropdown
-          label="State"
-          onChange={onDeliveryChange}
-          value={usStates.state}
-          options={usStates}
-        />
       </div>
     </>
   );

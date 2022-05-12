@@ -5,13 +5,30 @@ h1 {
   text-align: center;
   width: 300px;
 }
+.total {
+  max-width: 100%;
+  max-height: 100px;
+}
 .subtotal {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.price {
+.shipping {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.shipping .price {
   justify-self: end;
+}
+
+.subtotal .price {
+  justify-self: end;
+}
+.state{
+  display: flex;
+  justify-content: right;
 }
 .oops {
   max-width: 100%;
