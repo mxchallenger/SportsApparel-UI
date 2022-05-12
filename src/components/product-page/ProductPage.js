@@ -6,7 +6,7 @@ import Constants from '../../utils/constants';
 import Filter from '../filter-menu/Filter';
 import fetchProducts2 from '../Pagination/PaginationService';
 import fetchProductsCount2 from '../Pagination/Pagination_PageCount';
-import { fetchProducts, fetchProductsCount } from './ProductPageService';
+import { fetchProducts } from './ProductPageService';
 import styles from './ProductPage.module.css';
 
 /**
@@ -23,14 +23,14 @@ const ProductPage = () => {
   const [count, setCount] = useState();
 
   const filterByQuery = () => {
-    fetchProducts(setProducts, urlQuery, setApiError);
+    fetchProducts(setProducts, currentPage, urlQuery, setApiError);
   };
   useEffect(() => {
-    fetchProducts(setProducts, setApiError);
-  }, []);
-  useEffect(() => {
-    fetchProductsCount(setApiError, urlQuery);
-  }, [urlQuery]);
+    fetchProducts(currentPage, setProducts, setApiError);
+  }, [currentPage]);
+  // useEffect(() => {
+  //   fetchProductsCount(setApiError, urlQuery);
+  // }, [urlQuery]);
 
   /**
  * This hook fetches the current page number and
