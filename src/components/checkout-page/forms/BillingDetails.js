@@ -177,7 +177,7 @@ const BillingDetails = ({
       {errors && <p className={styles.errorMessage}>{errors.cvv}</p>}
 
       <FormItem
-        placeholder="e.g. 05/21"
+        placeholder="e.g. 05/23"
         type="text"
         id="expiration"
         label="Expiration"
