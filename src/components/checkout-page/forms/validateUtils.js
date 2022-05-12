@@ -1,5 +1,5 @@
 const memos = {
-  required: 'Required Field',
+  required: ' is required',
   names: 'Only contains letters, dashes, apostrophes and spaces.',
   street: 'Only contains letters, numbers, apostrophes and spaces.',
   city: 'Only contains letters, apostrophes and spaces.',

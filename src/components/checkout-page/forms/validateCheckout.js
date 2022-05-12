@@ -6,89 +6,89 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
 
   // validate names
   if (!delivery.firstName) {
-    errors.firstName = memos.required;
+    errors.firstName = `First name ${memos.required}`;
   } else if (!rEx.names.test(delivery.firstName)) {
     errors.firstName = memos.names;
   }
   if (!delivery.lastName) {
-    errors.lastName = memos.required;
+    errors.lastName = `Last name ${memos.required}`;
   } else if (!rEx.names.test(delivery.lastName)) {
     errors.lastName = memos.names;
   }
 
   if (!billing.cardholder) {
-    errors.cardholder = memos.required;
+    errors.cardholder = `Cardholder name ${memos.required}`;
   } else if (!rEx.names.test(billing.cardholder)) {
     errors.cardholder = memos.names;
   }
 
   // validate delivery street address
   if (!delivery.street) {
-    errors.street = memos.required;
+    errors.street = `Street ${memos.required}`;
   } else if (!rEx.street.test(delivery.street)) {
     errors.street = memos.street;
   }
   if (!delivery.city) {
-    errors.city = memos.required;
+    errors.city = `City ${memos.required}`;
   } else if (!rEx.names.test(delivery.city)) {
     errors.city = memos.names;
   }
   if (!delivery.zip) {
-    errors.zip = memos.required;
+    errors.zip = `Zip code ${memos.required}`;
   } else if (!rEx.zip.test(delivery.zip)) {
     errors.zip = memos.zip;
   }
   if (delivery.state === 'Choose State' || !delivery.state) {
-    errors.state = memos.required;
+    errors.state = `State ${memos.required}`;
   }
 
   // validate billing street address
   if (checked === false) {
     if (!billing.billingStreet) {
-      errors.billingStreet = memos.required;
+      errors.billingStreet = `Billing street ${memos.required}`;
     } else if (!rEx.street.test(billing.billingStreet)) {
       errors.billingStreet = memos.street;
     }
     if (!billing.billingCity) {
-      errors.billingCity = memos.required;
+      errors.billingCity = `Billing city ${memos.required}`;
     } else if (!rEx.names.test(billing.billingCity)) {
       errors.billingCity = memos.names;
     }
     if (!billing.billingZip) {
-      errors.billingZip = memos.required;
+      errors.billingZip = `Billing zip ${memos.required}`;
     } else if (!rEx.zip.test(billing.billingZip)) {
       errors.billingZip = memos.zip;
     }
     if (billing.billingState === 'Choose State' || !billing.billingState) {
-      errors.billingState = memos.required;
+      errors.billingState = `Billing state ${memos.required}`;
     }
   }
   // validate phone & email
   if (!billing.email) {
-    errors.email = memos.required;
+    errors.email = `Email ${memos.required}`;
   } else if (!rEx.email.test(billing.email)) {
     errors.email = memos.email;
   }
   if (!billing.phone) {
-    errors.phone = memos.required;
+    errors.phone = `Phone ${memos.required}`;
   } else if (!rEx.phone.test(billing.phone)) {
     errors.phone = memos.phone;
   }
 
   // validate credit card
   if (!billing.creditCard) {
-    errors.creditCard = memos.required;
+    errors.creditCard = `Card number ${memos.required}`;
   } else if (!rEx.cardNumber.test(billing.creditCard)) {
     errors.creditCard = memos.card;
   }
   if (!billing.cvv) {
-    errors.cvv = memos.required;
+    errors.cvv = `CVV ${memos.required}`;
   } else if (!rEx.cvv.test(billing.cvv)) {
     errors.cvv = memos.cvv;
   }
   // Checks if field is empty
   if (!billing.expiration) {
-    errors.expiration = memos.required;
+    errors.expiration = `Expiration date ${memos.required}`;
     // Checks for a month of 01-09 or 10-12
     // Checks for a special character of / or -
     // Checks for a decade of 2 or 3 followed by any digit 0-9
@@ -121,7 +121,7 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
     purchaseObj();
   } else {
     setErrors(errors);
-    toast.error('Purchase was not completed and you have not been charged. Please check your errors and try again.');
+    toast.error('Purchase was not charged, please check your errors and try again.');
   }
 }
 export default validateCheckout;
