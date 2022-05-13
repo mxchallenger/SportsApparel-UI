@@ -10,21 +10,21 @@ function Filter({ applyFilters, setUrlQuery }) {
       id: 1,
       title: 'Men',
       cName: 'navText',
-      filterAddy: 'Men&',
+      filterAddy: '&demographic=Men&',
       value: false
     },
     {
       id: 2,
       title: 'Women',
       cName: 'navText',
-      filterAddy: 'Women&',
+      filterAddy: '&demographic=Women&',
       value: false
     },
     {
       id: 3,
       title: 'Kids',
       cName: 'navText',
-      filterAddy: 'Kids&',
+      filterAddy: '&demographic=Kids&',
       value: false
     }
   ];
@@ -72,7 +72,6 @@ function Filter({ applyFilters, setUrlQuery }) {
     let query = '';
     const sections = Object.keys(filters);
     sections.forEach((section) => {
-      query += `&${section}=`;
       if (section === 'demographics') {
         const demographics = filters.demographic;
         if (demographics[0].value) {

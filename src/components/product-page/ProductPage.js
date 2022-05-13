@@ -22,12 +22,13 @@ const ProductPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
 
-  const filterByQuery = () => {
+  const filterByQuery = (selectedPage) => {
+    setCurrentPage(selectedPage);
     fetchProducts(setProducts, currentPage, urlQuery, setApiError);
   };
-  useEffect(() => {
-    fetchProducts(currentPage, setProducts, setApiError);
-  }, [currentPage]);
+  // useEffect(() => {
+  //   fetchProducts(selectedPage, setProducts, setApiError);
+  // }, [selectedPage]);
   // useEffect(() => {
   //   fetchProductsCount(setApiError, urlQuery);
   // }, [urlQuery]);
@@ -37,9 +38,17 @@ const ProductPage = () => {
  * displays a number of products according
  * to page number
  */
+  // useEffect(() => {
+  //   fetchProducts2(setProducts, setApiError);
+  // }, []);
+
+  // useEffect(() => {
+  //   fetchProducts2(setCurrentPage, setProducts, setApiError);
+  // }, [currentPage]);
   useEffect(() => {
-    fetchProducts2(currentPage, setProducts, setApiError);
-  }, [currentPage]);
+    fetchProducts2(setProducts, setApiError);
+  }, []);
+
   /**
    * This hook fetches the total page count of
    * the pagination
@@ -55,6 +64,7 @@ const ProductPage = () => {
 
   const handleClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
+    filterByQuery(selectedPage);
   };
 
   return (
@@ -92,8 +102,6 @@ const ProductPage = () => {
           breakClassName={styles.pageItem}
           breakLinkClassName={styles.pageLink}
           activeClassName={styles.active}
-          renderOnZeroPageCount={false}
-          forcePage={currentPage}
           disabledClassName={styles.hide}
         />
       </div>
