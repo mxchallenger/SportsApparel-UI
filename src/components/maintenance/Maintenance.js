@@ -4,7 +4,6 @@ import React, {
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import Button from '@material-ui/core/Button';
 import fetchProducts from './MaintenanceService';
 // import updateProducts from './MaintenanceUpdateService';
 import { addColorBox } from './AddColorBox';
@@ -13,6 +12,7 @@ import { formatCurrency } from './FormatCurrency';
 import { formatActive } from './FormatActive';
 import styles from './Maintenance.module.css';
 import Constants from '../../utils/constants';
+import { addSaveButton } from './AddSaveButton';
 
 /**
  * @name Maintenance
@@ -23,6 +23,14 @@ const Maintenance = () => {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
   const gridStyle = useMemo(() => ({ height: 500, width: '100%' }), []);
   const columnDefs = [
+    {
+      field: 'save edits',
+      sortable: false,
+      editable: false,
+      resizable: false,
+      width: 110,
+      cellRenderer: addSaveButton
+    },
     {
       field: 'id',
       sortable: true,
@@ -141,15 +149,6 @@ const Maintenance = () => {
     <div style={containerStyle}>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR.concat(' Is the database running?')}</p>}
       <h1 style={{ color: 'black' }}>Products Maintenance View</h1>
-      <Button
-        variant="contained"
-        style={{
-          color: 'white', background: 'black', outlineColor: 'red', outlineWidth: '1px', outlineStyle: 'solid', marginLeft: '2px', marginBottom: '2px'
-        }}
-      >
-        Submit Changes
-
-      </Button>
       <div style={gridStyle} className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}
