@@ -27,10 +27,10 @@ const ProductPage = () => {
     fetchProducts(setProducts, currentPage, urlQuery, setApiError);
   };
   // useEffect(() => {
-  //   fetchProducts(selectedPage, setProducts, setApiError);
-  // }, [selectedPage]);
+  //   fetchProducts(currentPage, setProducts, setApiError);
+  // }, []);
   // useEffect(() => {
-  //   fetchProductsCount(setApiError, urlQuery);
+  //   fetchProducts(setApiError, urlQuery);
   // }, [urlQuery]);
 
   /**
@@ -43,7 +43,7 @@ const ProductPage = () => {
   // }, []);
 
   // useEffect(() => {
-  //   fetchProducts2(setCurrentPage, setProducts, setApiError);
+  //   fetchProducts2(currentPage, setApiError);
   // }, [currentPage]);
   useEffect(() => {
     fetchProducts2(setProducts, setApiError);
@@ -102,6 +102,8 @@ const ProductPage = () => {
           breakClassName={styles.pageItem}
           breakLinkClassName={styles.pageLink}
           activeClassName={styles.active}
+          renderOnZeroPageCount={false}
+          forcePage={currentPage}
           disabledClassName={styles.hide}
         />
       </div>
