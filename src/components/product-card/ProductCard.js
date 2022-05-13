@@ -17,6 +17,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { toast } from 'react-toastify';
 import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
+import Modal from '../Product Modal/ProductModal';
 
 /**
  * @name useStyles
@@ -106,7 +107,7 @@ const ProductCard = ({ product }) => {
             </Avatar>
           )}
           action={(
-            <IconButton aria-label="settings">
+            <IconButton aria-label="settings" onMouseDown={(e) => e.stopPropagation(Modal)}>
               <MoreVertIcon />
             </IconButton>
           )}
@@ -129,13 +130,13 @@ const ProductCard = ({ product }) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
+          <IconButton aria-label="add to favorites" onMouseDown={(e) => e.stopPropagation(Modal)}>
             <FavoriteIcon />
           </IconButton>
-          <IconButton aria-label="share">
+          <IconButton aria-label="share" onMouseDown={(e) => e.stopPropagation(Modal)}>
             <ShareIcon />
           </IconButton>
-          <IconButton aria-label="add to shopping cart" onClick={onAdd}>
+          <IconButton aria-label="add to shopping cart" onClick={onAdd} onMouseDown={(e) => e.stopPropagation(Modal)}>
             <AddShoppingCartIcon />
           </IconButton>
         </CardActions>

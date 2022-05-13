@@ -56,7 +56,7 @@ const ProductPage = () => {
           <Modal className={modalStyles} props={show} onClose={() => setShow(false)} />
           {products.map((product) => (
             <div key={product.id}>
-              <button type="button" className={styles.button} onClick={() => setShow(true)}>
+              <button type="button" className={styles.button} onMouseDown={() => setShow(true)}>
                 <ProductCard product={product} />
               </button>
             </div>
