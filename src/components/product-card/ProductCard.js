@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -15,10 +15,8 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { toast } from 'react-toastify';
-/* import { modalStyles } from '../Product Modal/Product Modal.css'; */
 import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
-import Modal from '../Product Modal/ProductModal';
 
 /**
  * @name useStyles
@@ -96,25 +94,10 @@ const ProductCard = ({ product }) => {
     );
   };
 
-  /**
- * @name ProductModal
- * @description renders a modal that shows info for a single product
- * @param {*} props
- * @returns Modal
- */
-  function ProductModal() {
-    const [openModal, setOpenModal] = useState(false);
-  }
-  const closeUP = () => {
-    onClick = {};
-  };
   return (
     <>
       <Card
         className={classes.root}
-        onClick={() => {
-          setOpenModal(true);
-        }}
       >
         <CardHeader
           avatar={(
@@ -156,7 +139,6 @@ const ProductCard = ({ product }) => {
             <AddShoppingCartIcon />
           </IconButton>
         </CardActions>
-        <Modal />
       </Card>
 
     </>

@@ -19,3 +19,10 @@ float: center;
 .hide{
   display: none;
 }
+
+.button {
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+}

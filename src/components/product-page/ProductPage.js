@@ -6,6 +6,7 @@ import Constants from '../../utils/constants';
 import fetchProducts from '../Pagination/PaginationService';
 import fetchProductsCount from '../Pagination/Pagination_PageCount';
 import Modal from '../Product Modal/ProductModal';
+import modalStyles from '../Product Modal/Product Modal.css';
 
 /**
  * @name ProductPage
@@ -17,7 +18,7 @@ const ProductPage = () => {
   const [apiError, setApiError] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
-  const [openModal, setOpenModal] = useState(false);
+  const [show, setShow] = useState(false);
 
   /**
  * This hook fetches the current page number and
@@ -35,6 +36,10 @@ const ProductPage = () => {
     fetchProductsCount(setCount, setApiError);
   }, [count]);
 
+  /*  useEffect(() => {
+    Modal(show, setShow);
+  }, [show]); */
+
   /**
    * This function allows clicks to individual page numbers
    * @param {} selected
@@ -42,43 +47,47 @@ const ProductPage = () => {
   const handleClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
   };
-
   return (
-    <div>
-      {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <div className={styles.app}>
-        {products.map((product) => (
-          <div key={product.id}>
-            <Modal />
-            <ProductCard product={product} />
-          </div>
-        ))}
-      </div>
+    <>
+
       <div>
-        <ReactPaginate
-          previousLabel="previous"
-          nextLabel="next"
-          breakLabel="..."
-          pageCount={count}
-          marginPagesDisplayed={0}
-          pageRangeDisplayed={9}
-          onPageChange={handleClick}
-          containerClassName="pagination justify-content-center"
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          previousClassName="page-item"
-          previousLinkClassName="page-link"
-          nextClassName="page-item"
-          nextLinkClassName="page-link"
-          breakClassName="page-item"
-          breakLinkClassName="page-link"
-          activeClassName="active"
-          renderOnZeroPageCount={false}
-          forcePage={currentPage}
-          disabledClassName={styles.hide}
-        />
+        {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
+        <div className={styles.app}>
+          <Modal className={modalStyles} props={show} onClose={() => setShow(false)} />
+          {products.map((product) => (
+            <div key={product.id}>
+              <button type="button" className={styles.button} onClick={() => setShow(true)}>
+                <ProductCard product={product} />
+              </button>
+            </div>
+          ))}
+        </div>
+        <div>
+          <ReactPaginate
+            previousLabel="previous"
+            nextLabel="next"
+            breakLabel="..."
+            pageCount={count}
+            marginPagesDisplayed={0}
+            pageRangeDisplayed={9}
+            onPageChange={handleClick}
+            containerClassName="pagination justify-content-center"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="page-item"
+            previousLinkClassName="page-link"
+            nextClassName="page-item"
+            nextLinkClassName="page-link"
+            breakClassName="page-item"
+            breakLinkClassName="page-link"
+            activeClassName="active"
+            renderOnZeroPageCount={false}
+            forcePage={currentPage}
+            disabledClassName={styles.hide}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
