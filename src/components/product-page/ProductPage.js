@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 import ProductCard from '../product-card/ProductCard';
 import Constants from '../../utils/constants';
 import Filter from '../filter-menu/Filter';
-import fetchProducts2 from '../Pagination/PaginationService';
+// import fetchProducts2 from '../Pagination/PaginationService';
 import fetchProductsCount2 from '../Pagination/Pagination_PageCount';
 import { fetchProducts } from './ProductPageService';
 import styles from './ProductPage.module.css';
@@ -15,39 +15,17 @@ import styles from './ProductPage.module.css';
  * @return component
  */
 
-const ProductPage = () => {
+const ProductPage = (filterByQuery) => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [urlQuery, setUrlQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
 
-  const filterByQuery = (selectedPage) => {
-    setCurrentPage(selectedPage);
-    fetchProducts(setProducts, currentPage, urlQuery, setApiError);
-  };
-  // useEffect(() => {
-  //   fetchProducts(currentPage, setProducts, setApiError);
-  // }, []);
-  // useEffect(() => {
-  //   fetchProducts(setApiError, urlQuery);
-  // }, [urlQuery]);
-
-  /**
- * This hook fetches the current page number and
- * displays a number of products according
- * to page number
- */
-  // useEffect(() => {
-  //   fetchProducts2(setProducts, setApiError);
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchProducts2(currentPage, setApiError);
-  // }, [currentPage]);
   useEffect(() => {
-    fetchProducts2(setProducts, setApiError);
-  }, []);
+    fetchProducts(setProducts, currentPage, urlQuery, setApiError);
+  }, [currentPage, urlQuery]);
+
   /**
    * This hook fetches the total page count of
    * the pagination
@@ -63,7 +41,6 @@ const ProductPage = () => {
 
   const handleClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
-    filterByQuery(selectedPage);
   };
 
   return (
