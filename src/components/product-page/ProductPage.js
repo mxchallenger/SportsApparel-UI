@@ -6,7 +6,7 @@ import Constants from '../../utils/constants';
 import Filter from '../filter-menu/Filter';
 import fetchProducts2 from '../Pagination/PaginationService';
 import fetchProductsCount2 from '../Pagination/Pagination_PageCount';
-import { fetchProducts, fetchProductsCount } from './ProductPageService';
+import fetchProducts from './ProductPageService';
 import styles from './ProductPage.module.css';
 
 /**
@@ -23,13 +23,13 @@ const ProductPage = () => {
   const [count, setCount] = useState();
 
   const filterByQuery = () => {
-    fetchProducts(setProducts, urlQuery, setApiError);
+    fetchProducts(setProducts, currentPage, urlQuery, setApiError);
   };
   useEffect(() => {
-    fetchProducts(setProducts, setApiError);
-  }, []);
+    fetchProducts(currentPage, setProducts, setApiError);
+  }, [currentPage]);
   useEffect(() => {
-    fetchProductsCount(setApiError, urlQuery);
+    fetchProducts(setApiError, urlQuery);
   }, [urlQuery]);
 
   /**
@@ -38,8 +38,8 @@ const ProductPage = () => {
  * to page number
  */
   useEffect(() => {
-    fetchProducts2(currentPage, setProducts, setApiError);
-  }, [currentPage]);
+    fetchProducts2(setProducts, setApiError);
+  }, []);
   /**
    * This hook fetches the total page count of
    * the pagination
@@ -55,6 +55,7 @@ const ProductPage = () => {
 
   const handleClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
+    filterByQuery(selectedPage);
   };
 
   return (

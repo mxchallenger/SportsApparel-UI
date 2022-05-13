@@ -10,8 +10,8 @@ import Constants, { PRODUCTS_ACTIVE_ENDPOINT } from '../../utils/constants';
  * @param {*} currentPage gets current page
  * @returns sets state for products if 200 response, else sets state for apiError
  */
-export default async function fetchProducts2(currentPage, setProducts, setApiError) {
-  await HttpHelper(`${PRODUCTS_ACTIVE_ENDPOINT}${currentPage + 1}`, 'GET')
+export default async function fetchProducts2(setProducts, setApiError) {
+  await HttpHelper(`${PRODUCTS_ACTIVE_ENDPOINT}${1}`, 'GET')
     .then((response) => {
       if (response.ok) {
         return response.json();
