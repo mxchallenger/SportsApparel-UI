@@ -19,24 +19,16 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [urlQuery, setUrlQuery] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState();
-  const pageOne = [
-    {
-      id: 1,
-      page: 1
-    }
-  ];
-  // when filters button is applied should reset to 1
+
   const filterByQuery = (selected) => {
     fetchProducts(setProducts, selected, urlQuery, setApiError);
-    setCurrentPage(selectedPage);
   };
+  useEffect(() => {
+    fetchProducts(setProducts, setApiError);
+  }, []);
   // useEffect(() => {
-  //   fetchProducts(selectedPage, setProducts, setApiError);
-  // }, [selectedPage]);
-  // useEffect(() => {
-  //   fetchProductsCount(setApiError, urlQuery);
+  //   fetchProducts(setApiError, urlQuery);
   // }, [urlQuery]);
 
   /**
@@ -45,15 +37,21 @@ const ProductPage = () => {
  * to page number
  */
   useEffect(() => {
-    fetchProducts(setProducts, currentPage, setApiError);
-  }, [currentPage]);
-
-  // useEffect(() => {
-  //   fetchProducts2(setCurrentPage, setProducts, setApiError);
-  // }, [currentPage]);
-  useEffect(() => {
     fetchProducts2(setProducts, setApiError);
   }, []);
+
+  // useEffect(() => {
+  //   fetchProducts2(setCurrentPage, setApiError);
+  // }, [currentPage]);
+  // useEffect(() => {
+  //   fetchProducts(setProducts, setApiError);
+  // }, []);
+
+  // const useMountEffect = (setProducts) => useEffect(setProducts, []);
+  // useEffect((currentPage) => {
+  //   if (currentPage === 1)
+  //   { fetchProductsCount(setProducts, setApiError); }
+  // }, []);
 
   /**
    * This hook fetches the total page count of
@@ -63,17 +61,12 @@ const ProductPage = () => {
     fetchProductsCount2(setCount, setApiError);
   }, [count]);
 
-  useEffect(() => {
-    gotoPage(1);
-  }, [gotoPage]);
-
   /**
    * This function allows clicks to individual page numbers
    * @param { } selected
         */
 
   const handleClick = ({ selected }) => {
-    setCurrentPage(selected);
     filterByQuery(selected);
   };
 
@@ -101,6 +94,8 @@ const ProductPage = () => {
           pageCount={count}
           marginPagesDisplayed={0}
           pageRangeDisplayed={9}
+          // onClick={{ selected: selectedPage }}
+          // onPageActive={handleClick}
           onPageChange={handleClick}
           containerClassName={`${styles.pagination} ${styles.justifyContentCenter}`}
           pageClassName={styles.pageItem}
