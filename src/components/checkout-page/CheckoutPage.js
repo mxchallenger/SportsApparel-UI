@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useCart } from './CartContext';
+import
+{
+  fetchRate
+}
+  from './ReviewOrderWidgetService';
 import styles from './CheckoutPage.module.css';
 import ReviewOrderWidget from './ReviewOrderWidget';
 import DeliveryAddress from './forms/DeliveryAddress';
@@ -20,6 +25,7 @@ const CheckoutPage = () => {
   } = useCart();
 
   const [billingData, setBillingData] = React.useState({});
+  const [rate, setRate] = useState(0);
 
   const onBillingChange = (e) => {
     setBillingData({ ...billingData, [e.target.id]: e.target.value });
@@ -29,6 +35,9 @@ const CheckoutPage = () => {
 
   const onDeliveryChange = (e) => {
     setDeliveryData({ ...deliveryData, [e.target.id]: e.target.value });
+    const shippingState = e.target.value;
+    fetchRate(setRate, shippingState);
+    setRate(rate);
   };
 
   const [checked, setChecked] = React.useState(false);
