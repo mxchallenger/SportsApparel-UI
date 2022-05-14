@@ -6,7 +6,7 @@ import Constants from '../../utils/constants';
 import Filter from '../filter-menu/Filter';
 // import fetchProducts2 from '../Pagination/PaginationService';
 import fetchProductsCount2 from '../Pagination/Pagination_PageCount';
-import { fetchProducts } from './ProductPageService';
+import fetchProducts from './ProductPageService';
 import styles from './ProductPage.module.css';
 
 /**
@@ -15,15 +15,30 @@ import styles from './ProductPage.module.css';
  * @return component
  */
 
-const ProductPage = (filterByQuery) => {
+const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [urlQuery, setUrlQuery] = useState('');
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState();
 
+  const filterByQuery = (selected) => {
+    fetchProducts(setProducts, selected, urlQuery, setApiError);
+    setCurrentPage(selectedPage);
+  };
   useEffect(() => {
-    fetchProducts(setProducts, currentPage, urlQuery, setApiError);
+    fetchProducts(setProducts, setApiError);
+  }, []);
+
+  // set const to hold all queries coming .. in not setting urlQuery every time a box is checked
+  // const applyFilters = (selectedPage) => {
+  //   setCurrentPage(selectedPage);
+  //  setUrlQuery(incomingQueries); //  work here
+  // fetchProducts(setProducts, currentPage, urlQuery, setApiError);
+  // };
+
+  useEffect(() => {
+    fetchProducts(setProducts, currentPage, setApiError);
   }, [currentPage, urlQuery]);
 
   /**
@@ -48,7 +63,7 @@ const ProductPage = (filterByQuery) => {
       <Box>
         <Filter
           setUrlQuery={setUrlQuery}
-          applyFilters={filterByQuery}
+          applyFilters={applyFilters}
         />
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
         <div className={styles.app}>
