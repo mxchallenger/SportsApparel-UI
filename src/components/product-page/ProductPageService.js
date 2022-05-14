@@ -30,16 +30,16 @@ export default async function fetchProducts(setProducts, currentPage, urlQuery, 
 * @param {*} setApiError sets error if response other than 200 is returned
 * @returns sets state for product count if 200 response, else sets state for apiError
 */
-/* export async function fetchProductsCount(setCount, setApiError, queryString) {
-  await HttpHelper(`${Constants.PRODUCTS_ACTIVE_ENDPOINT}?${queryString}`, 'GET')
+export async function fetchProductsCount(setProducts, setApiError) {
+  await HttpHelper(`${Constants.PRODUCTS_ACTIVE_ENDPOINT}${1}`, 'GET')
     .then((response) => {
       if (response.ok) {
         return response.json();
       }
       throw new Error(Constants.API_ERROR);
     })
-    .then(setCount)
+    .then(setProducts)
     .catch(() => {
       setApiError(false);
     });
-} */
+}

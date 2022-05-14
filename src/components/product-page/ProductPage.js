@@ -19,27 +19,39 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [urlQuery, setUrlQuery] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState();
 
   const filterByQuery = (selected) => {
     fetchProducts(setProducts, selected, urlQuery, setApiError);
-    setCurrentPage(selectedPage);
   };
   useEffect(() => {
     fetchProducts(setProducts, setApiError);
   }, []);
+  // useEffect(() => {
+  //   fetchProducts(setApiError, urlQuery);
+  // }, [urlQuery]);
 
-  // set const to hold all queries coming .. in not setting urlQuery every time a box is checked
-  // const applyFilters = (selectedPage) => {
-  //   setCurrentPage(selectedPage);
-  //  setUrlQuery(incomingQueries); //  work here
-  // fetchProducts(setProducts, currentPage, urlQuery, setApiError);
-  // };
-
+  /**
+ * This hook fetches the current page number and
+ * displays a number of products according
+ * to page number
+ */
   useEffect(() => {
-    fetchProducts(setProducts, currentPage, setApiError);
-  }, [currentPage, urlQuery]);
+    fetchProducts(setProducts, setApiError);
+  }, []);
+
+  // useEffect(() => {
+  //   fetchProducts2(setCurrentPage, setApiError);
+  // }, [currentPage]);
+  // useEffect(() => {
+  //   fetchProducts(setProducts, setApiError);
+  // }, []);
+
+  // const useMountEffect = (setProducts) => useEffect(setProducts, []);
+  // useEffect((currentPage) => {
+  //   if (currentPage === 1)
+  //   { fetchProductsCount(setProducts, setApiError); }
+  // }, []);
 
   /**
    * This hook fetches the total page count of
@@ -54,8 +66,8 @@ const ProductPage = () => {
    * @param { } selected
         */
 
-  const handleClick = ({ selected: selectedPage }) => {
-    setCurrentPage(selectedPage);
+  const handleClick = ({ selected }) => {
+    filterByQuery(selected);
   };
 
   return (
@@ -82,6 +94,8 @@ const ProductPage = () => {
           pageCount={count}
           marginPagesDisplayed={0}
           pageRangeDisplayed={9}
+          // onClick={{ selected: selectedPage }}
+          // onPageActive={handleClick}
           onPageChange={handleClick}
           containerClassName={`${styles.pagination} ${styles.justifyContentCenter}`}
           pageClassName={styles.pageItem}
@@ -94,7 +108,6 @@ const ProductPage = () => {
           breakLinkClassName={styles.pageLink}
           activeClassName={styles.active}
           renderOnZeroPageCount={false}
-          forcePage={currentPage}
           disabledClassName={styles.hide}
         />
       </div>
