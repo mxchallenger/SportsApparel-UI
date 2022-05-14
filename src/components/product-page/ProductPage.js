@@ -63,6 +63,10 @@ const ProductPage = () => {
     fetchProductsCount2(setCount, setApiError);
   }, [count]);
 
+  useEffect(() => {
+    gotoPage(1);
+  }, [gotoPage]);
+
   /**
    * This function allows clicks to individual page numbers
    * @param { } selected
