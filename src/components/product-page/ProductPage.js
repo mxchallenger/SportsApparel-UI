@@ -27,9 +27,10 @@ const ProductPage = () => {
       page: 1
     }
   ];
-
+  // when filters button is applied should reset to 1
   const filterByQuery = (selected) => {
     fetchProducts(setProducts, selected, urlQuery, setApiError);
+    setCurrentPage(selectedPage);
   };
   // useEffect(() => {
   //   fetchProducts(selectedPage, setProducts, setApiError);
