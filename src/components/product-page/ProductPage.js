@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 import ProductCard from '../product-card/ProductCard';
 import Constants from '../../utils/constants';
 import Filter from '../filter-menu/Filter';
-// import fetchProducts2 from '../Pagination/PaginationService';
+import fetchProducts2 from '../Pagination/PaginationService';
 import fetchProductsCount2 from '../Pagination/Pagination_PageCount';
 import fetchProducts from './ProductPageService';
 import styles from './ProductPage.module.css';
@@ -24,39 +24,18 @@ const ProductPage = () => {
   const filterByQuery = (selected) => {
     fetchProducts(setProducts, selected, urlQuery, setApiError);
   };
+
   useEffect(() => {
     fetchProducts(setProducts, setApiError);
   }, []);
-  // useEffect(() => {
-  //   fetchProducts(setApiError, urlQuery);
-  // }, [urlQuery]);
-
-  /**
- * This hook fetches the current page number and
- * displays a number of products according
- * to page number
- */
-  useEffect(() => {
-    fetchProducts(setProducts, setApiError);
-  }, []);
-
-  // useEffect(() => {
-  //   fetchProducts2(setCurrentPage, setApiError);
-  // }, [currentPage]);
-  // useEffect(() => {
-  //   fetchProducts(setProducts, setApiError);
-  // }, []);
-
-  // const useMountEffect = (setProducts) => useEffect(setProducts, []);
-  // useEffect((currentPage) => {
-  //   if (currentPage === 1)
-  //   { fetchProductsCount(setProducts, setApiError); }
-  // }, []);
-
   /**
    * This hook fetches the total page count of
    * the pagination
    */
+  useEffect(() => {
+    fetchProducts2(setProducts, setApiError);
+  }, []);
+
   useEffect(() => {
     fetchProductsCount2(setCount, setApiError);
   }, [count]);
@@ -75,7 +54,7 @@ const ProductPage = () => {
       <Box>
         <Filter
           setUrlQuery={setUrlQuery}
-          applyFilters={applyFilters}
+          applyFilters={filterByQuery}
         />
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
         <div className={styles.app}>
