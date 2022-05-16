@@ -5,14 +5,14 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import fetchProducts from './MaintenanceService';
-// import updateProducts from './MaintenanceUpdateService';
 import { addColorBox } from './AddColorBox';
 import { addImage } from './AddImage';
 import { formatCurrency } from './FormatCurrency';
 import { formatActive } from './FormatActive';
 import styles from './Maintenance.module.css';
 import Constants from '../../utils/constants';
-import { addSaveButton } from './AddSaveButton';
+import { AddSaveButton } from './AddSaveButton';
+import updateProducts from './MaintenanceUpdateService';
 
 /**
  * @name Maintenance
@@ -24,12 +24,15 @@ const Maintenance = () => {
   const gridStyle = useMemo(() => ({ height: 500, width: '100%' }), []);
   const columnDefs = [
     {
-      field: 'save edits',
+      field: 'save row',
+      type: 'rightAligned',
       sortable: false,
       editable: false,
       resizable: false,
-      width: 110,
-      cellRenderer: addSaveButton
+      pinned: 'left',
+      width: 120,
+      cellRenderer: AddSaveButton,
+      onCellDoubleClicked: updateProducts
     },
     {
       field: 'id',
@@ -153,6 +156,7 @@ const Maintenance = () => {
         <AgGridReact
           rowData={rowData}
           updatedRow={updatedRow}
+          onCellDoubleClicked
           onCellValueChanged={updateRow}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
