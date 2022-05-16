@@ -19,19 +19,6 @@ export const getSubtotal = (products) => toPrice(products.reduce(
 ));
 
 /**
- * Gets the subtotal of an order
- * * @param {Object []} products
- * * @param {int} rate
- * @returns Number
- */
-export const getShippingRate = (products, rate) => {
-  if (getSubtotal(products) > `$${50.00}`) {
-    return `$${0 + rate}`;
-  }
-  return `$${5 + rate}`;
-};
-
-/**
  *
  * @name fetchRate
  * @description Utilizes HttpHelper to make a get request to an API

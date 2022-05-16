@@ -34,7 +34,6 @@ const CheckoutPage = () => {
   const [deliveryData, setDeliveryData] = React.useState({});
 
   const onDeliveryChange = (e) => {
-    setDeliveryData({ ...deliveryData, [e.target.id]: e.target.value });
     const shippingState = e.target.value;
     fetchRate(setRate, shippingState);
     setRate(rate);
@@ -44,8 +43,9 @@ const CheckoutPage = () => {
   const handleCheck = () => {
     setChecked(!checked);
   };
-  const handlePay = () => {
+  const handlePay = (e) => {
     const productData = products.map(({ id, quantity }) => ({ id, quantity }));
+    setDeliveryData({ ...deliveryData, [e.target.id]: e.target.value });
     const deliveryAddress = {
       firstName: deliveryData.firstName,
       lastName: deliveryData.lastName,
@@ -85,7 +85,9 @@ const CheckoutPage = () => {
     <div className={styles.checkoutContainer}>
       <div className={`${styles.step} ${styles.order}`}>
         <h3 className={styles.title}>1. Review Order</h3>
-        <ReviewOrderWidget />
+        <ReviewOrderWidget
+          rate={rate}
+        />
       </div>
       <div className={`${styles.step} ${styles.delivery}`}>
         <h3 className={styles.title}>2. Delivery Address</h3>
