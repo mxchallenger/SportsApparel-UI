@@ -34,18 +34,20 @@ const CheckoutPage = () => {
   const [deliveryData, setDeliveryData] = React.useState({});
 
   const onDeliveryChange = (e) => {
-    const shippingState = e.target.value;
-    fetchRate(setRate, shippingState);
-    setRate(rate);
+    if (e.target.id === 'state') {
+      const shippingState = e.target.value;
+      fetchRate(setRate, shippingState);
+      setRate(rate);
+    }
+    setDeliveryData({ ...deliveryData, [e.target.id]: e.target.value });
   };
 
   const [checked, setChecked] = React.useState(false);
   const handleCheck = () => {
     setChecked(!checked);
   };
-  const handlePay = (e) => {
+  const handlePay = () => {
     const productData = products.map(({ id, quantity }) => ({ id, quantity }));
-    setDeliveryData({ ...deliveryData, [e.target.id]: e.target.value });
     const deliveryAddress = {
       firstName: deliveryData.firstName,
       lastName: deliveryData.lastName,
