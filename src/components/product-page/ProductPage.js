@@ -19,14 +19,16 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [urlQuery, setUrlQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
 
   const filterByQuery = (selected) => {
+    setCurrentPage(selected);
     fetchProducts(setProducts, selected, urlQuery, setApiError);
   };
-  useEffect(() => {
-    fetchProducts(setProducts, setApiError);
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts(currentPage, setProducts, setApiError);
+  // }, []);
   // useEffect(() => {
   //   fetchProducts(setApiError, urlQuery);
   // }, [urlQuery]);
@@ -36,22 +38,16 @@ const ProductPage = () => {
  * displays a number of products according
  * to page number
  */
+  // useEffect(() => {
+  //   fetchProducts2(setProducts, setApiError);
+  // }, []);
+
+  // useEffect(() => {
+  //   fetchProducts2(currentPage, setApiError);
+  // }, [currentPage]);
   useEffect(() => {
     fetchProducts2(setProducts, setApiError);
   }, []);
-
-  // useEffect(() => {
-  //   fetchProducts2(setCurrentPage, setApiError);
-  // }, [currentPage]);
-  // useEffect(() => {
-  //   fetchProducts(setProducts, setApiError);
-  // }, []);
-
-  // const useMountEffect = (setProducts) => useEffect(setProducts, []);
-  // useEffect((currentPage) => {
-  //   if (currentPage === 1)
-  //   { fetchProductsCount(setProducts, setApiError); }
-  // }, []);
 
   /**
    * This hook fetches the total page count of
@@ -67,6 +63,7 @@ const ProductPage = () => {
         */
 
   const handleClick = ({ selected }) => {
+    setCurrentPage(selected);
     filterByQuery(selected);
   };
 
@@ -94,8 +91,6 @@ const ProductPage = () => {
           pageCount={count}
           marginPagesDisplayed={0}
           pageRangeDisplayed={9}
-          // onClick={{ selected: selectedPage }}
-          // onPageActive={handleClick}
           onPageChange={handleClick}
           containerClassName={`${styles.pagination} ${styles.justifyContentCenter}`}
           pageClassName={styles.pageItem}
@@ -108,6 +103,7 @@ const ProductPage = () => {
           breakLinkClassName={styles.pageLink}
           activeClassName={styles.active}
           renderOnZeroPageCount={false}
+          forcePage={currentPage}
           disabledClassName={styles.hide}
         />
       </div>

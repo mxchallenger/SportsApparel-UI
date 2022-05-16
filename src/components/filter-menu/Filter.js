@@ -119,7 +119,7 @@ function Filter({ applyFilters, setUrlQuery }) {
                     name="demographics"
                     value="demographics"
                     checked={item.value}
-                    onClick={() => handleFilterChange('demographic', item.id)}
+                    onChange={() => handleFilterChange('demographic', item.id)}
                   />
                 </div>
                 <span>{item.title}</span>
