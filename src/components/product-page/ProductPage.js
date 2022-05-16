@@ -26,28 +26,6 @@ const ProductPage = () => {
     setCurrentPage(selected);
     fetchProducts(setProducts, selected, urlQuery, setApiError);
   };
-  // useEffect(() => {
-  //   fetchProducts(currentPage, setProducts, setApiError);
-  // }, []);
-  // useEffect(() => {
-  //   fetchProducts(setApiError, urlQuery);
-  // }, [urlQuery]);
-
-  /**
- * This hook fetches the current page number and
- * displays a number of products according
- * to page number
- */
-  // useEffect(() => {
-  //   fetchProducts2(setProducts, setApiError);
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchProducts2(currentPage, setApiError);
-  // }, [currentPage]);
-  useEffect(() => {
-    fetchProducts2(setProducts, setApiError);
-  }, []);
 
   /**
    * This hook fetches the total page count of
