@@ -87,7 +87,12 @@ const BillingDetails = ({
             value={billingData.billingStreet}
             className={(errors.billingStreet ? styles.errorBorder : styles.input)}
           />
-          {errors && <p className={styles.errorMessage}>{errors.billingStreet}</p>}
+          {errors && (
+            <p className={styles.errorMessage}>
+              {FormItem.label}
+              {errors.billingStreet}
+            </p>
+          )}
 
           <FormItem
             placeholder="e.g. Unit #1"

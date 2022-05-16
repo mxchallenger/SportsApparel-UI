@@ -1,15 +1,15 @@
 const memos = {
   required: 'is required',
-  names: 'Only contains letters, dashes, apostrophes and spaces.',
-  street: 'Only contains letters, numbers, apostrophes and spaces.',
-  city: 'Only contains letters, apostrophes and spaces.',
-  zip: 'Only contains 5-9 digits with xxxxx or xxxxx-xxxx',
-  email: 'Invalid email, only contains letters, numbers, dashes, underscores',
-  phone: 'Only contains 10 digits, no special characters',
-  card: 'Only contains 14-19 numbers, no special characters',
-  cvv: 'Contains 3-4 digits',
-  expiryMmYy: 'Invalid Date, must be MM/YY or MM-YY. Please check your date values.',
-  expiryPastDate: 'Credit Card is expired'
+  names: 'is invalid. Can only contain letters, dashes, apostrophes and spaces.',
+  street: 'is invalid. Can only contain letters, numbers, apostrophes and spaces.',
+  city: 'is invalid. Can only contain letters, apostrophes and spaces.',
+  zip: 'Zip Code is invalid. Can only contain 5-9 digits with xxxxx or xxxxx-xxxx.',
+  email: 'Email is invalid. Can only contain letters, numbers, dashes, underscores.',
+  phone: 'Phone is invalid. Can only contain 10 digits.',
+  card: 'Card number is invalid. Can only contain 14-19 numbers, no special characters.',
+  cvv: 'CVV is invalid. Can only contain 3-4 digits.',
+  expiryMmYy: 'Expiration date is invalid. Must be MM/YY or MM-YY. Please check your date.',
+  expiryPastDate: 'Credit Card is expired.'
 };
 
 const rEx = {

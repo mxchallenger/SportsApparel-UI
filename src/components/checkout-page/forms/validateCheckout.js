@@ -9,35 +9,35 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
     errors.firstName = `First Name ${memos.required}`;
     // ${label}? for first names?
   } else if (!rEx.names.test(delivery.firstName)) {
-    errors.firstName = memos.names;
+    errors.firstName = `First Name ${memos.names}`;
   }
   if (!delivery.lastName) {
     errors.lastName = `Last name ${memos.required}`;
   } else if (!rEx.names.test(delivery.lastName)) {
-    errors.lastName = memos.names;
+    errors.lastName = `Last name ${memos.names}`;
   }
 
   if (!billing.cardholder) {
-    errors.cardholder = `${Label} ${memos.required}`;
+    errors.cardholder = `Cardholder name ${memos.required}`;
   } else if (!rEx.names.test(billing.cardholder)) {
-    errors.cardholder = memos.names;
+    errors.cardholder = `Cardholder name ${memos.names}`;
   }
 
   // validate delivery street address
   if (!delivery.street) {
     errors.street = `Street ${memos.required}`;
   } else if (!rEx.street.test(delivery.street)) {
-    errors.street = memos.street;
+    errors.street = `Street ${memos.street}`;
   }
   if (!delivery.city) {
     errors.city = `City ${memos.required}`;
   } else if (!rEx.names.test(delivery.city)) {
-    errors.city = memos.names;
+    errors.city = `City ${memos.city}`;
   }
   if (!delivery.zip) {
     errors.zip = `Zip code ${memos.required}`;
   } else if (!rEx.zip.test(delivery.zip)) {
-    errors.zip = memos.zip;
+    errors.zip = `Delivery ${memos.zip}`;
   }
   if (delivery.state === 'Choose State' || !delivery.state) {
     errors.state = `State ${memos.required}`;
@@ -48,17 +48,17 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
     if (!billing.billingStreet) {
       errors.billingStreet = `Billing street ${memos.required}`;
     } else if (!rEx.street.test(billing.billingStreet)) {
-      errors.billingStreet = memos.street;
+      errors.billingStreet = `Billing street ${memos.street}`;
     }
     if (!billing.billingCity) {
       errors.billingCity = `Billing city ${memos.required}`;
     } else if (!rEx.names.test(billing.billingCity)) {
-      errors.billingCity = memos.names;
+      errors.billingCity = `Billing city ${memos.city}`;
     }
     if (!billing.billingZip) {
       errors.billingZip = `Billing zip ${memos.required}`;
     } else if (!rEx.zip.test(billing.billingZip)) {
-      errors.billingZip = memos.zip;
+      errors.billingZip = `Billing ${memos.zip}`;
     }
     if (billing.billingState === 'Choose State' || !billing.billingState) {
       errors.billingState = `Billing state ${memos.required}`;
@@ -82,6 +82,7 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
   } else if (!rEx.cardNumber.test(billing.creditCard)) {
     errors.creditCard = memos.card;
   }
+
   if (!billing.cvv) {
     errors.cvv = `CVV ${memos.required}`;
   } else if (!rEx.cvv.test(billing.cvv)) {
