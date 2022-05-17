@@ -2,17 +2,78 @@ import React from 'react';
 import FormItem from '../../form/FormItem';
 import FormItemDropdown from '../../form/FormItemDropdown';
 import styles from './DeliveryAddress.module.css';
-
 /**
  * @name DeliveryAddress
  * @description Allows entry of delivery address
  * @return component
  */
-const DeliveryAddress = ({ onChange, deliveryData }) => {
-  const usStates = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
+const DeliveryAddress = ({
+  deliveryData, onChange, errors
+}) => {
+  const usStates = [
+    'Choose State',
+    'AL',
+    'AK',
+    'AS',
+    'AZ',
+    'AR',
+    'CA',
+    'CO',
+    'CT',
+    'DE',
+    'DC',
+    'FM',
+    'FL',
+    'GA',
+    'GU',
+    'HI',
+    'ID',
+    'IL',
+    'IN',
+    'IA',
+    'KS',
+    'KY',
+    'LA',
+    'ME',
+    'MH',
+    'MD',
+    'MA',
+    'MI',
+    'MN',
+    'MS',
+    'MO',
+    'MT',
+    'NE',
+    'NV',
+    'NH',
+    'NJ',
+    'NM',
+    'NY',
+    'NC',
+    'ND',
+    'MP',
+    'OH',
+    'OK',
+    'OR',
+    'PW',
+    'PA',
+    'PR',
+    'RI',
+    'SC',
+    'SD',
+    'TN',
+    'TX',
+    'UT',
+    'VT',
+    'VI',
+    'VA',
+    'WA',
+    'WV',
+    'WI',
+    'WY'
+  ];
   return (
-
     <div className={styles.deliveryAddress}>
       <FormItem
         type="text"
@@ -20,7 +81,9 @@ const DeliveryAddress = ({ onChange, deliveryData }) => {
         label="First Name"
         onChange={onChange}
         value={deliveryData.firstName}
+        className={(errors.firstName ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.firstName}</p>}
 
       <FormItem
         type="text"
@@ -28,7 +91,9 @@ const DeliveryAddress = ({ onChange, deliveryData }) => {
         label="Last Name"
         onChange={onChange}
         value={deliveryData.lastName}
+        className={(errors.lastName ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.lastName}</p>}
 
       <FormItem
         placeholder="e.g. 123 Sesame Street"
@@ -37,7 +102,9 @@ const DeliveryAddress = ({ onChange, deliveryData }) => {
         label="Street"
         onChange={onChange}
         value={deliveryData.street}
+        className={(errors.street ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.street}</p>}
 
       <FormItem
         placeholder="e.g. Unit #1"
@@ -46,7 +113,9 @@ const DeliveryAddress = ({ onChange, deliveryData }) => {
         label="Street 2 (Optional)"
         onChange={onChange}
         value={deliveryData.street2}
+        className={(errors.street2 ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.street2}</p>}
 
       <FormItem
         type="text"
@@ -54,7 +123,9 @@ const DeliveryAddress = ({ onChange, deliveryData }) => {
         label="City"
         onChange={onChange}
         value={deliveryData.city}
+        className={(errors.city ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.city}</p>}
 
       <FormItemDropdown
         id="state"
@@ -62,7 +133,9 @@ const DeliveryAddress = ({ onChange, deliveryData }) => {
         onChange={onChange}
         value={deliveryData.state}
         options={usStates}
+        className={(errors.state ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.state}</p>}
 
       <FormItem
         placeholder="e.g. 12345"
@@ -71,10 +144,10 @@ const DeliveryAddress = ({ onChange, deliveryData }) => {
         label="Zip"
         onChange={onChange}
         value={deliveryData.zip}
+        className={(errors.zip ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.zip}</p>}
     </div>
-
   );
 };
-
 export default DeliveryAddress;

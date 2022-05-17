@@ -7,7 +7,7 @@ import styles from './FormItem.module.css';
  * @return component
  */
 const FormItemDropdown = ({
-  onChange, value, id, label, options
+  onChange, value, id, label, options, className
 }) => (
 
   <div>
@@ -15,8 +15,9 @@ const FormItemDropdown = ({
       {label}
       <div>
         <select
-          className={styles.input}
+          className={className}
           id={id}
+          onBlur={onChange}
           onChange={onChange}
           value={value}
         >
