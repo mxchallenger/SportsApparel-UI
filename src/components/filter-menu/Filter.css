@@ -31,10 +31,10 @@
 .nav-text {
   display: flex;
   justify-content: left;
-  align-items: left;
+  align-items: center;
   list-style: none;
   height: 30px;
-  size: 20px;
+  size: 12px;
 }
 .navbar-toggle {
   color: red;

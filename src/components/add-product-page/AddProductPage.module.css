@@ -1,0 +1,39 @@
+.productContainer {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 6fr 1fr;
+  gap: 1em 1em;
+  padding: 0 1em;
+  margin: 1em 0;
+}
+
+.product {
+  grid-area: 1 / 1 / 2 / span 3;
+}
+
+.buttonArea {
+  grid-area: 2 / 2 / 3 / 3;
+  text-align: center;
+}
+.submitBtn {
+  background-color: gray;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: large;
+  margin-top: 20px;
+  padding: .75% 1.5%;
+  align-items:center
+}
+
+.title {
+  text-transform: uppercase;
+  color: #666666;
+  margin: 0 0 1em 0;
+}
+
+.step {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: .2em .2em .2em rgba(0,0,0,0.23);
+  padding: 1em;
+}

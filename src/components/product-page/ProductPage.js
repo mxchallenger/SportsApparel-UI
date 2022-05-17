@@ -4,9 +4,7 @@ import ReactPaginate from 'react-paginate';
 import ProductCard from '../product-card/ProductCard';
 import Constants from '../../utils/constants';
 import Filter from '../filter-menu/Filter';
-import fetchProducts2 from '../Pagination/PaginationService';
-import fetchProductsCount2 from '../Pagination/Pagination_PageCount';
-import fetchProducts from './ProductPageService';
+import { fetchProducts, fetchInitialProducts, fetchProductsCount } from './ProductPageService';
 import styles from './ProductPage.module.css';
 
 /**
@@ -22,22 +20,39 @@ const ProductPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
 
+  /**
+ *
+ * @name filterByQuery
+ * @description Function that runs when apply button is clicked
+ * SetCurrentPage sets the current page once the filters have been appplied
+ * fetchProducts sets the products based upon the page selected and url query. It also sets
+ * any api errors.
+ * setURlQuery sets the urlQuery once the apply button has been clicked to use in the
+ * fetchProductsCount useEffect.
+ * @param {*} selected page selected from the pagination buttons
+ */
+
   const filterByQuery = (selected) => {
     setCurrentPage(selected);
     fetchProducts(setProducts, selected, urlQuery, setApiError);
+    setUrlQuery(urlQuery);
   };
+
+  /**
+   * This hook sets the products before anything has been selected
+   *
+   */
+  useEffect(() => {
+    fetchInitialProducts(setProducts, setApiError);
+  }, []);
 
   /**
    * This hook fetches the total page count of
    * the pagination
    */
   useEffect(() => {
-    fetchProducts2(setProducts, setApiError);
-  }, []);
-
-  useEffect(() => {
-    fetchProductsCount2(setCount, setApiError);
-  }, [count]);
+    fetchProductsCount(setCount, urlQuery, setApiError);
+  }, [count, urlQuery]);
 
   /**
    * This function allows clicks to individual page numbers
