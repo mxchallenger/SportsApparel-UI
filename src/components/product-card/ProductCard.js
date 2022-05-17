@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -15,9 +15,11 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { toast } from 'react-toastify';
+import modalStyles from '../product-modal/ProductModal.css';
+import styles from '../product-page/ProductPage.module.css';
 import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
-import Modal from '../Product Modal/ProductModal';
+import Modal from '../product-modal/ProductModal';
 
 /**
  * @name useStyles
@@ -55,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
  */
 const ProductCard = ({ product }) => {
   const classes = useStyles();
+  const [show, setShow] = useState(false);
 
   const {
     state: { products },
@@ -97,51 +100,59 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
-      <Card
-        className={classes.root}
-      >
-        <CardHeader
-          avatar={(
-            <Avatar aria-label="demographics" className={classes.avatar}>
-              {product.demographic.charAt(0)}
-            </Avatar>
-          )}
-          action={(
-            <IconButton aria-label="settings" onMouseDown={(e) => e.stopPropagation(Modal)}>
-              <MoreVertIcon />
-            </IconButton>
-          )}
-          title={product.name}
-          subheader={`${product.demographic} ${product.category} ${product.type}`}
-        />
-        <CardMedia
-          className={classes.media}
-          image={Constants.PLACEHOLDER_IMAGE}
-          title="placeholder"
-        />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {product.description}
-          </Typography>
-          <br />
-          <Typography variant="body2" color="textSecondary" component="p">
-            Price: $
-            {parseFloat(product.price).toFixed(2).toString()}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites" onMouseDown={(e) => e.stopPropagation(Modal)}>
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share" onMouseDown={(e) => e.stopPropagation(Modal)}>
-            <ShareIcon />
-          </IconButton>
-          <IconButton aria-label="add to shopping cart" onClick={onAdd} onMouseDown={(e) => e.stopPropagation(Modal)}>
-            <AddShoppingCartIcon />
-          </IconButton>
-        </CardActions>
-      </Card>
+      <Modal
+        className={modalStyles}
+        props={show}
+        product={product}
+        onClose={() => setShow(false)}
+      />
+      <button type="button" className={styles.button} onMouseDown={() => setShow(true)}>
+        <Card
+          className={classes.root}
+        >
 
+          <CardHeader
+            avatar={(
+              <Avatar aria-label="demographics" className={classes.avatar}>
+                {product.demographic.charAt(0)}
+              </Avatar>
+          )}
+            action={(
+              <IconButton aria-label="settings" onMouseDown={(e) => e.stopPropagation(Modal)}>
+                <MoreVertIcon />
+              </IconButton>
+          )}
+            title={product.name}
+            subheader={`${product.demographic} ${product.category} ${product.type}`}
+          />
+          <CardMedia
+            className={classes.media}
+            image={Constants.PLACEHOLDER_IMAGE}
+            title="placeholder"
+          />
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {product.description}
+            </Typography>
+            <br />
+            <Typography variant="body2" color="textSecondary" component="p">
+              Price: $
+              {parseFloat(product.price).toFixed(2).toString()}
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <IconButton aria-label="add to favorites" onMouseDown={(e) => e.stopPropagation(Modal)}>
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="share" onMouseDown={(e) => e.stopPropagation(Modal)}>
+              <ShareIcon />
+            </IconButton>
+            <IconButton aria-label="add to shopping cart" onClick={onAdd} onMouseDown={(e) => e.stopPropagation(Modal)}>
+              <AddShoppingCartIcon />
+            </IconButton>
+          </CardActions>
+        </Card>
+      </button>
     </>
   );
 };
