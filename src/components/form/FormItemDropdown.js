@@ -18,6 +18,7 @@ const FormItemDropdown = ({
           className={className}
           id={id}
           onBlur={onChange}
+          onChange={onChange}
           value={value}
         >
           {options.map((optionText) => (
