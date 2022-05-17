@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { BsTools } from 'react-icons/bs';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
+import { toast } from 'react-toastify';
 import loginUser from './HeaderService';
 import constants from '../../utils/constants';
 import './Header.css';
 import logo from './logo.png';
 import cart from './cart.png';
 import { useCart } from '../checkout-page/CartContext';
+import { useUser } from '../userprofile/UserContext';
+import ViewProfile from '../userprofile/ViewProfile';
 /**
  * @name Header
  * @description Displays the navigation header
@@ -19,12 +22,18 @@ const Header = () => {
   const [googleError, setGoogleError] = useState('');
   const [apiError, setApiError] = useState(false);
 
+  const history = useHistory();
+  const {
+
+    userDispatch
+  } = useUser();
+
   /**
    * @name handleGoogleLoginSuccess
    * @description Function to run if google login was successful
    * @param {Object} response Response object from google
    */
-  const handleGoogleLoginSuccess = (response) => {
+  const HandleGoogleLoginSuccess = (response) => {
     sessionStorage.setItem('token', response.getAuthResponse().id_token);
     const googleUser = {
       email: response.profileObj.email,
@@ -33,6 +42,17 @@ const Header = () => {
     };
     loginUser(googleUser, setUser, setApiError);
     setGoogleError('');
+    userDispatch(
+      {
+        type: 'add',
+        users: {
+          firstName: googleUser.firstName,
+          lastName: googleUser.lastName,
+          email: googleUser.email
+
+        }
+      }
+    );
   };
 
   /**
@@ -48,8 +68,17 @@ const Header = () => {
    * @description Function to run if google logout was successful
    */
   const handleGoogleLogoutSuccess = () => {
+    history.push('/');
     setUser('');
     setGoogleError('');
+    userDispatch(
+      {
+        type: 'delete',
+        users: {
+        }
+      }
+    );
+    toast.success('You have successfully logged out.');
   };
 
   /**
@@ -97,9 +126,10 @@ const Header = () => {
           <GoogleLogin
             clientId={constants.GOOGLE_CLIENT_ID}
             buttonText="Login"
-            onSuccess={handleGoogleLoginSuccess}
+            onSuccess={HandleGoogleLoginSuccess}
             onFailure={handleGoogleLoginFailure}
             cookiePolicy="single_host_origin"
+            isSignedIn
           />
         </div>
       ) : (
@@ -110,6 +140,9 @@ const Header = () => {
             onLogoutSuccess={handleGoogleLogoutSuccess}
             onFailure={handleGoogleLogoutFailure}
           />
+          <div id="viewProfile">
+            <ViewProfile />
+          </div>
         </div>
       )}
     </div>
