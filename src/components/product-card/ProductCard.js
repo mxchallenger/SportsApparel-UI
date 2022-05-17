@@ -17,7 +17,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { toast } from 'react-toastify';
 import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
-
 /**
  * @name useStyles
  * @description Material-ui styling for ProductCard component
