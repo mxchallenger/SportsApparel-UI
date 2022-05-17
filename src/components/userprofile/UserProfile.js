@@ -29,6 +29,7 @@ const UserProfile = () => {
               id="firstName"
               label="First Name"
               value={users.firstName}
+              className={styles.input}
             />
 
             <FormItem
@@ -36,6 +37,7 @@ const UserProfile = () => {
               id="LastName"
               label="Last Name"
               value={users.lastName}
+              className={styles.input}
             />
 
             <FormItem
@@ -43,6 +45,7 @@ const UserProfile = () => {
               id="street"
               label="Street"
               value={userData.street}
+              className={styles.input}
             />
 
             <FormItem
@@ -50,6 +53,7 @@ const UserProfile = () => {
               id="city"
               label="City"
               value={userData.city}
+              className={styles.input}
             />
 
             <FormItem
@@ -57,6 +61,7 @@ const UserProfile = () => {
               id="state"
               label="State"
               value={userData.state}
+              className={styles.input}
             />
 
             <FormItem
@@ -64,6 +69,7 @@ const UserProfile = () => {
               id="zip"
               label="Zip"
               value={userData.zip}
+              className={styles.input}
             />
           </div>
         </div>

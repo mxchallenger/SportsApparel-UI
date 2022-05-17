@@ -1,66 +1,31 @@
-.userInfoContainer {
+.userInfoContainer{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas:
-      "order    userInfo    payment"
-      "order    userInfo    summary"
-      "order    userInfo    payNow";
-    gap: 1em 2em;
-    padding: 0 2em;
-    margin: 2em 0;
-  }
-  
-  .userInfo {
-    grid-area: userInfo;
-  }
-  
-  .order {
-    grid-area: order;
-  }
-  
-  .payment {
-    grid-area: payment;
-  }
-  
-  .payNow {
-    grid-area: payNow;
-    display:grid;
-  }
-  
-  .payButton {
-    background: #666666;
-    border-radius: 20px;
-    color: #EEEEEE;
-    cursor: pointer;
-    font-weight: 600px;
-    height: 3em;
-    justify-self: center;
-    width: 75%;
-  }
-  
-  .step {
+    grid-template-areas: 
+        "leftEmpty userInfo rightEmpty";
+}
+.step{
     background: #fff;
     border-radius: 2px;
     box-shadow: .2em .2em .2em rgba(0,0,0,0.23);
     padding: 1em;
-  }
-  
-  .summary {
-    grid-area: summary;
-  }
-  
-  .title {
+}
+.userInfo {
+    grid-area: userInfo;
+}
+.title {
     text-transform: uppercase;
-    color: #666666;
-    margin: 0 0 1em 0;
+  color: #666666;
+  margin: 0 0 1em 0;
+}
+.userInformation {
+    display: grid;
+    grid-template-columns: 1fr;
   }
-  
-  .useSameAddress {
-    display: inline-block;
-    margin: 1em 1em 0 0;
-  }
-  
-  .sameAddressText {
-    color: #666666;
-    font-weight: 700;
+  .input {
+    margin-top: .5em;
+    width: 100%;
+    padding: .5em;
+    box-sizing: border-box;
+    margin-bottom: 1em;
   }
