@@ -15,13 +15,11 @@ export default async function updateProducts(setUpdatedRow) {
   await HttpHelper(`${Constants.UPDATE_PRODUCT_ENDPOINT}/${setUpdatedRow.data.id}`, 'PUT', setUpdatedRow.data)
     .then((response) => {
       if (response.ok) {
+        toast.success('The product was successfully edited!');
         response.json();
       } else {
         toast.error('The product was not added to the database');
       }
     })
-    .then(setUpdatedRow)
-    .catch(() => {
-      toast.success('The product was successfully edited!');
-    });
+    .then(setUpdatedRow);
 }
