@@ -4,8 +4,7 @@ import ReactPaginate from 'react-paginate';
 import ProductCard from '../product-card/ProductCard';
 import Constants from '../../utils/constants';
 import Filter from '../filter-menu/Filter';
-import fetchProductsCount2 from '../Pagination/Pagination_PageCount';
-import { fetchProducts, fetchProductsCount } from './ProductPageService';
+import { fetchProducts, fetchInitialProducts, fetchProductsCount } from './ProductPageService';
 import styles from './ProductPage.module.css';
 
 /**
@@ -21,32 +20,30 @@ const ProductPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
 
+  /**
+ *
+ * @name filterByQuery
+ * @description Function that runs when apply button is clicked
+ * SetCurrentPage sets the current page once the filters have been appplied
+ * fetchProducts sets the products based upon the page selected and url query. It also sets
+ * any api errors.
+ * setURlQuery sets the urlQuery once the apply button has been clicked to use in the
+ * fetchProductsCount useEffect.
+ * @param {*} selected page selected from the pagination buttons
+ */
+
   const filterByQuery = (selected) => {
     setCurrentPage(selected);
     fetchProducts(setProducts, selected, urlQuery, setApiError);
     setUrlQuery(urlQuery);
   };
-  // useEffect(() => {
-  //   fetchProducts(currentPage, setProducts, setApiError);
-  // }, []);
-  // useEffect(() => {
-  //   fetchProducts(setApiError, urlQuery);
-  // }, [urlQuery]);
 
   /**
- * This hook fetches the current page number and
- * displays a number of products according
- * to page number
- */
-  // useEffect(() => {
-  //   fetchProducts2(setProducts, setApiError);
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchProducts2(currentPage, setApiError);
-  // }, [currentPage]);
+   * This hook sets the products before anything has been selected
+   *
+   */
   useEffect(() => {
-    fetchProductsCount(setProducts, setApiError);
+    fetchInitialProducts(setProducts, setApiError);
   }, []);
 
   /**
@@ -54,7 +51,7 @@ const ProductPage = () => {
    * the pagination
    */
   useEffect(() => {
-    fetchProductsCount2(setCount, urlQuery, setApiError);
+    fetchProductsCount(setCount, urlQuery, setApiError);
   }, [count, urlQuery]);
 
   /**
