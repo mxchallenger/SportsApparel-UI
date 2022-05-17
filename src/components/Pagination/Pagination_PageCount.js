@@ -9,7 +9,7 @@ import Constants from '../../utils/constants';
  * @returns sets state for product count if 200 response, else sets state for apiError
  */
 export default async function fetchProductsCount2(setCount, urlQuery, setApiError) {
-  await HttpHelper(`${Constants.ACTIVE_COUNT_FILTER_ENDPOINT}${urlQuery}`, 'GET')
+  await HttpHelper(`${Constants.ACTIVE_COUNT_FILTER_ENDPOINT}/?${urlQuery}`, 'GET')
     .then((response) => {
       if (response.ok) {
         return response.json();
