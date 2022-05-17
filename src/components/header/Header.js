@@ -117,8 +117,7 @@ const Header = () => {
       <div id="maint">
         <NavLink to="/maintenance"><BsTools size={25} style={{ fill: 'white' }} alt="maint" /></NavLink>
       </div>
-      {user && <span className="firstName">{user.firstName}</span>}
-      {user && <span className="lastName">{user.lastName}</span>}
+
       {googleError && <span>{googleError}</span>}
       {apiError && <span>Api Error</span>}
       {!user ? (
@@ -134,15 +133,17 @@ const Header = () => {
         </div>
       ) : (
         <div id="googleLogout">
+          <div id="viewProfile">
+            <ViewProfile />
+          </div>
+          {user && <div className="firstName">{user.firstName}</div>}
+          {user && <div className="lastName">{user.lastName}</div>}
           <GoogleLogout
             clientId={constants.GOOGLE_CLIENT_ID}
             buttonText="Logout"
             onLogoutSuccess={handleGoogleLogoutSuccess}
             onFailure={handleGoogleLogoutFailure}
           />
-          <div id="viewProfile">
-            <ViewProfile />
-          </div>
         </div>
       )}
     </div>

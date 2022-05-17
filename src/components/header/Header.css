@@ -45,8 +45,7 @@ img {
 .firstName {
     color: white;
     float: left;
-    padding-left: 825px;
-    padding-top: 5px;
+    padding-top: 10px;
     margin-right: 5px;
     font-size: 18px;
     font-weight: bold;
@@ -55,9 +54,10 @@ img {
 .lastName {
     color: white;
     float: left;
-    padding-top: 5px;
+    padding-top: 10px;
     font-size: 18px;
     font-weight: bold;
+    padding-right: 25px;
 
 }
 #googleLogout {
