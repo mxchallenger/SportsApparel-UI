@@ -1,4 +1,10 @@
 {
+<<<<<<< HEAD
+  "cSpell.words": [
+    "testid"
+  ]
+}
+=======
   "prettier.singleQuote": false,
   "prettier.quoteProps": "consistent",
   "prettier.jsxSingleQuote": false,
@@ -26,3 +32,4 @@
   },
   "peacock.color": "#ccdca5"
 }
+>>>>>>> 9ffed4c97fc0d6be754e611af1419a4cb7f3932f
