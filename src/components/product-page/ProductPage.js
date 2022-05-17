@@ -4,6 +4,7 @@ import ReactPaginate from 'react-paginate';
 import ProductCard from '../product-card/ProductCard';
 import Constants from '../../utils/constants';
 import Filter from '../filter-menu/Filter';
+import fetchProductsCount2 from '../Pagination/Pagination_PageCount';
 import { fetchProducts, fetchProductsCount } from './ProductPageService';
 import styles from './ProductPage.module.css';
 
@@ -17,41 +18,53 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [urlQuery, setUrlQuery] = useState('');
-
-  const filterByQuery = () => {
-    fetchProducts(setProducts, urlQuery, setApiError);
-  };
-  useEffect(() => {
-    fetchProducts(setProducts, setApiError);
-  }, []);
-  useEffect(() => {
-    fetchProductsCount(setApiError, urlQuery);
-  }, [urlQuery]);
-
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState();
+
+  const filterByQuery = (selected) => {
+    setCurrentPage(selected);
+    fetchProducts(setProducts, selected, urlQuery, setApiError);
+    setUrlQuery(urlQuery);
+  };
+  // useEffect(() => {
+  //   fetchProducts(currentPage, setProducts, setApiError);
+  // }, []);
+  // useEffect(() => {
+  //   fetchProducts(setApiError, urlQuery);
+  // }, [urlQuery]);
 
   /**
  * This hook fetches the current page number and
  * displays a number of products according
  * to page number
  */
+  // useEffect(() => {
+  //   fetchProducts2(setProducts, setApiError);
+  // }, []);
+
+  // useEffect(() => {
+  //   fetchProducts2(currentPage, setApiError);
+  // }, [currentPage]);
   useEffect(() => {
-    fetchProducts(currentPage, setProducts, setApiError);
-  }, [currentPage]);
+    fetchProductsCount(setProducts, setApiError);
+  }, []);
+
   /**
    * This hook fetches the total page count of
    * the pagination
    */
   useEffect(() => {
-    fetchProductsCount(setCount, setApiError);
-  }, [count]);
+    fetchProductsCount2(setCount, urlQuery, setApiError);
+  }, [count, urlQuery]);
+
   /**
    * This function allows clicks to individual page numbers
    * @param { } selected
         */
-  const handleClick = ({ selected: selectedPage }) => {
-    setCurrentPage(selectedPage);
+
+  const handleClick = ({ selected }) => {
+    setCurrentPage(selected);
+    filterByQuery(selected);
   };
 
   return (
@@ -88,7 +101,7 @@ const ProductPage = () => {
           nextLinkClassName={styles.pageLink}
           breakClassName={styles.pageItem}
           breakLinkClassName={styles.pageLink}
-          activeClassName={styles.pageItem}
+          activeClassName={styles.active}
           renderOnZeroPageCount={false}
           forcePage={currentPage}
           disabledClassName={styles.hide}
