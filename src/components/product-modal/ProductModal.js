@@ -6,14 +6,12 @@ import {
   IconButton,
   Typography,
   Avatar,
-  makeStyles,
-  CardMedia
+  makeStyles
+/*   CardMedia */
 } from '@material-ui/core';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import { QuantityPicker } from 'react-qty-picker';
-/* import { addColorBox } from '../maintenance/AddColorBox';
-import { addImage } from '../maintenance/AddImage'; */
-import constants from '../../utils/constants';
+import Quantity from './Quantity Picker';
+/* import { addImage } from '../maintenance/AddImage'; */
 
 export default function Modal({ product, props, onClose }) {
   if (!props) return null;
@@ -37,11 +35,19 @@ export default function Modal({ product, props, onClose }) {
         <div className="modal-title" />
         <div className="modal-body">
           <CardContent>
-            <CardMedia
-              className={makeStyles.media}
-              image={constants.PLACEHOLDER_IMAGE}
-              title="placeholder"
-            />
+            <img style={{ height: '250px', width: '250px' }} src={product.imageSrc} alt="" />
+            <div>
+              {product.primaryColorCode}
+              <svg style={{ height: 25, width: 25 }}>
+                <circle cx={9} cy={17} r={14} stroke="black" strokeWidth={1} fill={product.primaryColorCode} />
+              </svg>
+            </div>
+            <div>
+              {product.secondaryColorCode}
+              <svg style={{ height: 25, width: 25 }}>
+                <circle cx={9} cy={17} r={14} stroke="black" strokeWidth={1} fill={product.secondaryColorCode} />
+              </svg>
+            </div>
             <Typography variant="body2" color="textSecondary" component="p">
               {product.description}
             </Typography>
@@ -53,7 +59,7 @@ export default function Modal({ product, props, onClose }) {
           </CardContent>
         </div>
         <div className="modal-footer">
-          <QuantityPicker className="qPicker" min={0} value={0} smooth />
+          <Quantity />
           <IconButton aria-label="add to shopping cart">
             <AddShoppingCartIcon />
           </IconButton>
