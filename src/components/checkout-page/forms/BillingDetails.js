@@ -8,15 +8,76 @@ import styles from './DeliveryAddress.module.css';
  * @description Allows entry of Billing Details
  * @return component
  */
-const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
-  const usStates = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
+const BillingDetails = ({
+  errors, onChange, billingData, useShippingForBilling
+}) => {
+  const usStates = [
+    'Choose State',
+    'AL',
+    'AK',
+    'AS',
+    'AZ',
+    'AR',
+    'CA',
+    'CO',
+    'CT',
+    'DE',
+    'DC',
+    'FM',
+    'FL',
+    'GA',
+    'GU',
+    'HI',
+    'ID',
+    'IL',
+    'IN',
+    'IA',
+    'KS',
+    'KY',
+    'LA',
+    'ME',
+    'MH',
+    'MD',
+    'MA',
+    'MI',
+    'MN',
+    'MS',
+    'MO',
+    'MT',
+    'NE',
+    'NV',
+    'NH',
+    'NJ',
+    'NM',
+    'NY',
+    'NC',
+    'ND',
+    'MP',
+    'OH',
+    'OK',
+    'OR',
+    'PW',
+    'PA',
+    'PR',
+    'RI',
+    'SC',
+    'SD',
+    'TN',
+    'TX',
+    'UT',
+    'VT',
+    'VI',
+    'VA',
+    'WA',
+    'WV',
+    'WI',
+    'WY'
+  ];
   return (
-
     <div className={styles.deliveryAddress}>
       {!useShippingForBilling && (
         <>
-
           <FormItem
             placeholder="e.g. 123 Sesame Street"
             type="text"
@@ -24,7 +85,14 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
             label="Street"
             onChange={onChange}
             value={billingData.billingStreet}
+            className={(errors.billingStreet ? styles.errorBorder : styles.input)}
           />
+          {errors && (
+            <p className={styles.errorMessage}>
+              {FormItem.label}
+              {errors.billingStreet}
+            </p>
+          )}
 
           <FormItem
             placeholder="e.g. Unit #1"
@@ -33,7 +101,9 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
             label="Street 2 (Optional)"
             onChange={onChange}
             value={billingData.billingStreet2}
+            className={styles.input}
           />
+          {errors && <p className={styles.errorMessage}>{errors.billingStreet2}</p>}
 
           <FormItem
             type="text"
@@ -41,7 +111,9 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
             label="City"
             onChange={onChange}
             value={billingData.billingCity}
+            className={(errors.billingCity ? styles.errorBorder : styles.input)}
           />
+          {errors && <p className={styles.errorMessage}>{errors.billingCity}</p>}
 
           <FormItemDropdown
             id="billingState"
@@ -49,7 +121,9 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
             onChange={onChange}
             value={billingData.billingState}
             options={usStates}
+            className={(errors.billingState ? styles.errorBorder : styles.input)}
           />
+          {errors && <p className={styles.errorMessage}>{errors.billingState}</p>}
 
           <FormItem
             placeholder="e.g. 12345"
@@ -58,7 +132,9 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
             label="Zip"
             onChange={onChange}
             value={billingData.billingZip}
+            className={(errors.billingZip ? styles.errorBorder : styles.input)}
           />
+          {errors && <p className={styles.errorMessage}>{errors.billingZip}</p>}
         </>
       )}
       <FormItem
@@ -68,7 +144,9 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
         label="Email"
         onChange={onChange}
         value={billingData.email}
+        className={(errors.email ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.email}</p>}
 
       <FormItem
         placeholder="e.g. 555-555-5555"
@@ -77,7 +155,9 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
         label="Phone"
         onChange={onChange}
         value={billingData.phone}
+        className={(errors.phone ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.phone}</p>}
 
       <FormItem
         placeholder="e.g. 1234567812345678"
@@ -86,7 +166,9 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
         label="Credit Card"
         onChange={onChange}
         value={billingData.creditCard}
+        className={(errors.creditCard ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.creditCard}</p>}
 
       <FormItem
         placeholder="e.g. 555"
@@ -95,16 +177,20 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
         label="CVV"
         onChange={onChange}
         value={billingData.cvv}
+        className={(errors.cvv ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.cvv}</p>}
 
       <FormItem
-        placeholder="e.g. 05/21"
+        placeholder="e.g. 05/23"
         type="text"
         id="expiration"
         label="Expiration"
         onChange={onChange}
         value={billingData.expiration}
+        className={(errors.expiration ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.expiration}</p>}
 
       <FormItem
         type="text"
@@ -112,9 +198,10 @@ const BillingDetails = ({ onChange, billingData, useShippingForBilling }) => {
         label="Cardholder Name"
         onChange={onChange}
         value={billingData.cardholder}
+        className={(errors.cardholder ? styles.errorBorder : styles.input)}
       />
+      {errors && <p className={styles.errorMessage}>{errors.cardholder}</p>}
     </div>
-
   );
 };
 
