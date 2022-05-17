@@ -10,6 +10,7 @@ import {
 /*   CardMedia */
 } from '@material-ui/core';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import CloseIcon from '@material-ui/icons/Close';
 import Quantity from './Quantity Picker';
 /* import { addImage } from '../maintenance/AddImage'; */
 
@@ -30,35 +31,42 @@ export default function Modal({ product, props, onClose }) {
             title={product.name}
             subheader={`${product.demographic} ${product.category} ${product.type}`}
           />
-          <button className="close" type="button" onClick={onClose}> &times; </button>
+          <IconButton aria-label="Close this page" onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
         </div>
         <div className="modal-title" />
         <div className="modal-body">
           <CardContent>
             <img style={{ height: '250px', width: '250px' }} src={product.imageSrc} alt="" />
-            <div>
+
+            <span className="primary-color">
               {product.primaryColorCode}
-              <svg style={{ height: 25, width: 25 }}>
-                <circle cx={9} cy={17} r={14} stroke="black" strokeWidth={1} fill={product.primaryColorCode} />
+              <svg style={{ height: 50, width: 50 }}>
+                <circle cx={18} cy={23} r={14} stroke="black" strokeWidth={1} fill={product.primaryColorCode} />
               </svg>
-            </div>
-            <div>
+            </span>
+
+            <span className="secondary-color ">
               {product.secondaryColorCode}
-              <svg style={{ height: 25, width: 25 }}>
-                <circle cx={9} cy={17} r={14} stroke="black" strokeWidth={1} fill={product.secondaryColorCode} />
+              <svg style={{ height: 50, width: 50 }}>
+                <circle cx={18} cy={23} r={14} stroke="black" strokeWidth={1} fill={product.secondaryColorCode} />
               </svg>
-            </div>
-            <Typography variant="body2" color="textSecondary" component="p">
+            </span>
+          </CardContent>
+          <div className="category">
+            <Typography color="textSecondary" component="p">
               {product.description}
             </Typography>
-            <br />
-            <Typography variant="body2" color="textSecondary" component="p">
+          </div>
+        </div>
+        <div className="modal-footer">
+          <span className="price">
+            <Typography component="p">
               Price: $
               {parseFloat(product.price).toFixed(2).toString()}
             </Typography>
-          </CardContent>
-        </div>
-        <div className="modal-footer">
+          </span>
           <Quantity />
           <IconButton aria-label="add to shopping cart">
             <AddShoppingCartIcon />

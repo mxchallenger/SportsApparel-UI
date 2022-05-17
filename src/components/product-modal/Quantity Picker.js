@@ -20,7 +20,7 @@ const Quantity = ({ max }) => {
   };
 
   const onChange = (e) => {
-    const value = parseInt(e.target.value, 10);
+    const value = parseInt(e.target.value, 36);
     if (value >= 0 && value <= max) {
       setQty(value);
     }
