@@ -10,6 +10,7 @@ import Header from '../header/Header';
 import Maintenance from '../maintenance/Maintenance';
 import AddProductPage from '../add-product-page/AddProductPage';
 import Toast from '../toast/Toast';
+import Footer from '../footer/Footer';
 
 /**
  * @name App
@@ -30,12 +31,9 @@ const App = () => (
       position="top-center"
       autoClose={8000}
     />
-<<<<<<< HEAD
-=======
 
     <Footer />
 
->>>>>>> dfec888e2ba3573059709596ac8a3ab09155e5f7
   </BrowserRouter>
 );
 export default App;
