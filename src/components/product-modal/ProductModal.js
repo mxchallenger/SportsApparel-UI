@@ -12,7 +12,7 @@ import {
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import CloseIcon from '@material-ui/icons/Close';
 import Quantity from './QuantityPicker';
-/* import { addImage } from '../maintenance/AddImage'; */
+import styles from './quantitypicker.module.css';
 
 export default function Modal({ product, props, onClose }) {
   if (!props) return null;
@@ -27,10 +27,14 @@ export default function Modal({ product, props, onClose }) {
               <Avatar aria-label="demographics" className={makeStyles.avatar}>
                 {product.demographic.charAt(0)}
               </Avatar>
-          )}
-            title={product.name}
-            subheader={`${product.demographic} ${product.category} ${product.type}`}
+            )}
           />
+          <div className={styles.title}>
+            {product.name}
+            <br />
+            {`${product.demographic} ${product.category} ${product.type}`}
+          </div>
+
           <IconButton aria-label="Close this page" onClick={onClose}>
             <CloseIcon />
           </IconButton>
@@ -41,14 +45,12 @@ export default function Modal({ product, props, onClose }) {
             <img style={{ height: '250px', width: '250px' }} src={product.imageSrc} alt="" />
 
             <span className="primary-color">
-              {product.primaryColorCode}
               <svg style={{ height: 50, width: 50 }}>
                 <circle cx={18} cy={23} r={14} stroke="black" strokeWidth={1} fill={product.primaryColorCode} />
               </svg>
             </span>
 
             <span className="secondary-color ">
-              {product.secondaryColorCode}
               <svg style={{ height: 50, width: 50 }}>
                 <circle cx={18} cy={23} r={14} stroke="black" strokeWidth={1} fill={product.secondaryColorCode} />
               </svg>
@@ -59,19 +61,15 @@ export default function Modal({ product, props, onClose }) {
               {product.description}
             </Typography>
           </div>
-          <div>
-            <IconButton aria-label="Place holder for Margeaux">
-              <AddShoppingCartIcon />
-            </IconButton>
-          </div>
         </div>
         <div className="modal-footer">
           <span className="price">
-            <Typography component="p">
+            <Typography component="p" color="textPrimary">
               Price: $
               {parseFloat(product.price).toFixed(2).toString()}
             </Typography>
           </span>
+
           <Quantity max={product.quantity} />
           <IconButton aria-label="add to shopping cart">
             <AddShoppingCartIcon />

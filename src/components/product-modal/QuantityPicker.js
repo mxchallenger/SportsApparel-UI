@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const Quantity = ({ max }) => {
   const [qty, setQty] = useState(1);
+
   const decreaseQty = () => {
     if (qty <= 0) {
       setQty(0);
@@ -19,17 +20,10 @@ const Quantity = ({ max }) => {
   };
 
   const onChange = (e) => {
-    const re = /^\d+$/;
+    const re = /^[0-9\b]+$/;
     const value = parseInt(e.target.value, 10);
-    // re.test(value);
-    // setQty(value);
-    if (re.test(value)) {
+    if (value === '' || re.test(value)) {
       setQty(value);
-    } else {
-      setQty('');
-    }
-    if (value === '') {
-      setQty('');
     }
   };
   return (

@@ -1,0 +1,11 @@
+.title{
+    display:flex;
+    justify-content: flex-start;
+    font-weight: bold;
+    font-size: 17px;
+
+}
+.div {
+    display:flex;
+    flex-direction: column;
+}
