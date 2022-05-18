@@ -1,6 +1,5 @@
-import React, {
-  useEffect, useMemo, useState
-} from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -161,6 +160,11 @@ const Maintenance = () => {
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
         />
+      </div>
+      <div>
+        <NavLink to="/add-product-page">
+          <button type="button" className={styles.createProdBtn}>Create A Product</button>
+        </NavLink>
       </div>
     </div>
   );
