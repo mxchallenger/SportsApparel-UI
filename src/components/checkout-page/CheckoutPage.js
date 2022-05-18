@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useCart } from './CartContext';
+import
+{
+  fetchRate
+}
+  from './ReviewOrderWidgetService';
 import styles from './CheckoutPage.module.css';
 import ReviewOrderWidget from './ReviewOrderWidget';
 import DeliveryAddress from './forms/DeliveryAddress';
@@ -25,6 +30,8 @@ const CheckoutPage = () => {
   const {
     state: { products }
   } = useCart();
+
+  const [rate, setRate] = useState(0);
 
   const [errors, setErrors] = React.useState({});
   const [billingData, setBillingData] = React.useState({
@@ -54,6 +61,11 @@ const CheckoutPage = () => {
   });
 
   const onDeliveryChange = (e) => {
+    if (e.target.id === 'state') {
+      const shippingState = e.target.value;
+      fetchRate(setRate, shippingState);
+      setRate(rate);
+    }
     setDeliveryData({ ...deliveryData, [e.target.id]: e.target.value });
   };
 
@@ -117,7 +129,9 @@ const CheckoutPage = () => {
     <div className={styles.checkoutContainer}>
       <div className={`${styles.step} ${styles.order}`}>
         <h3 className={styles.title}>1. Review Order</h3>
-        <ReviewOrderWidget />
+        <ReviewOrderWidget
+          rate={rate}
+        />
       </div>
       <div className={`${styles.step} ${styles.delivery}`}>
         <h3 className={styles.title}>2. Delivery Address</h3>
