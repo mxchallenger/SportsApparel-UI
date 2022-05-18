@@ -7,7 +7,11 @@ import React from 'react';
  */
 const ProductPage = () => (
   <div>
-    Order success!
+    <div>
+      <h1>
+        Order success!
+      </h1>
+    </div>
   </div>
 );
 

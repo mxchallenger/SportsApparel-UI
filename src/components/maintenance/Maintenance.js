@@ -150,7 +150,7 @@ const Maintenance = () => {
   return (
     <div style={containerStyle}>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR.concat(' Is the database running?')}</p>}
-      <h1 style={{ color: 'black' }}>Products Maintenance View</h1>
+      <h1 className={styles.pageHeader}>Products Maintenance View</h1>
       <div style={gridStyle} className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}

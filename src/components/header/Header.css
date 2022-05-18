@@ -20,6 +20,7 @@ img {
 }
 #cart {
     float: right;
+    padding-right: 25px;
     padding-right: 35px;
     max-height: 100px;
     max-width: 50px;
@@ -28,14 +29,35 @@ img {
 }
 #maint {
   float: left;
-  padding-right: 25px;
+  padding-top: 5px;
+  padding-right: 20px;
   max-height: 100px;
+  height: 50px;
   max-width: 50px;
   overflow: hidden;
+  color: white;
 }
 #googleLogin {
     float: right;
     padding-right: 25px;
+}
+.firstName {
+    color: white;
+    float: left;
+    padding-top: 10px;
+    margin-right: 5px;
+    font-size: 18px;
+    font-weight: bold;
+
+}
+.lastName {
+    color: white;
+    float: left;
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-right: 25px;
+
 }
 #googleLogout {
     float: right;
@@ -45,6 +67,13 @@ img {
     top: 0;
     right: 0;
     position: absolute;
+    padding-right: 25px;
     padding-right: 35px;
     padding-top: 7px;
 }
+#viewProfile{
+    float: left;
+    padding-right: 25px; 
+    padding-top: 7px;
+}
+

@@ -7,23 +7,20 @@ import styles from './FormItem.module.css';
  * @return component
  */
 const FormItem = ({
-  onChange, value, id, label, placeholder, type
+  onChange, value, id, label, placeholder, type, className
 }) => (
-
   <div>
     <label className={styles.label} htmlFor={id}>
       {label}
-      <div>
-        <input
-          className={styles.input}
-          id={id}
-          onChange={onChange}
-          placeholder={placeholder}
-          type={type}
-          value={value}
-        />
-      </div>
     </label>
+    <input
+      className={className}
+      id={id}
+      onChange={onChange}
+      placeholder={placeholder}
+      type={type}
+      value={value}
+    />
   </div>
 );
 

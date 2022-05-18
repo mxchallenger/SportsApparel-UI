@@ -17,7 +17,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { toast } from 'react-toastify';
 import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
-
 /**
  * @name useStyles
  * @description Material-ui styling for ProductCard component
@@ -87,7 +86,8 @@ const ProductCard = ({ product }) => {
           title: product.name,
           price: product.price,
           description: product.description,
-          quantity: 1
+          quantity: 1,
+          productId: product.id
         }
       },
       toast.success(`${product.name} has been added to your cart.`)
