@@ -59,7 +59,7 @@ export async function fetchProductsCount(setCount, urlQuery, setApiError) {
       }
       throw new Error(Constants.API_ERROR);
     })
-    .then(setProducts)
+    .then(setCount)
     .catch(() => {
       setApiError(false);
     });
