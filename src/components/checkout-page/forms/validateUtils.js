@@ -1,6 +1,6 @@
 const memos = {
   required: 'is required',
-  names: 'is invalid. Can only contain letters, dashes, apostrophes and spaces.',
+  names: 'is invalid. Can only contain letters, dashes, apostrophes and spaces and has a first and last name.',
   street: 'is invalid. Can only contain letters, numbers, apostrophes and spaces.',
   city: 'is invalid. Can only contain letters, apostrophes and spaces.',
   zip: 'Zip Code is invalid. Can only contain 5-9 digits with xxxxx or xxxxx-xxxx.',
