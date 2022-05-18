@@ -14,8 +14,8 @@ const memos = {
 
 const rEx = {
   // Validates for lowercase, uppercase, spaces, apostrophes and dashes
-  names: /[a-zA-z '-]+$/,
-  // Validates for lowercase, uppercase, spaces, numbers and dashes
+  names: /(@"^[a-zA-Z-' ]+[ ]{1}[a-zA-Z-' ]{2,}([^0-9]*)$")/,
+  // Validates for lowercase, uppercase, spaces, numbers, dashes and a first and last name.
   street: /[a-zA-z0-9 -]+$/,
   // Validates for numbers formatted as XXXXX or XXXXX-XXXX
   zip: /(^\d{5}$)|(^\d{5}-\d{4}$)/,
