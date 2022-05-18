@@ -190,6 +190,7 @@ const BillingDetails = ({
       {errors && <p className={styles.errorMessage}>{errors.expiration}</p>}
 
       <FormItem
+        placeholder="Mickey Mouse"
         type="text"
         id="cardholder"
         label="Cardholder Name"
