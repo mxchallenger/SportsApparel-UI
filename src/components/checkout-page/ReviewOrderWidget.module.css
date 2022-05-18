@@ -1,14 +1,10 @@
 h1 {
   color: red;
-  font-size: 25px;
+  font-size: 30px;
   height: 50px;
   text-align: center;
-  width: 300px;
 }
-.total {
-  max-width: 100%;
-  max-height: 100px;
-}
+
 .subtotal {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -19,19 +15,14 @@ h1 {
   grid-template-columns: 1fr 1fr;
 }
 
+.subtotal .price {
+  justify-self: end;
+}
+
 .shipping .price {
   justify-self: end;
 }
 
-.subtotal .price {
-  justify-self: end;
-}
-.state{
-  display: flex;
-  justify-content: right;
-}
-.oops {
-  max-width: 100%;
-  max-height: 100px;
-}
+
+
 
