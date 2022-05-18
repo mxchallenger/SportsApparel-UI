@@ -1,0 +1,33 @@
+.userInfoContainer{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "leftEmpty userInfo rightEmpty";
+}
+.step{
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: .2em .2em .2em rgba(0,0,0,0.23);
+    padding: 1em;
+}
+.userInfo {
+    grid-area: userInfo;
+    padding-top: 1em;
+    padding-bottom: 1em
+}
+.title {
+    text-transform: uppercase;
+  color: #666666;
+  margin: 0 0 1em 0;
+}
+.userInformation {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .input {
+    margin-top: .5em;
+    width: 100%;
+    padding: .5em;
+    box-sizing: border-box;
+    margin-bottom: 1em;
+  }

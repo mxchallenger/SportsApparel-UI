@@ -74,6 +74,7 @@ const BillingDetails = ({
     'WI',
     'WY'
   ];
+
   return (
     <div className={styles.deliveryAddress}>
       {!useShippingForBilling && (

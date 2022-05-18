@@ -1,5 +1,6 @@
 import HttpHelper from '../../utils/HttpHelper';
 import Constants from '../../utils/constants';
+import toast from '../toast/Toast';
 
 /**
  *
@@ -19,7 +20,7 @@ export default async function makePurchase(products, deliveryAddress, billingAdd
       if (response.ok) {
         response.json();
       } else {
-        throw new Error(Constants.API_ERROR);
+        toast.error('Failed to add product, check internal error');
       }
     });
 }

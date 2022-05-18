@@ -7,7 +7,6 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
   // validate names
   if (!delivery.firstName) {
     errors.firstName = `First Name ${memos.required}`;
-    // ${label}? for first names?
   } else if (!rEx.names.test(delivery.firstName)) {
     errors.firstName = `First Name ${memos.names}`;
   }
