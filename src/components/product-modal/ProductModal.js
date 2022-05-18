@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import CloseIcon from '@material-ui/icons/Close';
-import Quantity from './Quantity Picker';
+import Quantity from './QuantityPicker';
 /* import { addImage } from '../maintenance/AddImage'; */
 
 export default function Modal({ product, props, onClose }) {
@@ -72,7 +72,7 @@ export default function Modal({ product, props, onClose }) {
               {parseFloat(product.price).toFixed(2).toString()}
             </Typography>
           </span>
-          <Quantity />
+          <Quantity max={product.quantity} />
           <IconButton aria-label="add to shopping cart">
             <AddShoppingCartIcon />
           </IconButton>
