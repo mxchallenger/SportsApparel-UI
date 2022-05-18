@@ -19,17 +19,10 @@ const Quantity = ({ max }) => {
     }
   };
 
-  const onChange = (e) => {
-    const re = /^[0-9\b]+$/;
-    const value = parseInt(e.target.value, 10);
-    if (value === '' || re.test(value)) {
-      setQty(value);
-    }
-  };
   return (
     <div>
       <button type="button" onClick={decreaseQty}> - </button>
-      <input onChange={onChange} value={qty} />
+      <input type="text" value={qty} />
       <button type="button" onClick={increaseQty}> + </button>
     </div>
   );

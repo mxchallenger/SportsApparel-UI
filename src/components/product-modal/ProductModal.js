@@ -70,7 +70,7 @@ export default function Modal({ product, props, onClose }) {
             </Typography>
           </span>
 
-          <Quantity max={product.quantity} />
+          <Quantity max={product.quantity} min={1} />
           <IconButton aria-label="add to shopping cart">
             <AddShoppingCartIcon />
           </IconButton>
