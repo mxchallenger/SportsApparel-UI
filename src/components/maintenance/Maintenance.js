@@ -32,7 +32,7 @@ const Maintenance = () => {
       pinned: 'left',
       width: 120,
       cellRenderer: AddSaveButton,
-      onCellDoubleClicked: updateProducts
+      onCellClicked: updateProducts
     },
     {
       field: 'id',
@@ -156,7 +156,7 @@ const Maintenance = () => {
         <AgGridReact
           rowData={rowData}
           updatedRow={updatedRow}
-          onCellDoubleClicked
+          onCellClicked
           onCellValueChanged={updateRow}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
