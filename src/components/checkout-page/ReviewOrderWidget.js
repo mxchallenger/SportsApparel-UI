@@ -24,7 +24,7 @@ const ReviewOrderWidget = ({ rate }) => {
           && <h1> Oops, your cart is empty!</h1>}
       </div>
       {products.map(({
-        price, title, description, quantity
+        price, title, description, quantity, productId
       }) => (
         <OrderItem
           key={title}
@@ -32,6 +32,7 @@ const ReviewOrderWidget = ({ rate }) => {
           title={title}
           description={description}
           quantity={quantity}
+          productId={productId}
         />
       ))}
       <hr />

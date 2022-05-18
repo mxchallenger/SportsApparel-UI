@@ -1,7 +1,7 @@
 import React from 'react';
 import FormItem from '../../form/FormItem';
 import FormItemDropdown from '../../form/FormItemDropdown';
-import styles from './DeliveryAddress.module.css';
+import styles from './BillingDelivery.module.css';
 
 /**
  * @name BillingDetails
@@ -89,10 +89,7 @@ const BillingDetails = ({
             className={(errors.billingStreet ? styles.errorBorder : styles.input)}
           />
           {errors && (
-            <p className={styles.errorMessage}>
-              {FormItem.label}
-              {errors.billingStreet}
-            </p>
+            <p className={styles.errorMessage}>{errors.billingStreet}</p>
           )}
 
           <FormItem
@@ -194,6 +191,7 @@ const BillingDetails = ({
       {errors && <p className={styles.errorMessage}>{errors.expiration}</p>}
 
       <FormItem
+        placeholder="Mickey Mouse"
         type="text"
         id="cardholder"
         label="Cardholder Name"

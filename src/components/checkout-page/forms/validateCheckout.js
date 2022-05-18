@@ -7,7 +7,6 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
   // validate names
   if (!delivery.firstName) {
     errors.firstName = `First Name ${memos.required}`;
-    // ${label}? for first names?
   } else if (!rEx.names.test(delivery.firstName)) {
     errors.firstName = `First Name ${memos.names}`;
   }
@@ -19,8 +18,8 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
 
   if (!billing.cardholder) {
     errors.cardholder = `Cardholder name ${memos.required}`;
-  } else if (!rEx.names.test(billing.cardholder)) {
-    errors.cardholder = `Cardholder name ${memos.names}`;
+  } else if (!rEx.cardName.test(billing.cardholder)) {
+    errors.cardholder = `Cardholder name ${memos.card}`;
   }
 
   // validate delivery street address
