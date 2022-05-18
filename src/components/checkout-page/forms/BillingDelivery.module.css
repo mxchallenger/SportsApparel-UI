@@ -1,7 +1,6 @@
 .deliveryAddress {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1em
 }
 
 .label {
@@ -10,7 +9,22 @@
 }
 
 .errorMessage {
+  color:red;
   font-weight: 400;
-  margin: 0;
-  color: red
+  font-size: 12px;
+}
+
+.errorBorder{
+  margin-top: .5em;
+  width: 100%;
+  padding: .5em;
+  box-sizing: border-box;
+  border: red dotted 3px
+}
+
+.input {
+  margin-top: .5em;
+  width: 100%;
+  padding: .5em;
+  box-sizing: border-box;
 }
