@@ -8,8 +8,10 @@ import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
 import Header from '../header/Header';
 import Maintenance from '../maintenance/Maintenance';
+import AddProductPage from '../add-product-page/AddProductPage';
 import Toast from '../toast/Toast';
 import Footer from '../footer/Footer';
+import UserProfile from '../userprofile/UserProfile';
 
 /**
  * @name App
@@ -23,7 +25,9 @@ const App = () => (
       <Route exact path="/checkout" render={() => <CheckoutPage />} />
       <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
       <Route exact path="/maintenance" render={() => <Maintenance />} />
+      <Route exact path="/add-product-page" render={() => <AddProductPage />} />
       <Route exact path="/toast" render={() => <Toast />} />
+      <Route exact path="/userProfile" render={() => <UserProfile />} />
     </Switch>
     <ToastContainer
       position="top-center"
@@ -31,7 +35,7 @@ const App = () => (
     />
 
     <Footer />
-  </BrowserRouter>
 
+  </BrowserRouter>
 );
 export default App;

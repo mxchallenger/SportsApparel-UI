@@ -1,7 +1,11 @@
 import React from 'react';
 import { useCart } from './CartContext';
 import OrderItem from './OrderItem';
-import { getSubtotal } from './ReviewOrderWidgetService';
+import
+{
+  getSubtotal
+}
+  from './ReviewOrderWidgetService';
 import styles from './ReviewOrderWidget.module.css';
 
 /**
@@ -9,7 +13,7 @@ import styles from './ReviewOrderWidget.module.css';
  * @description Displays order items and subtotal
  * @return component
  */
-const ReviewOrderWidget = () => {
+const ReviewOrderWidget = ({ rate }) => {
   const {
     state: { products }
   } = useCart();
@@ -20,7 +24,7 @@ const ReviewOrderWidget = () => {
           && <h1> Oops, your cart is empty!</h1>}
       </div>
       {products.map(({
-        price, title, description, quantity
+        price, title, description, quantity, productId
       }) => (
         <OrderItem
           key={title}
@@ -28,15 +32,29 @@ const ReviewOrderWidget = () => {
           title={title}
           description={description}
           quantity={quantity}
+          productId={productId}
         />
       ))}
       <hr />
-      <div className={styles.subtotal}>
-        <div>
-          <p>Subtotal</p>
+      <div className="total">
+        <div className={styles.subtotal}>
+          <div>
+            <p className="titles">Subtotal</p>
+          </div>
+          <div className={styles.price}>
+            <p className="subtotal">{`$${getSubtotal(products)}`}</p>
+          </div>
         </div>
-        <div className={styles.price}>
-          <p>{getSubtotal(products)}</p>
+        <div className={styles.shipping}>
+          <div>
+            <p className="titles">Shipping</p>
+          </div>
+          <div className={styles.price}>
+            <p>
+              {getSubtotal(products, rate) > 50.00 ? `$${(0.00 + rate)
+                .toFixed(2)}` : `$${(5.00 + rate).toFixed(2)}`}
+            </p>
+          </div>
         </div>
       </div>
     </>

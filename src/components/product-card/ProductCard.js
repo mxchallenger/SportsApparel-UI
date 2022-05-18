@@ -91,7 +91,8 @@ const ProductCard = ({ product }) => {
           title: product.name,
           price: product.price,
           description: product.description,
-          quantity: 1
+          quantity: 1,
+          productId: product.id
         }
       },
       toast.success(`${product.name} has been added to your cart.`)
