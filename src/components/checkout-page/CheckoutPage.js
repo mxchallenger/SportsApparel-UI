@@ -68,7 +68,6 @@ const CheckoutPage = () => {
     }
     setDeliveryData({ ...deliveryData, [e.target.id]: e.target.value });
   };
-
   const [checked, setChecked] = React.useState(false);
   const handleCheck = () => {
     setChecked(!checked);
@@ -80,29 +79,29 @@ const CheckoutPage = () => {
    * @returns purchase confirmation and a toast
    */
   const purchaseObj = () => {
-    const productData = products.map(({ id, quantity }) => ({ id, quantity }));
+    const productData = products.map(({ productId, quantity }) => ({ productId, quantity }));
     const deliveryAddress = {
-      firstName: deliveryData.firstName,
-      lastName: deliveryData.lastName,
-      street: deliveryData.street,
-      street2: deliveryData.street2,
-      city: deliveryData.city,
-      state: deliveryData.state,
-      zip: deliveryData.zip
+      DeliveryFirstName: deliveryData.firstName,
+      DeliveryLastName: deliveryData.lastName,
+      DeliveryStreet: deliveryData.street,
+      DeliveryStreet2: deliveryData.street2,
+      DeliveryCity: deliveryData.city,
+      DeliveryState: deliveryData.state,
+      DeliveryZip: deliveryData.zip
     };
     const billingAddress = {};
     if (checked) {
-      billingAddress.street = deliveryAddress.street;
-      billingAddress.street2 = deliveryAddress.street2;
-      billingAddress.city = deliveryAddress.city;
-      billingAddress.state = deliveryAddress.state;
-      billingAddress.zip = deliveryAddress.zip;
+      billingAddress.BillingStreet = deliveryAddress.street;
+      billingAddress.BillingStreet2 = deliveryAddress.street2;
+      billingAddress.BillingCity = deliveryAddress.city;
+      billingAddress.BillingState = deliveryAddress.state;
+      billingAddress.BillingZip = deliveryAddress.zip;
     } else {
-      billingAddress.street = billingData.billingStreet;
-      billingAddress.street2 = billingData.billingStreet2;
-      billingAddress.city = billingData.billingCity;
-      billingAddress.state = billingData.billingState;
-      billingAddress.zip = billingData.billingZip;
+      billingAddress.BillingStreet = billingData.billingStreet;
+      billingAddress.BillingStreet2 = billingData.billingStreet2;
+      billingAddress.BillingCity = billingData.billingCity;
+      billingAddress.BillingState = billingData.billingState;
+      billingAddress.BillingZip = billingData.billingZip;
     }
     billingAddress.email = billingData.email;
     billingAddress.phone = billingData.phone;
@@ -124,7 +123,6 @@ const CheckoutPage = () => {
   const handlePay = () => {
     validateCheckout(deliveryData, billingData, setErrors, checked, purchaseObj);
   };
-
   return (
     <div className={styles.checkoutContainer}>
       <div className={`${styles.step} ${styles.order}`}>
@@ -169,5 +167,4 @@ const CheckoutPage = () => {
     </div>
   );
 };
-
 export default CheckoutPage;
