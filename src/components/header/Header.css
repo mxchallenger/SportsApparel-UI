@@ -1,7 +1,6 @@
 .header {
     background: black;
     top: 0;
-    width: 98%;
     padding-top: 20px;
     padding-bottom: 60px;
     padding-left: 25px;
@@ -45,8 +44,7 @@ img {
 .firstName {
     color: white;
     float: left;
-    padding-left: 825px;
-    padding-top: 5px;
+    padding-top: 10px;
     margin-right: 5px;
     font-size: 18px;
     font-weight: bold;
@@ -55,9 +53,10 @@ img {
 .lastName {
     color: white;
     float: left;
-    padding-top: 5px;
+    padding-top: 10px;
     font-size: 18px;
     font-weight: bold;
+    padding-right: 25px;
 
 }
 #googleLogout {
@@ -72,3 +71,9 @@ img {
     padding-right: 35px;
     padding-top: 7px;
 }
+#viewProfile{
+    float: left;
+    padding-right: 25px; 
+    padding-top: 7px;
+}
+

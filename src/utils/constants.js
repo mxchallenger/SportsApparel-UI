@@ -10,6 +10,7 @@ module.exports = Object.freeze({
   SHIPPING_RATE_ENDPOINT: '/shippingrates/rate',
   PRODUCTS_ACTIVE_ENDPOINT: '/products/filters?pageNumber=',
   PRODUCT_ID_ENDPOINT: '/products/{id}',
-  PRODUCT_PAGE_COUNT_ENDPOINT: '/products/count'
+  PRODUCT_PAGE_COUNT_ENDPOINT: '/products/count',
+  USER_PROFILE_ENDPOINT: '/users/'
 
 });
