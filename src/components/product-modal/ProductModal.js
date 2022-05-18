@@ -59,6 +59,11 @@ export default function Modal({ product, props, onClose }) {
               {product.description}
             </Typography>
           </div>
+          <div>
+            <IconButton aria-label="Place holder for Margeaux">
+              <AddShoppingCartIcon />
+            </IconButton>
+          </div>
         </div>
         <div className="modal-footer">
           <span className="price">
