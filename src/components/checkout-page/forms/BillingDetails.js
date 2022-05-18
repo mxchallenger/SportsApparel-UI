@@ -88,10 +88,7 @@ const BillingDetails = ({
             className={(errors.billingStreet ? styles.errorBorder : styles.input)}
           />
           {errors && (
-            <p className={styles.errorMessage}>
-              {FormItem.label}
-              {errors.billingStreet}
-            </p>
+            <p className={styles.errorMessage}>{errors.billingStreet}</p>
           )}
 
           <FormItem
