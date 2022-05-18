@@ -14,9 +14,13 @@ export const toPrice = (price) => `$${price.toFixed(2)}`;
  * @param {Object []} products
  * @returns Number
  */
-export const getSubtotal = (products) => toPrice(products.reduce(
-  (acc, item) => acc + (item.quantity * item.price), 0
-));
+// export const getSubtotal = (products) => toPrice(products.reduce(
+//   (acc, item) => acc + (item.quantity * item.price), 0
+// ));
+
+export const getSubtotal = (products) => (products.reduce(
+  (acc, item) => acc + (item.quantity * item.price), 0.00
+)).toFixed(2);
 
 /**
  *

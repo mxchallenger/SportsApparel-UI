@@ -41,7 +41,7 @@ const ReviewOrderWidget = ({ rate }) => {
             <p className="titles">Subtotal</p>
           </div>
           <div className={styles.price}>
-            <p className="subtotal">{getSubtotal(products)}</p>
+            <p className="subtotal">{`$${getSubtotal(products)}`}</p>
           </div>
         </div>
         <div className={styles.shipping}>
@@ -49,7 +49,10 @@ const ReviewOrderWidget = ({ rate }) => {
             <p className="titles">Shipping</p>
           </div>
           <div className={styles.price}>
-            <p>{`${getSubtotal(products, rate)}` > `$${50.00}` ? `$${0 + rate}` : `$${5.00 + rate}`}</p>
+            <p>
+              {getSubtotal(products, rate) > 50.00 ? `$${(0.00 + rate)
+                .toFixed(2)}` : `$${(5.00 + rate).toFixed(2)}`}
+            </p>
           </div>
         </div>
       </div>
