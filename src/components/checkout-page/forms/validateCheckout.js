@@ -19,8 +19,8 @@ function validateCheckout(delivery, billing, setErrors, checked, purchaseObj) {
 
   if (!billing.cardholder) {
     errors.cardholder = `Cardholder name ${memos.required}`;
-  } else if (!rEx.names.test(billing.cardholder)) {
-    errors.cardholder = `Cardholder name ${memos.names}`;
+  } else if (!rEx.cardName.test(billing.cardholder)) {
+    errors.cardholder = `Cardholder name ${memos.card}`;
   }
 
   // validate delivery street address
