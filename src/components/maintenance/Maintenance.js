@@ -10,6 +10,8 @@ import { formatCurrency } from './FormatCurrency';
 import { formatActive } from './FormatActive';
 import styles from './Maintenance.module.css';
 import Constants from '../../utils/constants';
+import { AddSaveButton } from './AddSaveButton';
+import updateProducts from './MaintenanceUpdateService';
 
 /**
  * @name Maintenance
@@ -19,8 +21,18 @@ import Constants from '../../utils/constants';
 const Maintenance = () => {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
   const gridStyle = useMemo(() => ({ height: 500, width: '100%' }), []);
-
   const columnDefs = [
+    {
+      field: 'save row',
+      type: 'rightAligned',
+      sortable: false,
+      editable: false,
+      resizable: false,
+      pinned: 'left',
+      width: 120,
+      cellRenderer: AddSaveButton,
+      onCellClicked: updateProducts
+    },
     {
       field: 'id',
       sortable: true,
@@ -117,8 +129,7 @@ const Maintenance = () => {
       editable: false
     },
     {
-      field: 'dateModified',
-      editable: false
+      field: 'dateModified'
     }
   ];
 
@@ -128,10 +139,10 @@ const Maintenance = () => {
     editable: true,
     width: 110
   };
-
   const [rowData, setRowData] = useState([]);
   const [apiError, setApiError] = useState(false);
-
+  const [updatedRow, setUpdatedRow] = useState({});
+  const updateRow = (params) => setUpdatedRow(params.data);
   useEffect(() => {
     fetchProducts(setRowData, setApiError);
   }, []);
@@ -143,6 +154,9 @@ const Maintenance = () => {
       <div style={gridStyle} className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}
+          updatedRow={updatedRow}
+          onCellClicked
+          onCellValueChanged={updateRow}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
         />

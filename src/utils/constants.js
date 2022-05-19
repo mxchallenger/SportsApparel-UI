@@ -11,6 +11,7 @@ module.exports = Object.freeze({
   PRODUCTS_ACTIVE_ENDPOINT: '/products/filters?pageNumber=',
   PRODUCT_ID_ENDPOINT: '/products/{id}',
   PRODUCT_PAGE_COUNT_ENDPOINT: '/products/count',
-  USER_PROFILE_ENDPOINT: '/users/'
+  USER_PROFILE_ENDPOINT: '/users/',
+  UPDATE_PRODUCT_ENDPOINT: '/products/update'
 
 });
