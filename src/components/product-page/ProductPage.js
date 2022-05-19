@@ -51,13 +51,8 @@ const ProductPage = () => {
    * the pagination
    */
   useEffect(() => {
-<<<<<<< HEAD
-    fetchProductsCount(setCount, setApiError);
-  }, [count]);
-=======
     fetchProductsCount(setCount, urlQuery, setApiError);
   }, [count, urlQuery]);
->>>>>>> 920dcd15b84e16bfd1e1387aff69ea398ccb25da
 
   /**
    * This function allows clicks to individual page numbers
@@ -69,43 +64,6 @@ const ProductPage = () => {
     filterByQuery(selected);
   };
   return (
-<<<<<<< HEAD
-    <>
-
-      <div>
-        {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-        <div className={styles.app}>
-          {products.map((product) => (
-            <div key={product.id}>
-              <ProductCard product={product} />
-            </div>
-          ))}
-        </div>
-        <div>
-          <ReactPaginate
-            previousLabel="previous"
-            nextLabel="next"
-            breakLabel="..."
-            pageCount={count}
-            marginPagesDisplayed={0}
-            pageRangeDisplayed={9}
-            onPageChange={handleClick}
-            containerClassName="pagination justify-content-center"
-            pageClassName="page-item"
-            pageLinkClassName="page-link"
-            previousClassName="page-item"
-            previousLinkClassName="page-link"
-            nextClassName="page-item"
-            nextLinkClassName="page-link"
-            breakClassName="page-item"
-            breakLinkClassName="page-link"
-            activeClassName="active"
-            renderOnZeroPageCount={false}
-            forcePage={currentPage}
-            disabledClassName={styles.hide}
-          />
-        </div>
-=======
     <div>
       <Box>
         <Filter
@@ -144,9 +102,8 @@ const ProductPage = () => {
           forcePage={currentPage}
           disabledClassName={styles.hide}
         />
->>>>>>> 920dcd15b84e16bfd1e1387aff69ea398ccb25da
       </div>
-    </>
+    </div>
   );
 };
 

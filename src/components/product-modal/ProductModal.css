@@ -9,39 +9,39 @@
     z-index: 1000;
 }
 .modal-content {
+    display:flexbox;
+    border-radius: .5rem;
+    width:28rem;
     position:fixed;
     left: 50%;
     top:50%;
     transform: translate(-50%, -50%);
-    width: fit-content;
-    height: fit-content;
     background-color: #fff;
     z-index: 2000;
 }
-
-.modal-header {
-    height:min-content;
-    
+.modal-title {
+    font-weight: bold;
+    font-size: 18px;
 }
-
 .modal-footer {
-   height:min-content;
-    align-items: center;
-    justify-content: space-around;
+    display:inline-block;
+    height:2rem;
+    margin-left: .5rem;
+    padding-right: 1rem;
 }
 
 .modal-body {
-    height: fit-content;
+    height:auto;
     border-top: 3px solid rgba(255, 0, 0, 0.368);
     border-bottom: 3px solid rgba(255, 0, 0, 0.368);
 }
 
-.title {
-    justify-content: flex-start;
-}
-.price{
-    color: #000;
-}
 .category {
-    justify-content: center;
+    margin-left: 2rem;
+}
+.colors {
+  margin-bottom: 120px;
+}
+.quantity {
+    padding-right: 1rem;
 }
