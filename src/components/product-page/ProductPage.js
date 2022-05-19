@@ -63,7 +63,6 @@ const ProductPage = () => {
     setCurrentPage(selected);
     filterByQuery(selected);
   };
-
   return (
     <div>
       <Box>
