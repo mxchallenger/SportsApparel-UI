@@ -4,8 +4,8 @@ const Quantity = ({ max }) => {
   const [qty, setQty] = useState(1);
 
   const decreaseQty = () => {
-    if (qty <= 0) {
-      setQty(0);
+    if (qty <= 1) {
+      setQty(1);
     } else {
       setQty(qty - 1);
     }
